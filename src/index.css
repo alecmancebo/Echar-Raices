@@ -43,6 +43,7 @@ body{
   display: flex;           /* Activa Flexbox */
   justify-content: center; /* Centrado horizontal */
   align-items: center;
+  background-color: var(--color-fondo);
 
 }
 

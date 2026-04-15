@@ -6,9 +6,6 @@ export class Sprite {
         this.image.onload = () => { 
             this.isLoaded = true;
         }
-        this.image.onerror = () => {
-    
-}
         this.image.src = config.src;
 
         // 2. Carga la sombra
