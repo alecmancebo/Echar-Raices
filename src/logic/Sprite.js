@@ -39,13 +39,13 @@ export class Sprite {
         const x = this.gameObject.x; 
         const y = this.gameObject.y;
 
-        this.isShadowLoaded && ctx.drawImage(this.shadow, x,y);
+        this.isShadowLoaded && ctx.drawImage(this.shadow, x,y + 3);
 
         this.isLoaded && ctx.drawImage(this.image, 
         0,0,
-        32,32,
+        31,43,
         x,y,
-        32,32);
+        31,43);
     }
 
    

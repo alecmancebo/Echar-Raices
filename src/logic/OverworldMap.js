@@ -1,4 +1,10 @@
 import { GameObject } from "./GameObject.js";
+import { utils } from "./utils.js";
+import { Person } from "./Person.js";
+import { Sprite } from "./Sprite.js";
+import { Overworld } from "./Overworld.js";
+import { DirectionInput } from "./DirectionInput.js";
+
 
 export class OverworldMap {
     constructor(config){
@@ -28,9 +34,9 @@ export const OverworldMaps = {
     Jardin : {
         src: "/jardin.png",
         gameObjects: {
-            character: new GameObject({
-                x: 50,
-                y: 50,
+            character: new Person({
+                x: utils.withGrid(0),
+                y: utils.withGrid(0),
                 src: "/hero.png"
             })
         }
