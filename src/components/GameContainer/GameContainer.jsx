@@ -1,27 +1,28 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useContext } from 'react';
+import { Context } from '../../context/Context';
 import { Overworld } from '../../logic/Overworld.js';
+
 
 const GameContainer = () => {
   const containerRef = useRef(null);
-  const isInitialized = useRef(false);
+  const overworldRef = useRef(null); // Mejor guardar la instancia aquí
+  const { gameState } = useContext(Context);
 
   useEffect(() => {
-    // init.js
-    if (containerRef.current && !isInitialized.current) {
-      const overworld = new Overworld({
+    // Solo inicializamos el motor de Canvas una vez
+    if (containerRef.current && !overworldRef.current) {
+      overworldRef.current = new Overworld({
         element: containerRef.current
       });
-      overworld.init();
-      isInitialized.current = true;
+      overworldRef.current.init();
     }
   }, []);
 
-    return (
-        <div className="gameContainer" ref={containerRef}>
-            <canvas className="gameCanvas" width="385" height="217"></canvas>
-        </div>
-    )
-
+  return (
+      <div className="gameContainer" ref={containerRef}>
+          <canvas className="gameCanvas" width="385" height="217"></canvas>
+      </div>
+  )
 }
 
 export default GameContainer;

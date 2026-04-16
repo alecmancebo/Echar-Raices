@@ -32,7 +32,7 @@ export class Sprite {
 
 
     draw(ctx) {
-        // Corrección: Se elimina la multiplicación por 56. El Sprite solo debe dibujar en la posición exacta que le dicte su GameObject.
+       
         const x = this.gameObject.x; 
         const y = this.gameObject.y;
 
