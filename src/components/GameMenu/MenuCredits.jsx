@@ -1,7 +1,7 @@
 const MenuCredits = ({ onBack }) => (
     <div className="controls-view">
         <button className="back-button" onClick={onBack}>
-            <img className="back-arrow" src="/flecha.png" alt="" />
+            <img className="back-arrow" src="/flecha-grande.png" alt="" />
             VOLVER A MENÚ
         </button>
         <div className="credits-content">

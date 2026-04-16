@@ -15,7 +15,7 @@ export const GameProvider = ({ children }) => {
     const closeMenu = () => setIsMenuOpen(false);
 
     return (
-        <Context.Provider value={{ gameState, startGame, pauseGame, isMenuOpen, openMenu, closeMenu }}>
+        <Context.Provider value={{ gameState, startGame, pauseGame, isMenuOpen, openMenu, closeMenu, setGameState }}>
             {children}
         </Context.Provider>
     );

@@ -4,8 +4,7 @@ const MenuMain = ({ onNavigate, onClose }) => (
         <div className="menu-buttons">
             <button className="menu-button" onClick={() => onNavigate('CONTROLES')}>controles</button>
             <button className="menu-button" onClick={() => onNavigate('CREDITOS')}>créditos</button>
-            <button className="menu-button" onClick={onClose}>salir del juego</button>
-        </div>
+<button className="menu-button" onClick={() => onNavigate('EXIT')}>salir del juego</button>        </div>
     </>
 );
 export default MenuMain;

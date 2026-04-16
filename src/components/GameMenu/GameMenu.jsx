@@ -3,6 +3,7 @@ import { Context } from '../../context/Context.jsx'; // Ajusta la ruta a tu Cont
 import MenuMain from './MenuMain.jsx';
 import MenuControls from './MenuControls.jsx';
 import MenuCredits from './MenuCredits.jsx';
+import MenuExit from './MenuExit.jsx';
 
 const GameMenu = () => {
     // 1. Recuperamos 'openMenu' del contexto
@@ -50,6 +51,10 @@ const GameMenu = () => {
                             {activeView === 'CREDITOS' && (
                                 <MenuCredits onBack={() => setActiveView('MAIN')} />
                             )}
+                            {activeView === 'EXIT' && (
+                            <MenuExit onCancel={() => setActiveView('MAIN')} />
+                            )}
+                            
                         </div>
                     </div>
                 </div>
