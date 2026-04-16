@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useContext } from 'react';
 import { Context } from '../../context/Context';
 import { Overworld } from '../../logic/Overworld.js';
-import InGameMenu from '../GameMenu.jsx';
+import InGameMenu from '../GameMenu/GameMenu.jsx';
 
 const GameContainer = () => {
   const containerRef = useRef(null);

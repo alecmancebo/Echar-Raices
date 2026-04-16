@@ -11,7 +11,7 @@
 /*Tamaños versión escritorio*/
     --font-size-titulo: 6rem;
     --font-size-encabezado: 2rem;
-    --font-size-texto: 1rem;
+    --font-size-texto: 1.2rem;
 
 /*Tamaños versión tablet*/
     --font-size-titulo-t: 3rem;
@@ -215,9 +215,7 @@ canvas{
 
 .in-game-menu-btn:hover {
     transform: translateY(1px);
-        background-color: var(--color-brillante);
-
-
+    background-color: var(--color-brillante);
 }
 
 .menu-modal-overlay {
@@ -235,7 +233,7 @@ canvas{
 
 .menu-modal-box {
     position: relative;
-    width: 50%; 
+    width: 60%; 
     max-width: 400px;
     display: flex;
     justify-content: center;
@@ -243,13 +241,10 @@ canvas{
 }
 
 .menu-bg-image {
-    position: absolute;
-    top: 0;
-    left: 0;
+    display: block;
     width: 100%;
-    height: 100%;
+    height: auto;
     object-fit: contain;
-    z-index: -1; 
 }
 
 .menu-close-btn {
@@ -265,21 +260,26 @@ canvas{
 }
 
 .menu-content-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 80%;
-    padding: 10% 0 15%; 
+    justify-content: center;
+    padding: 10% 15% 12%; 
 }
 
-.menu-titulo-pergamino {
+.menu-title {
     font-family: var(--font-main);
     font-size: var(--font-size-encabezado);
-    color: var(--color-medio); /* Un verde oscuro según tu imagen */
+    color: var(--color-medio); 
     margin-bottom: var(--spacing-sm);
 }
 
-.menu-botones-pergamino {
+.menu-buttons {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -287,7 +287,7 @@ canvas{
     gap: 20px;
 }
 
-.pergamino-btn {
+.menu-button {
     font-family: var(--font-main);
     font-size: var(--font-size-texto);
     color: var(--color-medio);
@@ -303,23 +303,22 @@ canvas{
         4px 0 0 0 var(--color-medio);
 }
 
-.pergamino-btn:hover {
+.menu-button:hover {
     background-color: var(--color-medio);
     color: var(--color-claro);
 }
 
-/*MARK: CONTROLES*/
+/*MARK: CONTROLS*/
 
-/* --- VISTA DE CONTROLES --- */
-
-.controles-view {
+.controls-view {
     display: flex;
     flex-direction: column;
     width: 100%;
     height: 100%;
+    justify-content: center;
 }
 
-.volver-btn {
+.back-button {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -328,19 +327,19 @@ canvas{
     font-size: var(--font-size-encabezado);
     color: var(--color-medio);
     padding: 0;
+    margin-bottom: 5px; 
 }
 
-.volver-btn:hover {
+.back-button:hover {
     transform: translateX(-2px);
 }
 
-
-.flecha-volver {
+.back-arrow {
     width: 16px;
     transform: scaleX(-1); 
 }
 
-.controles-lista {
+.controls-list {
     display: flex;
     flex-direction: column;
     gap: var(--gap-sm);
@@ -348,14 +347,14 @@ canvas{
     margin-top: 10px;
 }
 
-.control-fila {
+.control-row {
     display: flex;
     justify-content: space-between; 
     align-items: center;
     width: 100%;
 }
 
-.control-fila p {
+.control-row p {
     font-family: var(--font-main);
     font-size: var(--font-size-texto);
     color: var(--color-oscuro);
@@ -370,4 +369,36 @@ canvas{
     background-color: #d1d1d1; 
     flex-shrink: 0; 
     object-fit: contain;
+}
+
+/* --- CREDITS VIEW --- */
+.credits-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.credits-content p {
+    font-family: var(--font-main);
+    font-size: var(--font-size-texto);
+    color: var(--color-oscuro);
+    line-height: 1.1;
+    text-align: center;
+}
+
+.credits-boxes {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+}
+
+.gray-box {
+    width: 60px;
+    height: 60px;
+    background-color: #d1d1d1;
+    flex-shrink: 0;
 }
