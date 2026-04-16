@@ -10,13 +10,13 @@
 
 /*Tamaños versión escritorio*/
     --font-size-titulo: 6rem;
-    --font-size-encabezado: 3rem;
-    --font-size-texto: 1.25rem;
+    --font-size-encabezado: 2rem;
+    --font-size-texto: 1rem;
 
 /*Tamaños versión tablet*/
-    --font-size-titulo-t: 4rem;
-    --font-size-encabezado-t: 2rem;
-    --font-size-texto-t: 1rem;
+    --font-size-titulo-t: 3rem;
+    --font-size-encabezado-t: 1rem;
+    --font-size-texto-t: 0.8rem;
 
 /* Colores */
     --color-oscuro: #153034;
@@ -161,11 +161,13 @@ canvas{
   padding: 0;
   gap: var(--gap-sm);
   display: flex;
+  justify-content: center;
+  align-items: center;
   white-space: nowrap;
 }
 
 .menu-arrow {
-    height: 20px;
+    height: 10px;
     object-fit: contain;
     opacity: 0;
     /*transform: translateX(-10px);*/
@@ -194,39 +196,178 @@ canvas{
 
 /* MARK: Menu */
 
-/*.pixel-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 8px 8px;
+.in-game-menu-btn {
     position: absolute;
-    right: 40px;
-    top: 40px;
+    top: var(--spacing-sm);
+    right: var(--spacing-md);
+    z-index: 10;
     background-color: var(--color-claro);
-    
-    box-shadow: 
-        0px -6px 0 0 var(--color-medio), 
-        0 6px 0 0 var(--color-medio), 
-        -6px 0 0 0 var(--color-medio), 
-        6px 0 0 0 var(--color-medio);
-
+    padding: 2px;
 }
 
-.pixel-button img{
-    width: 24px;
-    height: 24px;
+.open-menu-btn {
+   box-shadow: 
+        0px -4px 0 0 var(--color-oscuro), 
+        0 4px 0 0 var(--color-oscuro), 
+        -4px 0 0 0 var(--color-oscuro), 
+        4px 0 0 0 var(--color-oscuro);
 }
 
-.pixel-button:hover {
-    transform: scale(1.1);
-}
-
-.pixel-button:active {
+.in-game-menu-btn:hover {
     transform: translateY(1px);
-    box-shadow: 
-        0 -6px 0 0 var(--color-medio), 
-        0 6px 0 0 var(--color-medio), 
-        -6px 0 0 0 var(--color-medio), 
-        6px 0 0 0 var(--color-medio);
-}*/
+        background-color: var(--color-brillante);
 
+
+}
+
+.menu-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(1, 25, 21, 0.8); 
+    z-index: 20;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-modal-box {
+    position: relative;
+    width: 50%; 
+    max-width: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    z-index: -1; 
+}
+
+.menu-close-btn {
+    position: absolute;
+    top: -1.5%; 
+    right: -3%;
+    width: 10%;
+    box-shadow: 
+        0px -4px 0 0 var(--color-medio), 
+        0 4px 0 0 var(--color-medio), 
+        -4px 0 0 0 var(--color-medio), 
+        4px 0 0 0 var(--color-medio);
+}
+
+.menu-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    padding: 10% 0 15%; 
+}
+
+.menu-titulo-pergamino {
+    font-family: var(--font-main);
+    font-size: var(--font-size-encabezado);
+    color: var(--color-medio); /* Un verde oscuro según tu imagen */
+    margin-bottom: var(--spacing-sm);
+}
+
+.menu-botones-pergamino {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+}
+
+.pergamino-btn {
+    font-family: var(--font-main);
+    font-size: var(--font-size-texto);
+    color: var(--color-medio);
+    background-color: transparent;
+    padding: 4px 0;
+    width: 80%;
+    text-align: center;
+    transition: background-color 0.2s;
+    box-shadow: 
+        0px -4px 0 0 var(--color-medio), 
+        0 4px 0 0 var(--color-medio), 
+        -4px 0 0 0 var(--color-medio), 
+        4px 0 0 0 var(--color-medio);
+}
+
+.pergamino-btn:hover {
+    background-color: var(--color-medio);
+    color: var(--color-claro);
+}
+
+/*MARK: CONTROLES*/
+
+/* --- VISTA DE CONTROLES --- */
+
+.controles-view {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.volver-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: transparent;
+    font-family: var(--font-main);
+    font-size: var(--font-size-encabezado);
+    color: var(--color-medio);
+    padding: 0;
+}
+
+.volver-btn:hover {
+    transform: translateX(-2px);
+}
+
+
+.flecha-volver {
+    width: 16px;
+    transform: scaleX(-1); 
+}
+
+.controles-lista {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-sm);
+    width: 100%;
+    margin-top: 10px;
+}
+
+.control-fila {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    width: 100%;
+}
+
+.control-fila p {
+    font-family: var(--font-main);
+    font-size: var(--font-size-texto);
+    color: var(--color-oscuro);
+    line-height: 1;
+    text-align: left;
+    max-width: 65%;
+}
+
+.gif-placeholder {
+    width: 30%;
+    height: 40px;
+    background-color: #d1d1d1; 
+    flex-shrink: 0; 
+    object-fit: contain;
+}

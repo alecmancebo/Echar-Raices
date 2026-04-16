@@ -8,6 +8,7 @@ export class Overworld {
     this.canvas = this.element.querySelector(".gameCanvas");
     this.ctx = this.canvas.getContext("2d");
     this.map = null;
+    this.isPaused = false;
   }
 
   startGameLoop(){
@@ -18,6 +19,11 @@ export class Overworld {
       // 2. Dibujar el mapa
       this.map.drawMapImage(this.ctx);
 
+      if (!this.isPaused) {
+          // Aquí irá la lógica de movimiento cuando implementes Person.js
+          // ej: object.update({ arrow: this.directionInput.direction });
+      }
+      
       // 3. Dibujar los objetos que existan en el mapa
       Object.values(this.map.gameObjects).forEach(object => {
         object.update({
