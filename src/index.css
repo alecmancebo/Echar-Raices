@@ -321,6 +321,7 @@ canvas{
 .back-button {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 10px;
     background: transparent;
     font-family: var(--font-main);
@@ -424,4 +425,72 @@ canvas{
 
 .exit-buttons {
     gap: 15px; 
+}
+
+/* --- STORYBOARD --- */
+
+.storyboard-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    aspect-ratio: 200 / 150;
+    width: min(96%, calc(96dvh * (385 / 217)));
+    max-height: 96dvh;
+    background-color: var(--color-fondo);
+}
+
+.storyboard-frame-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain; 
+    z-index: 1;
+    pointer-events: none;
+    image-rendering: pixelated; 
+}
+
+.storyboard-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%; 
+    height: 100%; 
+    gap: 20%; 
+}
+
+.storyboard-animation-box {
+    width: 100%;
+    height: 65%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.storyboard-gif {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    image-rendering: pixelated;
+}
+
+.storyboard-text-box {
+    width: 100%;
+    height: 30%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.storyboard-text-box p {
+    font-family: var(--font-main);
+    font-size: var(--font-size-texto);
+    color: var(--color-fondo); 
+    line-height: 1.1;
+    text-align: center;
 }

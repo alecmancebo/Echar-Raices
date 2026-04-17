@@ -4,18 +4,31 @@ export const Context = createContext();
 
 export const GameProvider = ({ children }) => {
     // Estados globales
-    const [gameState, setGameState] = useState('START_MENU'); // 'START_MENU', 'PLAYING', 'PAUSED'
+    const [gameState, setGameState] = useState('START_MENU'); 
+    const [currentStoryScreen, setCurrentStoryScreen] = useState(1);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    
+    const advanceStory = () => {
+        if (currentStoryScreen < 4) {
+            setCurrentStoryScreen(prev => prev + 1);
+        } else {
+            setGameState('PLAYING');
+        }
+    };
 
-    const startGame = () => setGameState('PLAYING');
+    const startGame = () => {
+        setCurrentStoryScreen(1);
+        setGameState('STORYBOARD');};
+
     const pauseGame = () => setGameState('PAUSED');
 
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+   
     const openMenu = () => setIsMenuOpen(true);
     const closeMenu = () => setIsMenuOpen(false);
 
+    
     return (
-        <Context.Provider value={{ gameState, startGame, pauseGame, isMenuOpen, openMenu, closeMenu, setGameState }}>
+        <Context.Provider value={{ gameState, startGame, pauseGame, isMenuOpen, openMenu, closeMenu, setGameState, currentStoryScreen,advanceStory }}>
             {children}
         </Context.Provider>
     );
