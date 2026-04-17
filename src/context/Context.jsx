@@ -18,7 +18,7 @@ export const GameProvider = ({ children }) => {
 
     const startGame = () => {
         setCurrentStoryScreen(1);
-        setGameState('STORYBOARD');};
+        setGameState('LOGIN');};
 
     const pauseGame = () => setGameState('PAUSED');
 

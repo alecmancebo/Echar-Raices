@@ -494,3 +494,122 @@ canvas{
     line-height: 1.1;
     text-align: center;
 }
+
+
+
+/* --- GLOBAL COMPONENTS --- */
+
+/* Clase para todos los botones con estética pixel art */
+.pixel-btn {
+    font-family: var(--font-main);
+    font-size: var(--font-size-texto);
+    background-color: var(--color-claro);
+    color: var(--color-oscuro);
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    text-transform: lowercase;
+    
+    box-shadow: 
+        0px -4px 0 0 var(--color-claro), 
+        0 4px 0 0 var(--color-claro), 
+        -4px 0 0 0 var(--color-claro), 
+        4px 0 0 0 var(--color-claro);
+    
+    transition: all 0.1s ease;
+}
+
+.pixel-btn:hover {
+    background-color: var(--color-medio);
+    color: var(--color-claro);
+}
+
+.pixel-btn:active {
+    transform: translateY(2px);
+}
+
+/* --- LOGIN VIEW --- */
+
+.login-view {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.login-background {
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+    z-index: 1;
+}
+
+.login-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    padding-bottom: 10px;
+}
+
+.login-title {
+    font-family: var(--font-main);
+    font-size: var(--font-size-encabezado);
+    color: var(--color-claro);
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    align-items: center;
+}
+
+.login-field {
+    display: flex;
+    flex-direction: column;
+    width: 85%;
+}
+
+.login-field label {
+    font-family: var(--font-main);
+    font-size: var(--font-size-texto);
+    color: var(--color-oscuro);
+    margin-bottom: 4px;
+}
+
+.login-input {
+    background-color: var(--color-medio);
+    font-family: var(--font-main);
+    font-size: var(--font-size-texto);
+    padding: 6px 10px;
+    color: var(--color-fondo);
+    outline: none;
+    border: none;
+    box-shadow: 
+        0px -4px 0 0 var(--color-claro), 
+        0 4px 0 0 var(--color-claro), 
+        -4px 0 0 0 var(--color-claro), 
+        4px 0 0 0 var(--color-claro);
+}
+
+input::placeholder {
+  color: var(--color-oscuro);
+  opacity: 0.7; 
+}
+
+.login-actions {
+    display: flex;
+    gap: 15px;
+    width: 45%;
+    margin-top: 15px;
+}
+
+.login-actions .pixel-btn {
+    flex: 1; 
+}
+

@@ -4,6 +4,8 @@ import { Context, GameProvider } from './context/Context';
 import GameContainer from './components/GameContainer/GameContainer.jsx';
 import StartMenu from './components/StartMenu.jsx';
 import Storyboard from './components/Storyboard/Storyboard.jsx'; 
+import Login from './components/Login/Login.jsx';
+import GameMenu from './components/GameMenu/GameMenu.jsx';
 
 function AppContent() {
   const { gameState } = useContext(Context);
@@ -12,6 +14,8 @@ function AppContent() {
     switch (gameState) {
       case 'START_MENU':
         return <StartMenu />;
+      case 'LOGIN':
+        return <Login />;
       case 'STORYBOARD':
         return <Storyboard />;
       case 'PLAYING':
@@ -26,14 +30,6 @@ function AppContent() {
     <>
       {renderScreen()}
     </>
-  );
-}
-
-function App() {
-  return (
-    <GameProvider>
-      <AppContent />
-    </GameProvider>
   );
 }
 
