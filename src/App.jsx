@@ -6,9 +6,10 @@ import StartMenu from './components/StartMenu.jsx';
 import Storyboard from './components/Storyboard/Storyboard.jsx'; 
 import Login from './components/Login/Login.jsx';
 import GameMenu from './components/GameMenu/GameMenu.jsx';
+import Inventory from './components/Inventory/Inventory.jsx'; 
 
 function AppContent() {
-  const { gameState } = useContext(Context);
+  const { gameState, isInventoryOpen } = useContext(Context);
 
   const renderScreen = () => {
     switch (gameState) {
@@ -19,7 +20,12 @@ function AppContent() {
       case 'STORYBOARD':
         return <Storyboard />;
       case 'PLAYING':
-        return <GameContainer />;
+        return (
+          <>
+            <GameContainer />
+          </>
+        );
+      
       default:
         return null;
     }

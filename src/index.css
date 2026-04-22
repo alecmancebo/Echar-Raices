@@ -269,7 +269,7 @@ canvas{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 10% 15% 12%; 
+    padding: 7%; 
 }
 
 .menu-title {
@@ -372,7 +372,7 @@ canvas{
     object-fit: contain;
 }
 
-/* --- CREDITS VIEW --- */
+/* MARK: CREDITS VIEW --- */
 .credits-content {
     display: flex;
     flex-direction: column;
@@ -404,7 +404,7 @@ canvas{
     flex-shrink: 0;
 }
 
-/* --- EXIT VIEW --- */
+/* MARK: EXIT VIEW --- */
 .exit-view {
     display: flex;
     flex-direction: column;
@@ -427,7 +427,7 @@ canvas{
     gap: 15px; 
 }
 
-/* --- STORYBOARD --- */
+/* MARK: STORYBOARD --- */
 
 .storyboard-container {
     display: flex;
@@ -497,7 +497,7 @@ canvas{
 
 
 
-/* --- GLOBAL COMPONENTS --- */
+/* MARK: GLOBAL COMPONENTS --- */
 
 /* Clase para todos los botones con estética pixel art */
 .pixel-btn {
@@ -528,7 +528,7 @@ canvas{
     transform: translateY(2px);
 }
 
-/* --- LOGIN VIEW --- */
+/* MARK: LOGIN VIEW --- */
 
 .login-view {
     display: flex;
@@ -613,3 +613,173 @@ input::placeholder {
     flex: 1; 
 }
 
+/* MARK: INVENTORY */
+
+/* Contenedor del modal */
+.inventory-modal-box {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2; }
+
+/* Imagen de fondo del cuaderno */
+.inventory-bg-image {
+    position: absolute;
+    width: 90%;
+    height: 90%;
+    object-fit: contain;
+    z-index: 1;
+}
+
+/* Botón de cierre 'X' */
+.inventory-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 3;
+    padding: 5px;
+}
+
+.inventory-close-btn img {
+    width: 10px;
+    height: 10px;
+}
+
+
+.inventory-content-wrapper {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    width: 70%; 
+    height: 85%;
+    gap: 5%;
+}
+
+/* Paneles izquierdo y derecho */
+.inventory-reflection-panel,
+.inventory-items-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--spacing-sm);
+}
+
+/* Títulos*/
+.inventory-panel-title {
+    font-family: var(--font-main);
+    font-size: var(--font-size-encabezado);
+    color: var(--color-medio);
+    margin-bottom: var(--spacing-sm);
+    text-transform: lowercase;
+    text-align: center;
+}
+
+/* LADO IZQUIERDO: Reflejo */
+.reflection-illustration-box {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: var(--spacing-sm);
+}
+
+.reflection-icon {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+.reflection-text {
+    font-family: var(--font-main);
+    font-size: var(--font-size-texto);
+    color: var(--color-oscuro);
+    text-align: center;
+    width: 80%;
+}
+
+/* LADO DERECHO: Cuadrícula */
+.inventory-items-panel {
+    padding-left: 0%; 
+}
+
+.inventory-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);  
+    grid-template-rows: repeat(4, 1fr);
+    gap: 10px;
+    width: 80%;
+    height: 80%;
+}
+
+
+.inventory-item-slot {
+    background-color: var(--color-medio);
+    border: 2px solid var(--color-oscuro);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1 / 1; 
+    transition: background-color 0.1s ease;
+}
+
+.inventory-item-slot:hover {
+    background-color: var(--color-claro);
+}
+.inventory-item-slot.active {
+    background-color:var(--color-brillante);
+    border-color: var(--color-brillante); /
+}
+
+.inventory-item-slot.empty {
+    cursor: default;
+    background-color: var(--color-medio);
+    opacity: 0.7;
+}
+
+.inventory-item-slot.empty:hover {
+    background-color: var(--color-medio);
+}
+
+.item-icon {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+}
+
+.empty-item-icon {
+    width: 80%;
+    height: 80%;
+}
+
+.in-game-ui-btn {
+    position: absolute;
+    top: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+    padding: 5px;
+}
+
+.ui-icon {
+    width: 32px;
+    height: 32px;
+    image-rendering: pixelated;
+}
+
+.inventory-btn {
+    right: 60px;
+}
+
+.menu-btn {
+    right: 10px;
+}

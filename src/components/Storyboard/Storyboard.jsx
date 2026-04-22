@@ -26,10 +26,9 @@ const Storyboard = () => {
 
     return (
         <div className="storyboard-container">
-            {/* 1. NUEVO: El PNG de tu marco dibujado */}
+           
             <img className="storyboard-frame-bg" src="/animaciones.png" alt="Marco" />
 
-            {/* 2. NUEVO: Contenedor flotante que agrupa el contenido por encima del marco */}
             <div className="storyboard-content">
                 
                 <div className="storyboard-animation-box">
