@@ -16,22 +16,21 @@ export class Overworld {
       // 1. Limpiar el lienzo 
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-      // 2. Dibujar el mapa
-      this.map.drawMapImage(this.ctx);
-
-      if (!this.isPaused) {
-          // Aquí irá la lógica de movimiento cuando implementes Person.js
-          // ej: object.update({ arrow: this.directionInput.direction });
-      }
       
-      // 3. Dibujar los objetos que existan en el mapa
+      // 2. Dibujar los objetos que existan en el mapa
       Object.values(this.map.gameObjects).forEach(object => {
         object.update({
-            arrow: this.directionInput.direction,
-            map: this.map
+            arrow: this.directionInput.direction
         });
-        object.sprite.draw(this.ctx);
       });
+
+      // 3. Dibujar el mapa
+      this.map.drawMapImage(this.ctx);
+
+      // 4. Dibujar los objetos que existan en el mapa
+      Object.values(this.map.gameObjects).forEach(object => {
+        object.sprite.draw(this.ctx, cameraPerson);
+      })
 
       requestAnimationFrame(()=> {
         step();

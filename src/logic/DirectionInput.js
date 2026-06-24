@@ -21,13 +21,15 @@ export class DirectionInput {
                 this.heldDirections.unshift(dir);
             }
         });
-        document.addEventListener("keyup", e =>{
+        document.addEventListener("keyup", e => {
             const dir = this.map[e.code];
             const index = this.heldDirections.indexOf(dir);
-            if (dir) {
-                this.heldDirections = this.heldDirections.filter(d => d !== dir);
+            if (index > -1) {
+                this.heldDirections.splice(index, 1);
+                console.log(this.heldDirections)
             }
-        });
+    })
     }
   
 }
+

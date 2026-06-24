@@ -21,19 +21,19 @@ export class Sprite {
 
         // configuraciones de animación
         this.animations = config.animations || {
-           "idleDown":  [ [0,0] ],
-            "idleLeft":  [ [0,1] ],
-            "idleRight": [ [0,2] ],
-            "idleUp":    [ [0,3] ],
-            "walkDown":  [ [1,0], [0,0], [3,0], [0,0] ],
-            "walkLeft":  [ [1,1], [0,1], [3,1], [0,1] ],
-            "walkRight": [ [1,2], [0,2], [3,2], [0,2] ],
-            "walkUp":    [ [1,3], [0,3], [3,3], [0,3] ]
+           "idle-down":  [ [0,0] ],
+            "idle-left":  [ [0,1] ],
+            "idle-right": [ [0,2] ],
+            "idle-up":    [ [0,3] ],
+            "walk-down":  [ [1,0], [0,0], [3,0], [0,0] ],
+            "walk-left":  [ [1,1], [0,1], [3,1], [0,1] ],
+            "walk-right": [ [1,2], [0,2], [3,2], [0,2] ],
+            "walk-up":    [ [1,3], [0,3], [3,3], [0,3] ]
         }
-        this.currentAnimation = config.currentAnimation || "idleDown";
+        this.currentAnimation = config.currentAnimation || "idle-down";
         this.currentAnimationFrame = 0;
 
-        this.animationFrameLimit = config.animationFrameLimit || 16;
+        this.animationFrameLimit = config.animationFrameLimit || 8;
         this.animationFrameProgress = this.animationFrameLimit;
 
 
@@ -91,6 +91,5 @@ export class Sprite {
 
         this.updateAnimationProgress();
     }
-
 
 }

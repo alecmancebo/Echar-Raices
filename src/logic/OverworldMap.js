@@ -11,9 +11,6 @@ export class OverworldMap {
         // Colección de objetos en este mapa
         this.gameObjects = config.gameObjects || {};
 
-        //muros
-        this.walls = config.walls || {};
-
         // Imagen de fondo del mapa
         this.image = new Image();
         this.isLoaded = false; 
@@ -31,11 +28,6 @@ export class OverworldMap {
     }
     }
 
-    isSpaceTaken(currentX, currentY, direction){
-        const {x, y} = utils.nextPosition(currentX, currentY, direction);
-        return this.walls[`${x},${y}`] || false;
-    }
-
 }
 
 // Exportamos las configuraciones de los mapas 
@@ -49,15 +41,5 @@ export const OverworldMaps = {
                 src: "/hero.png"
             })
         }
-    },
-
-    Walls: {
-        //"16,16": true,
-        [utils.asGridCoord(6, 3)]: true,
-        [utils.asGridCoord(7, 3)]: true,
-        [utils.asGridCoord(8, 3)]: true,
-        [utils.asGridCoord(6, 2)]: true,
-        [utils.asGridCoord(7, 2)]: true,
-        [utils.asGridCoord(8, 2)]: true,
     }
 }
