@@ -7,16 +7,21 @@ export class Person extends GameObject {
 
         // Mantén esto en minúsculas para que coincida con DirectionInput.js y GameObject.js
         this.directionUpdate = {
-            "up": ["y", -0.5],
-            "down": ["y", 0.5],
-            "left": ["x", -0.5],
-            "right": ["x", 0.5]
+            "up": ["y", -1],
+            "down": ["y", 1],
+            "left": ["x", -1],
+            "right": ["x", 1]
         }
     }
 
     update(state){
         if(this.movementProgressRemaining > 0){
-            this.updatePosition();
+            // Si se suelta la tecla mientras se mueve, detener inmediatamente
+            if(!state.arrow){
+                this.movementProgressRemaining = 0;
+            } else {
+                this.updatePosition();
+            }
         } else {
 
             // No se está moviendo, por lo que podemos recibir nuevas entradas
