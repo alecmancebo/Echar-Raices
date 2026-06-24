@@ -21,14 +21,23 @@ export class Sprite {
 
         // configuraciones de animación
         this.animation = config.animations || {
-            idleDown: [ [0,0] ]
+            "idleDown": [ [0,0] ],
+            "walkDown": [ [1,0], [0,0], [3,0], [0,0] ]
+
         }
-        this.currentAnimation = config.currentAnimation || "idleDown";
+        this.currentAnimation = "walkDown" //config.currentAnimation || "idleDown";
         this.currentAnimationFrame = 0;
+
+        this.animationFrameLimit = config.animationFrameLimit || 16;
+        this.animationFrameProgress = this.animationFrameLimit;
+
+
         this.gameObject = config.gameObject;
     }
 
-
+    get frame(){
+        return this.animations[this.currentAnimation][this.currentAnimationFrame];
+    }
 
 
     draw(ctx) {
@@ -38,8 +47,10 @@ export class Sprite {
 
         this.isShadowLoaded && ctx.drawImage(this.shadow, x,y + 3);
 
+        const [frameX, frameY] = this.frame;
+
         this.isLoaded && ctx.drawImage(this.image, 
-        0,0,
+        frameX,frameY,
         31,43,
         x,y,
         31,43);
