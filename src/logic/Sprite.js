@@ -20,12 +20,17 @@ export class Sprite {
         }
 
         // configuraciones de animación
-        this.animation = config.animations || {
-            "idleDown": [ [0,0] ],
-            "walkDown": [ [1,0], [0,0], [3,0], [0,0] ]
-
+        this.animations = config.animations || {
+           "idleDown":  [ [0,0] ],
+            "idleLeft":  [ [0,1] ],
+            "idleRight": [ [0,2] ],
+            "idleUp":    [ [0,3] ],
+            "walkDown":  [ [1,0], [0,0], [3,0], [0,0] ],
+            "walkLeft":  [ [1,1], [0,1], [3,1], [0,1] ],
+            "walkRight": [ [1,2], [0,2], [3,2], [0,2] ],
+            "walkUp":    [ [1,3], [0,3], [3,3], [0,3] ]
         }
-        this.currentAnimation = "walkDown" //config.currentAnimation || "idleDown";
+        this.currentAnimation = config.currentAnimation || "idleDown";
         this.currentAnimationFrame = 0;
 
         this.animationFrameLimit = config.animationFrameLimit || 16;
@@ -39,22 +44,53 @@ export class Sprite {
         return this.animations[this.currentAnimation][this.currentAnimationFrame];
     }
 
+    setAnimation(key){
+        if(this.currentAnimation !== key){
+            this.currentAnimation = key;
+            this.currentAnimationFrame = 0;
+            this.animationFrameProgress = this.animationFrameLimit;
+        }
+    }
+
+    updateAnimationProgress(){
+        // decrece el contador de progreso de la animación
+        if(this.animationFrameProgress > 0){
+            this.animationFrameProgress -= 1;
+            return;
+        }
+
+        // resetear el contador de progreso de la animación
+        this.animationFrameProgress = this.animationFrameLimit;
+        this.currentAnimationFrame += 1;
+
+        if(this.currentAnimationFrame >= this.animations[this.currentAnimation].length){
+        this.currentAnimationFrame = 0;
+    }
+    }
 
     draw(ctx) {
-       
         const x = this.gameObject.x; 
         const y = this.gameObject.y;
 
-        this.isShadowLoaded && ctx.drawImage(this.shadow, x,y + 3);
+        // Dibujar sombra con modo multiplicar
+        if (this.isShadowLoaded) {
+            ctx.globalCompositeOperation = "multiply"; // Cambiar a multiplicar
+            ctx.drawImage(this.shadow, x, y + 3);
+            ctx.globalCompositeOperation = "source-over"; // Restaurar modo normal
+        }
 
         const [frameX, frameY] = this.frame;
 
+        // Dibujar personaje
         this.isLoaded && ctx.drawImage(this.image, 
-        frameX,frameY,
-        31,43,
-        x,y,
-        31,43);
+            frameX * 31, frameY * 43, 
+            31, 43,                   
+            x, y,                     
+            31, 43                    
+        );
+
+        this.updateAnimationProgress();
     }
 
-   
+
 }
