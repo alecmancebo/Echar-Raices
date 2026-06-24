@@ -33,7 +33,10 @@ export class OverworldMap {
 
     isSpaceTaken(currentX, currentY, direction){
         const {x, y} = utils.nextPosition(currentX, currentY, direction);
-        return this.walls[`${x},${y}`] || false;
+        const key = `${x},${y}`;
+        console.log(`Buscando muro en: ${key}`, this.walls[key] || "No hay muro");
+        console.log("Muros disponibles:", Object.keys(this.walls));
+        return this.walls[key] || false;
     }
 
     mountObjects() {
