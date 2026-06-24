@@ -16,34 +16,23 @@ export class Person extends GameObject {
 
     update(state){
         if(this.movementProgressRemaining > 0){
-            // Si se suelta la tecla mientras se mueve, detener inmediatamente
-            if(!state.arrow){
-                this.movementProgressRemaining = 0;
-            } else {
-                this.updatePosition();
-            }
+            this.updatePosition();
         } else {
-
             // No se está moviendo, por lo que podemos recibir nuevas entradas
-            //
-            //
-            // Si no se está moviendo y el usuario presiona una tecla
             if(state.arrow){
                 this.startBehavior(state, {
                     type:"walk",
                     direction:state.arrow
                 });
             }
-            this.updateSprite(state);
         }
-
-      
-      
+        this.updateSprite(state);
     }
 
     startBehavior(state, behavior){
         // Establecer la dirección del personaje
         this.direction = behavior.direction;
+        this.currentMap = state.map;
         
         if(behavior.type === "walk"){
 
@@ -51,31 +40,29 @@ export class Person extends GameObject {
                 return;
             }
 
-            //Ready to walk!
-            state.map.moveWall(this.x, this.y, this.direction);
             this.movementProgressRemaining = 16;
         }
     }
 
     updatePosition() {
-        
+       if (this.movementProgressRemaining > 0) {
             const [property, change] = this.directionUpdate[this.direction];
             this[property] += change;
             this.movementProgressRemaining -= 1;
         }
+    }
    
 
     updateSprite(){
-       
         const capitalize = this.direction[0].toUpperCase() + this.direction.slice(1);
 
         // Si le queda distancia por recorrer, está caminando
         if(this.movementProgressRemaining > 0){
-            this.sprite.setAnimation("walk" + capitalize);
+            this.sprite.setAnimation("walk-" + this.direction);
             return;
         }
         
         // Si no está caminando, está quieto
-        this.sprite.setAnimation("idle" + capitalize);
+        this.sprite.setAnimation("idle-" + this.direction);
     }
 }

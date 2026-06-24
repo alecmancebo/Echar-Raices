@@ -33,10 +33,7 @@ export class OverworldMap {
 
     isSpaceTaken(currentX, currentY, direction){
         const {x, y} = utils.nextPosition(currentX, currentY, direction);
-        const key = `${x},${y}`;
-        console.log(`Buscando muro en: ${key}`, this.walls[key] || "No hay muro");
-        console.log("Muros disponibles:", Object.keys(this.walls));
-        return this.walls[key] || false;
+        return this.walls[`${x},${y}`] || false;
     }
 
     mountObjects() {
@@ -73,12 +70,12 @@ export const OverworldMaps = {
 
        
         walls: {
-            [utils.asGridCoord(6, 3)]: true,
-            [utils.asGridCoord(7, 3)]: true,
-            [utils.asGridCoord(8, 3)]: true,
-            [utils.asGridCoord(6, 2)]: true,
-            [utils.asGridCoord(7, 2)]: true,
-            [utils.asGridCoord(8, 2)]: true,
+            [utils.asGridCoord(6,3)]: true,
+            [utils.asGridCoord(7,3)]: true,
+            [utils.asGridCoord(8,3)]: true,
+            [utils.asGridCoord(6,2)]: true,
+            [utils.asGridCoord(7,2)]: true,
+            [utils.asGridCoord(8,2)]: true,
         }
     } 
 }
