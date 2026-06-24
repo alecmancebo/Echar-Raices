@@ -28,10 +28,14 @@ export class Overworld {
       Object.values(this.map.gameObjects).forEach(object => {
         object.update({
             arrow: this.directionInput.direction,
-            map: this.map
-        });
-        object.sprite.draw(this.ctx);
+            map: this.map,
+        })
       });
+
+
+      Object.values(this.map.gameObjects).forEach(object => {
+        object.sprite.draw(this.ctx);
+      })
 
       requestAnimationFrame(()=> {
         step();
@@ -43,6 +47,7 @@ export class Overworld {
   init() {
 
     this.map = new OverworldMap(OverworldMaps.Jardin);
+    this.map.mountObjects();
     this.directionInput = new DirectionInput();
     this.directionInput.init();
 

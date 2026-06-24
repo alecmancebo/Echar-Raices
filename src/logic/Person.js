@@ -3,7 +3,7 @@ import { GameObject } from "./GameObject.js";
 export class Person extends GameObject {
     constructor(config){
         super(config);
-        this.movementProgressRemaining = 32;
+        this.movementProgressRemaining = 0;
 
         // Mantén esto en minúsculas para que coincida con DirectionInput.js y GameObject.js
         this.directionUpdate = {
@@ -39,10 +39,16 @@ export class Person extends GameObject {
     startBehavior(state, behavior){
         // Establecer la dirección del personaje
         this.direction = behavior.direction;
+        
         if(behavior.type === "walk"){
-            if(!state.map.isSpaceTaken(this.x, this.y, this.direction)){
-                this.movementProgressRemaining = 32;
+
+            if(state.map.isSpaceTaken(this.x, this.y, this.direction)){
+                return;
             }
+
+            //Ready to walk!
+            state.map.moveWall(this.x, this.y, this.direction);
+            this.movementProgressRemaining = 32;
         }
     }
 

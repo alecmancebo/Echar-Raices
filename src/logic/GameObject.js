@@ -10,6 +10,11 @@ export class GameObject {
         });
     }
 
+    mount(map) {
+    this.isMounted = true;
+    map.addWall(this.x, this.y);
+  }
+
     update(){
 
     }

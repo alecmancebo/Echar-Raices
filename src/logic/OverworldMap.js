@@ -36,6 +36,24 @@ export class OverworldMap {
         return this.walls[`${x},${y}`] || false;
     }
 
+    mountObjects() {
+        Object.values(this.gameObjects).forEach(object => {
+            object.mount(this);
+        });
+    }
+
+    addWall(x,y) {
+    this.walls[`${x},${y}`] = true;
+    }
+    removeWall(x,y) {
+        delete this.walls[`${x},${y}`]
+    }
+    moveWall(wasX, wasY, direction) {
+        this.removeWall(wasX, wasY);
+        const {x,y} = utils.nextPosition(wasX, wasY, direction);
+        this.addWall(x,y);
+    }
+
 }
 
 // Exportamos las configuraciones de los mapas 
@@ -48,16 +66,16 @@ export const OverworldMaps = {
                 y: utils.withGrid(0),
                 src: "/hero.png"
             })
-        }
-    },
+        }, 
 
-    Walls: {
-        //"16,16": true,
-        [utils.asGridCoord(6, 3)]: true,
-        [utils.asGridCoord(7, 3)]: true,
-        [utils.asGridCoord(8, 3)]: true,
-        [utils.asGridCoord(6, 2)]: true,
-        [utils.asGridCoord(7, 2)]: true,
-        [utils.asGridCoord(8, 2)]: true,
-    }
+       
+        walls: {
+            [utils.asGridCoord(6, 3)]: true,
+            [utils.asGridCoord(7, 3)]: true,
+            [utils.asGridCoord(8, 3)]: true,
+            [utils.asGridCoord(6, 2)]: true,
+            [utils.asGridCoord(7, 2)]: true,
+            [utils.asGridCoord(8, 2)]: true,
+        }
+    } 
 }

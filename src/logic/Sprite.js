@@ -3,6 +3,7 @@ export class Sprite {
 
         // 1. Carga la imagen del personaje
         this.image = new Image();
+        this.image.src = config.src;
         this.image.onload = () => { 
             this.isLoaded = true;
         }
@@ -30,10 +31,10 @@ export class Sprite {
             "walkRight": [ [1,2], [0,2], [3,2], [0,2] ],
             "walkUp":    [ [1,3], [0,3], [3,3], [0,3] ]
         }
-        this.currentAnimation = config.currentAnimation || "idleDown";
+        this.currentAnimation = "idleRight";
         this.currentAnimationFrame = 0;
 
-        this.animationFrameLimit = config.animationFrameLimit || 16;
+        this.animationFrameLimit = config.animationFrameLimit || 8;
         this.animationFrameProgress = this.animationFrameLimit;
 
 
@@ -63,9 +64,9 @@ export class Sprite {
         this.animationFrameProgress = this.animationFrameLimit;
         this.currentAnimationFrame += 1;
 
-        if(this.currentAnimationFrame >= this.animations[this.currentAnimation].length){
-        this.currentAnimationFrame = 0;
-    }
+        if (this.frame === undefined) {
+        this.currentAnimationFrame = 0
+        }
     }
 
     draw(ctx) {

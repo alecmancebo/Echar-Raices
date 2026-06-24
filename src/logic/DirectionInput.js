@@ -24,8 +24,8 @@ export class DirectionInput {
         document.addEventListener("keyup", e =>{
             const dir = this.map[e.code];
             const index = this.heldDirections.indexOf(dir);
-            if (dir) {
-                this.heldDirections = this.heldDirections.filter(d => d !== dir);
+            if (index > -1) {
+                this.heldDirections.splice(index, 1);
             }
         });
     }
