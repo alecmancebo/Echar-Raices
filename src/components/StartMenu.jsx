@@ -6,23 +6,23 @@ const StartMenu = () => {
     const { startGame } = useContext(Context);
 
     return (
-        <div className="gameContainer start-menu-container">
-            <img className="start-menu-bg" src="/fondo.png" alt="Fondo del bosque" />
-            <div className="start-menu-content">
-            <img className="start-menu-logo" src="/titulo.png" alt="Echar Raíces" />
+        <div className="game-container start-menu">
+            <img className="start-menu__bg" src="/fondo.png" alt="Fondo del bosque" />
+            <div className="start-menu__content">
+                <img className="start-menu__logo" src="/titulo.png" alt="Echar Raíces" />
 
-            <div className="start-menu-links">
-            <button className="start-menu-link" onClick={startGame}>
-                <img className="menu-arrow" src="/flecha-der.png" alt="" />
-                NUEVA PARTIDA
-            </button>
-          
-            <button className="start-menu-link" onClick={() => console.log('Continuar no implementado aún')}>
-                <img className="menu-arrow" src="/flecha-der.png" alt="" />
-                CONTINUAR
-            </button>
-        </div>
-      </div>
+                <div className="start-menu__links">
+                    <button className="start-menu__link" onClick={startGame}>
+                        <img className="start-menu__arrow" src="/flecha-der.png" alt="" />
+                        NUEVA PARTIDA
+                    </button>
+                
+                    <button className="start-menu__link" onClick={() => console.log('Continuar no implementado aún')}>
+                        <img className="start-menu__arrow" src="/flecha-der.png" alt="" />
+                        CONTINUAR
+                    </button>
+                </div>
+            </div>
         </div>
     );
 };

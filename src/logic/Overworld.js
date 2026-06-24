@@ -5,7 +5,7 @@ import { DirectionInput } from "./DirectionInput.js";
 export class Overworld {
   constructor(config) {
     this.element = config.element;
-    this.canvas = this.element.querySelector(".gameCanvas");
+    this.canvas = this.element.querySelector(".game-container__canvas");
     this.ctx = this.canvas.getContext("2d");
     this.map = null;
     this.isPaused = false;

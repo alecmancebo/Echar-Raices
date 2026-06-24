@@ -14,25 +14,25 @@ const Login = () => {
     };
 
     return (
-        <div className="login-view gameContainer">
-            <img className="login-background" src="/login.png" alt="" />
+        <div className="login game-container">
+            <img className="login__bg" src="/login.png" alt="" />
 
-            <div className="login-content">
-                <h2 className="login-title">REGÍSTRATE</h2>
+            <div className="login__content">
+                <h2 className="login__title">REGÍSTRATE</h2>
 
-                <form className="login-form" onSubmit={handleEnter}>
-                    <div className="login-field">
+                <form className="login__form" onSubmit={handleEnter}>
+                    <div className="login__field">
                         <label>Usuario</label>
-                        <input className="login-input" type="text" placeholder="Nombre..." required />
+                        <input className="login__input" type="text" placeholder="Nombre..." required />
                     </div>
 
-                    <div className="login-field">
+                    <div className="login__field">
                         <label>Contraseña</label>
-                        <input className="login-input" type="password" placeholder="******" required />
+                        <input className="login__input" type="password" placeholder="******" required />
                     </div>
 
-                    <div className="login-actions">
-                        <button type="submit" className="pixel-btn">
+                    <div className="login__actions">
+                        <button type="submit" className="pixel-btn login__btn">
                             entrar
                         </button>
                     </div>

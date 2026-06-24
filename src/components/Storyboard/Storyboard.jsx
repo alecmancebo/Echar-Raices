@@ -25,21 +25,21 @@ const Storyboard = () => {
     }, [advanceStory]); 
 
     return (
-        <div className="storyboard-container">
+        <div className="storyboard">
            
-            <img className="storyboard-frame-bg" src="/animaciones.png" alt="Marco" />
+            <img className="storyboard__bg" src="/animaciones.png" alt="Marco" />
 
-            <div className="storyboard-content">
+            <div className="storyboard__content">
                 
-                <div className="storyboard-animation-box">
+                <div className="storyboard__animation">
                     <img 
-                        className="storyboard-gif" 
+                        className="storyboard__gif" 
                         src={currentData.gif} 
                         alt={`Historia Pantalla ${currentStoryScreen}`} 
                     />
                 </div>
 
-                <div className="storyboard-text-box">
+                <div className="storyboard__text-box">
                     <p>{currentData.text}</p>
                 </div>
 

@@ -26,11 +26,12 @@ const GameContainer = () => {
   }, [isMenuOpen]);
 
   return (
-      <div className="gameContainer" ref={containerRef}>
-          <button className="in-game-menu-btn inventory-btn" onClick={openInventory}>
-              <img className="ui-icon" src="/casa.png" alt="Inventario" />
+      <div className="game-container" ref={containerRef}>
+          <button className="game-ui__btn game-ui__btn--inventory" onClick={openInventory}>
+              <img className="game-ui__icon" src="/casa.png" alt="Inventario" />
           </button>
-          <canvas className="gameCanvas" width="385" height="217"></canvas>
+          
+          <canvas className="game-container__canvas" width="385" height="217"></canvas>
 
           <InGameMenu />
           <Inventory />

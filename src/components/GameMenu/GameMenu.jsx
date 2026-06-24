@@ -23,23 +23,23 @@ const GameMenu = () => {
         <>
             {/* BOTÓN FLOTANTE: Se dibuja solo cuando el menú está cerrado */}
             {!isMenuOpen && (
-                <button className="in-game-menu-btn open-menu-btn" onClick={openMenu}>
-                    <img className="menu-icon" src="/ajustesicono.png" alt="Ajustes" />
+                <button className="game-ui__btn game-ui__btn--menu-closed" onClick={openMenu}>
+                    <img className="game-ui__icon" src="/ajustesicono.png" alt="Ajustes" />
                 </button>
             )}
 
             {/* EL MODAL: Se dibuja solo cuando el menú está abierto */}
             {isMenuOpen && (
-                <div className="menu-modal-overlay">
-                    <div className="menu-modal-box">
+                <div className="modal-overlay">
+                    <div className="modal">
                       
-                        <img className="menu-bg-image" src="/menu.png" alt="" />
+                        <img className="modal__bg" src="/menu.png" alt="" />
                         
-                        <button className="menu-close-btn in-game-menu-btn" onClick={handleClose}>
+                        <button className="modal__close-btn" onClick={handleClose}>
                             <img src="/x.png" alt="Close" />
                         </button>
                         
-                        <div className="menu-content-wrapper">
+                        <div className="modal__content">
                             {activeView === 'MAIN' && (
                                 <MenuMain onNavigate={setActiveView} onClose={handleClose} />
                             )}
@@ -52,7 +52,6 @@ const GameMenu = () => {
                             {activeView === 'EXIT' && (
                             <MenuExit onCancel={() => setActiveView('MAIN')} />
                             )}
-                            
                         </div>
                     </div>
                 </div>

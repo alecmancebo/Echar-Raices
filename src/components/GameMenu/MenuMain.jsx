@@ -7,11 +7,11 @@ const MenuMain = ({ onNavigate, onClose }) => {
 
     return ( 
         <>
-            <h2 className="menu-title">menú</h2>
-            <div className="menu-buttons">
-                <button className="menu-button" onClick={() => onNavigate('CONTROLES')}>controles</button>
-                <button className="menu-button" onClick={() => onNavigate('CREDITOS')}>créditos</button>
-                <button className="menu-button" onClick={onClose}>salir del juego</button>
+            <h2 className="modal__title">menú</h2>
+            <div className="modal__actions">
+                <button className="modal__btn" onClick={() => onNavigate('CONTROLES')}>controles</button>
+                <button className="modal__btn" onClick={() => onNavigate('CREDITOS')}>créditos</button>
+                <button className="modal__btn" onClick={onClose}>salir del juego</button>
             </div>
         </>
     );
