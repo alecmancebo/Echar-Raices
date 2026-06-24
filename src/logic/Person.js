@@ -15,26 +15,46 @@ export class Person extends GameObject {
     }
 
     update(state){
-        this.updatePosition();
-      
-        // Si no se está moviendo y el usuario presiona una tecla
-        if(this.movementProgressRemaining === 0 && state.arrow){
-            this.direction = state.arrow; 
-            this.movementProgressRemaining = 32;
+        if(this.movementProgressRemaining > 0){
+            this.updatePosition();
+        } else {
+
+            // No se está moviendo, por lo que podemos recibir nuevas entradas
+            //
+            //
+            // Si no se está moviendo y el usuario presiona una tecla
+            if(state.arrow){
+                this.startBehavior(state, {
+                    type:"walk",
+                    direction:state.arrow
+                });
+            }
+            this.updateSprite(state);
         }
 
-        this.updateSprite(state);
+      
+      
+    }
+
+    startBehavior(state, behavior){
+        // Establecer la dirección del personaje
+        this.direction = behavior.direction;
+        if(behavior.type === "walk"){
+            if(!state.map.isSpaceTaken(this.x, this.y, this.direction)){
+                this.movementProgressRemaining = 32;
+            }
+        }
     }
 
     updatePosition() {
-        if(this.movementProgressRemaining > 0){
+        
             const [property, change] = this.directionUpdate[this.direction];
             this[property] += change;
             this.movementProgressRemaining -= 1;
         }
-    }
+   
 
-    updateSprite(state){
+    updateSprite(){
        
         const capitalize = this.direction[0].toUpperCase() + this.direction.slice(1);
 
