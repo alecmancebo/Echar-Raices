@@ -4,8 +4,9 @@ export class Person extends GameObject {
     constructor(config){
         super(config);
         this.movementProgressRemaining = 0;
+        this.isPlayerControlled = config.isPlayerControlled || false;
 
-        // Mantén esto en minúsculas para que coincida con DirectionInput.js y GameObject.js
+
         this.directionUpdate = {
             "up": ["y", -1],
             "down": ["y", 1],
@@ -18,7 +19,7 @@ export class Person extends GameObject {
     this.updatePosition();
     this.updateSprite(state);
 
-    if (this.isPlayerControlled && this.movementProgressRemaining === 0 && state.arrow) {
+    if (this.movementProgressRemaining === 0 && state.arrow) {
       this.direction = state.arrow;
       this.movementProgressRemaining = 16;
     }
@@ -33,8 +34,7 @@ export class Person extends GameObject {
   }
 
   updateSprite(state) {
-
-    if (this.isPlayerControlled && this.movementProgressRemaining === 0 && !state.arrow) {
+    if (this.movementProgressRemaining === 0 && !state.arrow) {
       this.sprite.setAnimation("idle-"+this.direction);
       return;
     }

@@ -17,7 +17,7 @@ export class DirectionInput {
     init() {
         document.addEventListener("keydown", e =>{
             const dir = this.map[e.code];
-            if (dir && !this.heldDirections.includes(dir)) { 
+            if (dir && this.heldDirections.indexOf(dir) === -1) { 
                 this.heldDirections.unshift(dir);
             }
         });
@@ -26,9 +26,8 @@ export class DirectionInput {
             const index = this.heldDirections.indexOf(dir);
             if (index > -1) {
                 this.heldDirections.splice(index, 1);
-                console.log(this.heldDirections)
             }
-    })
+        });
     }
   
 }

@@ -29,7 +29,7 @@ export class Overworld {
 
       // 4. Dibujar los objetos que existan en el mapa
       Object.values(this.map.gameObjects).forEach(object => {
-        object.sprite.draw(this.ctx, cameraPerson);
+        object.sprite.draw(this.ctx);
       })
 
       requestAnimationFrame(()=> {
