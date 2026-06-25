@@ -82,7 +82,7 @@ export const OverworldMaps = {
 
             pajaro: new GameObject({
                 x: utils.withGrid(1), 
-                y: utils.withGrid(2),
+                y: utils.withGrid(3),
                 src: "/pajarito.png",   
                 useShadow: false,      
                 cutX: 30,             
@@ -91,7 +91,7 @@ export const OverworldMaps = {
 
             sal: new GameObject({
                 x: utils.withGrid(2), 
-                y: utils.withGrid(6),
+                y: utils.withGrid(7),
                 src: "/salero.png",   
                 useShadow: false,      
                 cutX: 30,             
@@ -99,7 +99,7 @@ export const OverworldMaps = {
             }),
 
             pociones: new GameObject({
-                x: utils.withGrid(6), 
+                x: utils.withGrid(7), 
                 y: utils.withGrid(2),
                 src: "/pociones.png",   
                 useShadow: false,      
@@ -117,7 +117,7 @@ export const OverworldMaps = {
             }),
 
             ratrillo: new GameObject({
-                x: utils.withGrid(13), 
+                x: utils.withGrid(14), 
                 y: utils.withGrid(12),
                 src: "/rastrillo.png",   
                 useShadow: false,      
@@ -154,7 +154,7 @@ export const OverworldMaps = {
 
             herbicida: new GameObject({
                 x: utils.withGrid(18), 
-                y: utils.withGrid(1),
+                y: utils.withGrid(2),
                 src: "/herbicida.png",   
                 useShadow: false,      
                 cutX: 30,             
