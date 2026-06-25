@@ -73,9 +73,6 @@ export const OverworldMaps = {
         },
 
         walls: {
-            [utils.asGridCoord(6,0)] : true,
-            [utils.asGridCoord(7,0)] : true,
-            [utils.asGridCoord(8,0)] : true,
             [utils.asGridCoord(6,1)] : true,
             [utils.asGridCoord(7,1)] : true,
             [utils.asGridCoord(8,1)] : true,
