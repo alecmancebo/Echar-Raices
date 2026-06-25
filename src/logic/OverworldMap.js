@@ -29,7 +29,7 @@ export class OverworldMap {
 
     drawMapImage(ctx) {
     if (this.isLoaded) { 
-ctx.drawImage(this.image, 0, 0, ctx.canvas.width, ctx.canvas.height);    }
+        ctx.drawImage(this.image, 0, 0, ctx.canvas.width, ctx.canvas.height);    }
     }
 
     isSpaceTaken(currentX, currentY, direction) {
@@ -74,12 +74,12 @@ export const OverworldMaps = {
         },
 
         walls: {
+            [utils.asGridCoord(5,0)] : true,
             [utils.asGridCoord(6,0)] : true,
             [utils.asGridCoord(7,0)] : true,
-            [utils.asGridCoord(8,0)] : true,
+            [utils.asGridCoord(5,1)] : true,
             [utils.asGridCoord(6,1)] : true,
             [utils.asGridCoord(7,1)] : true,
-            [utils.asGridCoord(8,1)] : true,
         }
     }
 }
