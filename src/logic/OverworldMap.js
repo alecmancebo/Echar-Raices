@@ -29,6 +29,8 @@ export class OverworldMap {
 
     drawMapImage(ctx) {
     if (this.isLoaded) { 
+                console.log("Canvas size:", ctx.canvas.width, "x", ctx.canvas.height);
+        console.log("Imagen dibujada a 0,0 con tamaño:", this.image.width, "x", this.image.height);
         ctx.drawImage(this.image, 0, 0, ctx.canvas.width, ctx.canvas.height);    }
     }
 
@@ -74,12 +76,12 @@ export const OverworldMaps = {
         },
 
         walls: {
-            [utils.asGridCoord(5,0)] : true,
             [utils.asGridCoord(6,0)] : true,
             [utils.asGridCoord(7,0)] : true,
-            [utils.asGridCoord(5,1)] : true,
+            [utils.asGridCoord(8,0)] : true,
             [utils.asGridCoord(6,1)] : true,
             [utils.asGridCoord(7,1)] : true,
+            [utils.asGridCoord(8,1)] : true,
         }
     }
 }
