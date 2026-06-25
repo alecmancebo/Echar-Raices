@@ -9,9 +9,16 @@ export class Sprite {
         }
         this.image.src = config.src;
 
-        // 2. Carga la sombra
+        // 1. DIMENSIONES DINÁMICAS 
+        this.cutX = config.cutX || 23; 
+        this.cutY = config.cutY || 32; 
+
+        this.offsetX = config.offsetX || 0;
+        this.offsetY = config.offsetY || 0;
+
+        // 2. SOMBRAS OPCIONALES 
         this.shadow = new Image();
-        this.useShadow = true;
+        this.useShadow = config.useShadow !== undefined ? config.useShadow : true;
         
         this.shadow.onload = () => { 
             this.isShadowLoaded = true;
@@ -31,7 +38,7 @@ export class Sprite {
             "walk-right": [ [1,2], [0,2], [3,2], [0,2] ],
             "walk-up":    [ [1,3], [0,3], [3,3], [0,3] ]
         }
-        this.currentAnimation = "idle-right";
+        this.currentAnimation = config.currentAnimation || "idle-down";
         this.currentAnimationFrame = 0;
 
         this.animationFrameLimit = config.animationFrameLimit || 8;
@@ -73,25 +80,38 @@ export class Sprite {
         const x = this.gameObject.x; 
         const y = this.gameObject.y;
 
+        const offsets = {
+        "idle-down": { x: -1},
+        "idle-up":   { x: -1},
+        "idle-left": { x: -1}, 
+        "idle-right":{ x: +1},  
+        "walk-down": { x: -1},
+        "walk-up":   { x: -1},
+        "walk-left": { x: -1}, 
+        "walk-right":{ x: +1},
+    };
+
+    // Obtenemos el offset actual 
+    const currentOffset = offsets[this.currentAnimation] || { x: -8, y: -16 };
+
         // Dibujar sombra con modo multiplicar
-        if (this.isShadowLoaded) {
-            ctx.globalCompositeOperation = "multiply"; // Cambiar a multiplicar
-            ctx.drawImage(this.shadow, x, y + 3);
-            ctx.globalCompositeOperation = "source-over"; // Restaurar modo normal
+        if (this.isShadowLoaded && this.useShadow) {
+            ctx.globalCompositeOperation = "multiply"; 
+            ctx.drawImage(this.shadow, x -3, y - 23);
+            ctx.globalCompositeOperation = "source-over";
         }
 
         const [frameX, frameY] = this.frame;
 
         // Dibujar personaje
         this.isLoaded && ctx.drawImage(this.image, 
-            frameX * 31, frameY * 43, 
-            31, 43,                   
-            x, y,                     
-            31, 43                    
+            frameX * this.cutX, frameY * this.cutY, 
+            this.cutX, this.cutY,                   
+            x + currentOffset.x + this.offsetX, y - 16 + this.offsetY,                
+            this.cutX, this.cutY                    
         );
 
         this.updateAnimationProgress();
     }
-
 
 }

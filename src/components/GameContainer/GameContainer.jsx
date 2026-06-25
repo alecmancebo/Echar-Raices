@@ -31,7 +31,7 @@ const GameContainer = () => {
               <img className="game-ui__icon" src="/casa.png" alt="Inventario" />
           </button>
           
-          <canvas className="game-container__canvas" width="385" height="217"></canvas>
+          <canvas className="game-container__canvas" width="384" height="208"></canvas>
 
           <InGameMenu />
           <Inventory />

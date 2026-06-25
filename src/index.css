@@ -124,8 +124,8 @@ canvas {
 /* MARK: GAME CONTAINER*/
 .game-container {
     position: relative;
-    aspect-ratio: 385 / 217;
-    width: min(96%, calc(96dvh * (385 / 217)));
+    aspect-ratio: 384 / 208;
+    width: min(96%, calc(96dvh * (384 / 208)));
     max-width: 1200px;
     max-height: 96dvh;
     background-color: var(--color-fondo);
@@ -573,7 +573,7 @@ canvas {
     overflow: hidden;
     position: relative;
     aspect-ratio: 200 / 150;
-    width: min(96%, calc(96dvh * (385 / 217)));
+    width: min(96%, calc(96dvh * (384 / 208)));
     max-height: 96dvh;
     background-color: var(--color-fondo);
 }

@@ -16,23 +16,19 @@ export class Overworld {
       // 1. Limpiar el lienzo 
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-      // 2. Dibujar el mapa
-      this.map.drawMapImage(this.ctx);
-
-      if (!this.isPaused) {
-          // Aquí irá la lógica de movimiento cuando implementes Person.js
-          // ej: object.update({ arrow: this.directionInput.direction });
-      }
       
-      // 3. Dibujar los objetos que existan en el mapa
+      // 2. Dibujar los objetos que existan en el mapa
       Object.values(this.map.gameObjects).forEach(object => {
         object.update({
             arrow: this.directionInput.direction,
             map: this.map,
-        })
+        });
       });
 
+      // 3. Dibujar el mapa
+      this.map.drawMapImage(this.ctx);
 
+      // 4. Dibujar los objetos que existan en el mapa
       Object.values(this.map.gameObjects).forEach(object => {
         object.sprite.draw(this.ctx);
       })
@@ -40,7 +36,25 @@ export class Overworld {
       requestAnimationFrame(()=> {
         step();
       })
-    }
+
+      // Dentro de step() en Overworld.js
+      // Dibuja una rejilla de 16x16 sobre el juego
+       /* this.ctx.strokeStyle = "red";
+      this.ctx.lineWidth = 1;
+      for (let i = 0; i < this.canvas.width; i += 16) {
+          this.ctx.beginPath();
+          this.ctx.moveTo(i, 0);
+          this.ctx.lineTo(i, this.canvas.height);
+          this.ctx.stroke();
+      }
+      for (let j = 0; j < this.canvas.height; j += 16) {
+          this.ctx.beginPath();
+          this.ctx.moveTo(0, j);
+          this.ctx.lineTo(this.canvas.width, j);
+          this.ctx.stroke();
+      }*/
+          }
+
     step();
   }
 
@@ -50,6 +64,7 @@ export class Overworld {
     this.map.mountObjects();
     this.directionInput = new DirectionInput();
     this.directionInput.init();
+
 
     this.startGameLoop();
 
