@@ -89,7 +89,7 @@ export class Sprite {
         // Dibujar sombra con modo multiplicar
         if (this.isShadowLoaded) {
             ctx.globalCompositeOperation = "multiply"; // Cambiar a multiplicar
-            ctx.drawImage(this.shadow, x, y - 16);
+            ctx.drawImage(this.shadow, x -2, y - 21);
             ctx.globalCompositeOperation = "source-over"; // Restaurar modo normal
         }
 
