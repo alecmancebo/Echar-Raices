@@ -1,7 +1,8 @@
 import { Sprite } from "./Sprite.js"; 
 export class GameObject {
     constructor(config){
-        this.isMounted = true;
+        this.id = null;
+        this.isMounted = false;
         this.x = config.x || 0;
         this.y = config.y || 0;
         this.direction = config.direction || "down";
@@ -23,6 +24,13 @@ export class GameObject {
     }
     
     update(){
-
     }
+
+    /*async doBehaviorEvent(map){
+        let eventConfig;
+        const eventHandler = new OverworldEvent({map, event: eventConfig});
+        await eventHandler.init();
+
+
+    }*/
 }
