@@ -41,7 +41,8 @@ export class OverworldMap {
     mountObjects() {
         Object.values(this.gameObjects).forEach(o => {
         o.mount(this);
-        })
+        });
+        console.log("ESTADO FINAL DE LOS MUROS:", this.walls);
     }
 
     addWall(x,y) {
@@ -272,14 +273,7 @@ export const OverworldMaps = {
             [utils.asGridCoord(22,10)] : true,
             [utils.asGridCoord(23,10)] : true,
             
-
-
-
-
-
-
         },
 
-       
-        }
+    }
     }

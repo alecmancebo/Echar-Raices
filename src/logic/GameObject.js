@@ -17,7 +17,9 @@ export class GameObject {
     }
 
     mount(map) {
+        console.log(`Intentando montar objeto en: ${this.x}, ${this.y}`);
         this.isMounted = true;
+        map.addWall(this.x, this.y);
     }
     
     update(){
