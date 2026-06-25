@@ -573,7 +573,7 @@ canvas {
     overflow: hidden;
     position: relative;
     aspect-ratio: 200 / 150;
-    width: min(96%, calc(96dvh * (385 / 217)));
+    width: min(96%, calc(96dvh * (384 / 208)));
     max-height: 96dvh;
     background-color: var(--color-fondo);
 }
