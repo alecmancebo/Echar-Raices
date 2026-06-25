@@ -8,9 +8,13 @@ export class Sprite {
         }
         this.image.src = config.src;
 
-        // 2. Carga la sombra
+        // 1. DIMENSIONES DINÁMICAS 
+        this.cutX = config.cutX || 23; // 23 por defecto para Personaje
+        this.cutY = config.cutY || 32; // 32 por defecto para  Personaje
+
+        // 2. SOMBRAS OPCIONALES 
         this.shadow = new Image();
-        this.useShadow = true;
+        this.useShadow = config.useShadow !== undefined ? config.useShadow : true;
         
         this.shadow.onload = () => { 
             this.isShadowLoaded = true;
@@ -83,24 +87,24 @@ export class Sprite {
         "walk-right":{ x: +1},
     };
 
-    // Obtenemos el offset actual (usamos una base si no existe la dirección)
+    // Obtenemos el offset actual 
     const currentOffset = offsets[this.currentAnimation] || { x: -8, y: -16 };
 
         // Dibujar sombra con modo multiplicar
-        if (this.isShadowLoaded) {
-            ctx.globalCompositeOperation = "multiply"; // Cambiar a multiplicar
-            ctx.drawImage(this.shadow, x -2, y - 21);
-            ctx.globalCompositeOperation = "source-over"; // Restaurar modo normal
+        if (this.isShadowLoaded && this.useShadow) {
+            ctx.globalCompositeOperation = "multiply"; 
+            ctx.drawImage(this.shadow, x -3, y - 23);
+            ctx.globalCompositeOperation = "source-over";
         }
 
         const [frameX, frameY] = this.frame;
 
         // Dibujar personaje
         this.isLoaded && ctx.drawImage(this.image, 
-            frameX * 23, frameY * 32, 
-            23, 32,                   
+            frameX * this.cutX, frameY * this.cutY, 
+            this.cutX, this.cutY,                   
             x + currentOffset.x, y - 16,                
-            23, 32                    
+            this.cutX, this.cutY                    
         );
 
         this.updateAnimationProgress();

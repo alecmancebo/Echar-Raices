@@ -69,6 +69,16 @@ export const OverworldMaps = {
                 x: utils.withGrid(0),
                 y: utils.withGrid(0),
                 src: "/hero.png"
+            }),
+
+            // NUEVO OBJETO VISUAL
+            botas: new GameObject({
+                x: utils.withGrid(7), 
+                y: utils.withGrid(11),
+                src: "/botas.png",   
+                useShadow: false,      
+                cutX: 30,             
+                cutY: 30             
             })
         },
 

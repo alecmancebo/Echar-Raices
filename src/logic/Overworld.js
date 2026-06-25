@@ -38,8 +38,8 @@ export class Overworld {
       })
 
       // Dentro de step() en Overworld.js
-// Dibuja una rejilla de 16x16 sobre el juego
-      this.ctx.strokeStyle = "red";
+      // Dibuja una rejilla de 16x16 sobre el juego
+       /* this.ctx.strokeStyle = "red";
       this.ctx.lineWidth = 1;
       for (let i = 0; i < this.canvas.width; i += 16) {
           this.ctx.beginPath();
@@ -52,8 +52,9 @@ export class Overworld {
           this.ctx.moveTo(0, j);
           this.ctx.lineTo(this.canvas.width, j);
           this.ctx.stroke();
-      }
+      }*/
           }
+
     step();
   }
 
@@ -64,6 +65,7 @@ export class Overworld {
 
     this.directionInput = new DirectionInput();
     this.directionInput.init();
+
 
     this.startGameLoop();
 
