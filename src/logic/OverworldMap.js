@@ -29,8 +29,7 @@ export class OverworldMap {
 
     drawMapImage(ctx) {
     if (this.isLoaded) { 
-        ctx.drawImage(this.image, 0, 0);
-    }
+ctx.drawImage(this.image, 0, 0, ctx.canvas.width, ctx.canvas.height);    }
     }
 
     isSpaceTaken(currentX, currentY, direction) {
