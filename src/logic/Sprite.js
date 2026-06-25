@@ -72,10 +72,24 @@ export class Sprite {
         const x = this.gameObject.x; 
         const y = this.gameObject.y;
 
+        const offsets = {
+        "idle-down": { x: -1},
+        "idle-up":   { x: -1},
+        "idle-left": { x: -1}, 
+        "idle-right":{ x: +1},  
+        "walk-down": { x: -1},
+        "walk-up":   { x: -1},
+        "walk-left": { x: -1}, 
+        "walk-right":{ x: +1},
+    };
+
+    // Obtenemos el offset actual (usamos una base si no existe la dirección)
+    const currentOffset = offsets[this.currentAnimation] || { x: -8, y: -16 };
+
         // Dibujar sombra con modo multiplicar
         if (this.isShadowLoaded) {
             ctx.globalCompositeOperation = "multiply"; // Cambiar a multiplicar
-            ctx.drawImage(this.shadow, x, y - 3);
+            ctx.drawImage(this.shadow, x, y - 16);
             ctx.globalCompositeOperation = "source-over"; // Restaurar modo normal
         }
 
@@ -85,7 +99,7 @@ export class Sprite {
         this.isLoaded && ctx.drawImage(this.image, 
             frameX * 23, frameY * 32, 
             23, 32,                   
-            x - 1, y,                  
+            x + currentOffset.x, y,                  
             23, 32                    
         );
 
