@@ -104,15 +104,12 @@ export const OverworldMaps = {
 
             [utils.asGridCoord(0,5)] : true,
             [utils.asGridCoord(0,6)] : true,
-            [utils.asGridCoord(0,7)] : true,
             [utils.asGridCoord(1,5)] : true,
             [utils.asGridCoord(1,6)] : true,
             [utils.asGridCoord(2,5)] : true,
             [utils.asGridCoord(2,6)] : true,
             [utils.asGridCoord(3,5)] : true,
             [utils.asGridCoord(3,6)] : true,
-            [utils.asGridCoord(4,5)] : true,
-            [utils.asGridCoord(4,6)] : true,
             
 
 
