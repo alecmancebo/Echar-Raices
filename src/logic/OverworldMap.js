@@ -88,7 +88,7 @@ export const OverworldMaps = {
                 cutX: 30,             
                 cutY: 30,
                 offsetX: 0,  
-                offsetY: -1               
+                offsetY: -3               
             }),
 
             sal: new GameObject({
@@ -99,7 +99,7 @@ export const OverworldMaps = {
                 cutX: 30,             
                 cutY: 30,
                 offsetX: 0,  
-                offsetY: -2               
+                offsetY: -4              
             }),
 
             pociones: new GameObject({
