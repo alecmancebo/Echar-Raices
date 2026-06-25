@@ -8,6 +8,9 @@ export class GameObject {
         this.sprite = new Sprite({
             gameObject: this,
             src: config.src || "/hero.png",
+            useShadow: config.useShadow, 
+            cutX: config.cutX,           
+            cutY: config.cutY
         });
     }
 
