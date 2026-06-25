@@ -75,18 +75,14 @@ export const OverworldMaps = {
         walls: {
 
             //banco
-            [utils.asGridCoord(6,0)] : true,
-            [utils.asGridCoord(7,0)] : true,
-            [utils.asGridCoord(8,0)] : true,
             [utils.asGridCoord(6,1)] : true,
             [utils.asGridCoord(7,1)] : true,
             [utils.asGridCoord(8,1)] : true,
+            [utils.asGridCoord(6,2)] : true,
+            [utils.asGridCoord(7,2)] : true,
+            [utils.asGridCoord(8,2)] : true,
 
             //pozo
-            [utils.asGridCoord(10,4)] : true,
-            [utils.asGridCoord(11,4)] : true,
-            [utils.asGridCoord(12,4)] : true,
-            [utils.asGridCoord(13,4)] : true,
             [utils.asGridCoord(10,5)] : true,
             [utils.asGridCoord(11,5)] : true,
             [utils.asGridCoord(12,5)] : true,
@@ -95,70 +91,74 @@ export const OverworldMaps = {
             [utils.asGridCoord(11,6)] : true,
             [utils.asGridCoord(12,6)] : true,
             [utils.asGridCoord(13,6)] : true,
+            [utils.asGridCoord(10,7)] : true,
+            [utils.asGridCoord(11,7)] : true,
+            [utils.asGridCoord(12,7)] : true,
+            [utils.asGridCoord(13,7)] : true,
 
             //casa
+            [utils.asGridCoord(0,12)] : true,
             [utils.asGridCoord(0,11)] : true,
             [utils.asGridCoord(0,10)] : true,
             [utils.asGridCoord(0,9)] : true,
             [utils.asGridCoord(0,8)] : true,
-            [utils.asGridCoord(0,7)] : true,
+            [utils.asGridCoord(1,12)] : true,
             [utils.asGridCoord(1,11)] : true,
             [utils.asGridCoord(1,10)] : true,
             [utils.asGridCoord(1,9)] : true,
-            [utils.asGridCoord(1,8)] : true,
 
             //mesa
-            [utils.asGridCoord(0,5)] : true,
             [utils.asGridCoord(0,6)] : true,
-            [utils.asGridCoord(1,5)] : true,
+            [utils.asGridCoord(0,7)] : true,
             [utils.asGridCoord(1,6)] : true,
-            [utils.asGridCoord(2,5)] : true,
+            [utils.asGridCoord(1,7)] : true,
             [utils.asGridCoord(2,6)] : true,
-            [utils.asGridCoord(3,5)] : true,
+            [utils.asGridCoord(2,7)] : true,
             [utils.asGridCoord(3,6)] : true,
+            [utils.asGridCoord(3,7)] : true,
             
             //arbol
+            [utils.asGridCoord(0,5)] : true,
             [utils.asGridCoord(0,4)] : true,
             [utils.asGridCoord(0,3)] : true,
             [utils.asGridCoord(0,2)] : true,
             [utils.asGridCoord(0,1)] : true,
-            [utils.asGridCoord(0,0)] : true,
 
             //tronco
-            [utils.asGridCoord(15,9)] : true,
             [utils.asGridCoord(15,10)] : true,
-            [utils.asGridCoord(14,9)] : true,
+            [utils.asGridCoord(15,11)] : true,
             [utils.asGridCoord(14,10)] : true,
+            [utils.asGridCoord(14,11)] : true,
 
             //cofre
-            [utils.asGridCoord(18,0)] : true,
-            [utils.asGridCoord(19,0)] : true,
-            [utils.asGridCoord(20,0)] : true,
+            [utils.asGridCoord(18,1)] : true,
+            [utils.asGridCoord(19,1)] : true,
+            [utils.asGridCoord(20,1)] : true,
 
 
             //verja
-            [utils.asGridCoord(19,4)] : true,
-            [utils.asGridCoord(20,4)] : true,
-            [utils.asGridCoord(21, 4)] : true,
-            [utils.asGridCoord(22, 4)] : true,
-            [utils.asGridCoord(23, 4)] : true,
-            [utils.asGridCoord(19, 5)] : true,
-            [utils.asGridCoord(20, 5)] : true,
-            [utils.asGridCoord(21,5)] : true,
-            [utils.asGridCoord(22,5)] : true,
-            [utils.asGridCoord(23,5)] : true,
+            [utils.asGridCoord(19,5)] : true,
+            [utils.asGridCoord(20,5)] : true,
+            [utils.asGridCoord(21, 5)] : true,
+            [utils.asGridCoord(22, 5)] : true,
+            [utils.asGridCoord(23, 5)] : true,
+            [utils.asGridCoord(19, 6)] : true,
+            [utils.asGridCoord(20, 6)] : true,
+            [utils.asGridCoord(21,6)] : true,
+            [utils.asGridCoord(22,6)] : true,
+            [utils.asGridCoord(23,6)] : true,
 
 
             //banco 2
-            [utils.asGridCoord(19,10)] : true,
+            [utils.asGridCoord(19,11)] : true,
+            [utils.asGridCoord(20,11)] : true,
+            [utils.asGridCoord(21,11)] : true,
+            [utils.asGridCoord(22,11)] : true,
+            [utils.asGridCoord(23,11)] : true,
             [utils.asGridCoord(20,10)] : true,
             [utils.asGridCoord(21,10)] : true,
             [utils.asGridCoord(22,10)] : true,
             [utils.asGridCoord(23,10)] : true,
-            [utils.asGridCoord(20,9)] : true,
-            [utils.asGridCoord(21,9)] : true,
-            [utils.asGridCoord(22,9)] : true,
-            [utils.asGridCoord(23,9)] : true,
             
 
 
