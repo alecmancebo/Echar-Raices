@@ -36,7 +36,24 @@ export class Overworld {
       requestAnimationFrame(()=> {
         step();
       })
-    }
+
+      // Dentro de step() en Overworld.js
+// Dibuja una rejilla de 16x16 sobre el juego
+      this.ctx.strokeStyle = "red";
+      this.ctx.lineWidth = 1;
+      for (let i = 0; i < this.canvas.width; i += 16) {
+          this.ctx.beginPath();
+          this.ctx.moveTo(i, 0);
+          this.ctx.lineTo(i, this.canvas.height);
+          this.ctx.stroke();
+      }
+      for (let j = 0; j < this.canvas.height; j += 16) {
+          this.ctx.beginPath();
+          this.ctx.moveTo(0, j);
+          this.ctx.lineTo(this.canvas.width, j);
+          this.ctx.stroke();
+      }
+          }
     step();
   }
 
