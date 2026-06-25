@@ -125,9 +125,8 @@ export const OverworldMaps = {
             [utils.asGridCoord(0,1)] : true,
 
             //tronco
-            [utils.asGridCoord(15,10)] : true,
+          
             [utils.asGridCoord(15,11)] : true,
-            [utils.asGridCoord(14,10)] : true,
             [utils.asGridCoord(14,11)] : true,
 
             //cofre
