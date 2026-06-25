@@ -41,7 +41,7 @@ export class Overworld {
       // Dibuja una rejilla de 16x16 sobre el juego
        /* this.ctx.strokeStyle = "red";
       this.ctx.lineWidth = 1;
-      for (let i = 0; i < this.canvas.width; i += 16) {
+      for (let i = 0; i < this.gitcanvas.width; i += 16) {
           this.ctx.beginPath();
           this.ctx.moveTo(i, 0);
           this.ctx.lineTo(i, this.canvas.height);

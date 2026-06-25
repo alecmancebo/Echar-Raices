@@ -15,6 +15,8 @@ export class GameObject {
             offsetX: config.offsetX || 0, 
             offsetY: config.offsetY || 0 
         });
+        this.isInteractive = config.isInteractive || false; 
+        this.isHovered = false;
     }
 
     mount(map) {
@@ -22,7 +24,16 @@ export class GameObject {
         map.addWall(this.x, this.y);
     }
     
-    update(){
+    update(state){
+        if (this.isInteractive && state.map.gameObjects.character) {
+            const hero = state.map.gameObjects.character;
+            const diffX = Math.abs(hero.x - this.x);
+            const diffY = Math.abs(hero.y - this.y);
+            
+            // Si el jugador está en la misma casilla o a 16 píxeles (una casilla) de distancia
+            this.isHovered = (diffX <= 16 && diffY <= 16);
+        }
+    }
     }
 
     /*async doBehaviorEvent(map){
@@ -32,4 +43,3 @@ export class GameObject {
 
 
     }*/
-}

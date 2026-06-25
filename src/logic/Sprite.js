@@ -94,24 +94,42 @@ export class Sprite {
     // Obtenemos el offset actual 
     const currentOffset = offsets[this.currentAnimation] || { x: -8, y: -16 };
 
-        // Dibujar sombra con modo multiplicar
-        if (this.isShadowLoaded && this.useShadow) {
+    // Dibujar sombra con modo multiplicar
+    if (this.isShadowLoaded && this.useShadow) {
             ctx.globalCompositeOperation = "multiply"; 
             ctx.drawImage(this.shadow, x -3, y - 23);
             ctx.globalCompositeOperation = "source-over";
+    }
+
+    const [frameX, frameY] = this.frame;
+
+    // Calculamos la posición final donde se va a dibujar
+        const finalX = x + (currentOffset.x || 0) + this.offsetX;
+        const finalY = y + this.offsetY; // O y - 16 + this.offsetY, según lo configuraras antes
+
+        if (this.gameObject.isHovered) {
+            ctx.save(); 
+            
+            ctx.shadowColor = "white";
+            ctx.shadowBlur = 8;
+            ctx.translate(0, -2);
+           
         }
+      
 
-        const [frameX, frameY] = this.frame;
-
-        // Dibujar personaje
-        this.isLoaded && ctx.drawImage(this.image, 
+    // Dibujar personaje
+    this.isLoaded && ctx.drawImage(this.image, 
             frameX * this.cutX, frameY * this.cutY, 
             this.cutX, this.cutY,                   
             x + currentOffset.x + this.offsetX, y - 16 + this.offsetY,                
             this.cutX, this.cutY                    
         );
 
-        this.updateAnimationProgress();
+    if (this.gameObject.isHovered) {
+            ctx.restore(); 
+        }
+
+    this.updateAnimationProgress();
     }
 
 }

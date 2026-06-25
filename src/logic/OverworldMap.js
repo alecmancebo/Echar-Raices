@@ -77,7 +77,8 @@ export const OverworldMaps = {
                 src: "/botas.png",   
                 useShadow: false,      
                 cutX: 30,             
-                cutY: 30             
+                cutY: 30,
+                isInteractive: true             
             }),
 
             pajaro: new GameObject({
@@ -88,7 +89,8 @@ export const OverworldMaps = {
                 cutX: 30,             
                 cutY: 30,
                 offsetX: 0,  
-                offsetY: -3               
+                offsetY: -3,
+                isInteractive: true               
             }),
 
             sal: new GameObject({
@@ -99,7 +101,8 @@ export const OverworldMaps = {
                 cutX: 30,             
                 cutY: 30,
                 offsetX: 0,  
-                offsetY: -2              
+                offsetY: -1,
+                isInteractive: true              
             }),
 
             pociones: new GameObject({
@@ -108,7 +111,9 @@ export const OverworldMaps = {
                 src: "/pociones.png",   
                 useShadow: false,      
                 cutX: 30,             
-                cutY: 30             
+                cutY: 30,
+                isInteractive: true
+
             }),
 
             regadera: new GameObject({
@@ -117,7 +122,8 @@ export const OverworldMaps = {
                 src: "/regadera.png",   
                 useShadow: false,      
                 cutX: 30,             
-                cutY: 30             
+                cutY: 30,
+                isInteractive: true             
             }),
 
             ratrillo: new GameObject({
@@ -126,7 +132,8 @@ export const OverworldMaps = {
                 src: "/rastrillo.png",   
                 useShadow: false,      
                 cutX: 31,             
-                cutY: 28             
+                cutY: 28,
+                isInteractive: true             
             }),
 
             tijeras: new GameObject({
@@ -135,7 +142,8 @@ export const OverworldMaps = {
                 src: "/tijeras.png",   
                 useShadow: false,      
                 cutX: 30,             
-                cutY: 30             
+                cutY: 30,
+                isInteractive: true             
             }),
 
             rana: new GameObject({
@@ -144,7 +152,9 @@ export const OverworldMaps = {
                 src: "/rana.png",   
                 useShadow: false,      
                 cutX: 28,             
-                cutY: 28             
+                cutY: 28,
+                isInteractive: true
+
             }),
 
             fuego: new GameObject({
@@ -153,7 +163,8 @@ export const OverworldMaps = {
                 src: "/fuego.png",   
                 useShadow: false,      
                 cutX: 35,             
-                cutY: 35             
+                cutY: 35,
+                isInteractive: true             
             }),
 
             herbicida: new GameObject({
@@ -162,7 +173,8 @@ export const OverworldMaps = {
                 src: "/herbicida.png",   
                 useShadow: false,      
                 cutX: 30,             
-                cutY: 30             
+                cutY: 30,
+                isInteractive: true             
             }),
 
             maceta: new GameObject({
@@ -171,7 +183,8 @@ export const OverworldMaps = {
                 src: "/maceta.png",   
                 useShadow: false,      
                 cutX: 30,             
-                cutY: 30             
+                cutY: 30,
+                isInteractive: true             
             }),
 
             sombrilla: new GameObject({
@@ -180,7 +193,8 @@ export const OverworldMaps = {
                 src: "/sombrilla.png",   
                 useShadow: false,      
                 cutX: 28,             
-                cutY: 28             
+                cutY: 28,
+                isInteractive: true             
             }),
 
 
