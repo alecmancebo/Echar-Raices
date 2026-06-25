@@ -85,7 +85,8 @@ export class Sprite {
         this.isLoaded && ctx.drawImage(this.image, 
             frameX * 26, frameY * 36, 
             26, 36,                   
-            x, y,                     
+            x - Math.floor((26 - 16) / 2),  // offset X = -5 o -6
+            y - (36 - 16),                   
             26, 36                    
         );
 
