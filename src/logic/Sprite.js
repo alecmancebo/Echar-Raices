@@ -83,10 +83,10 @@ export class Sprite {
 
         // Dibujar personaje
         this.isLoaded && ctx.drawImage(this.image, 
-            frameX * 31, frameY * 43, 
-            31, 43,                   
+            frameX * 16, frameY * 16, 
+            16, 16,                   
             x, y,                     
-            31, 43                    
+            16, 16                    
         );
 
         this.updateAnimationProgress();
