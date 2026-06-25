@@ -80,29 +80,29 @@ export const OverworldMaps = {
             [utils.asGridCoord(7,1)] : true,
             [utils.asGridCoord(8,1)] : true,
 
+            [utils.asGridCoord(10,4)] : true,
+            [utils.asGridCoord(11,4)] : true,
+            [utils.asGridCoord(12,4)] : true,
+            [utils.asGridCoord(13,4)] : true,
             [utils.asGridCoord(10,5)] : true,
             [utils.asGridCoord(11,5)] : true,
             [utils.asGridCoord(12,5)] : true,
             [utils.asGridCoord(13,5)] : true,
             [utils.asGridCoord(10,6)] : true,
             [utils.asGridCoord(11,6)] : true,
-            [utils.asGridCoord(12,6)] : true,
-            [utils.asGridCoord(13,6)] : true,
-            [utils.asGridCoord(10,7)] : true,
-            [utils.asGridCoord(11,7)] : true,
             [utils.asGridCoord(12,7)] : true,
             [utils.asGridCoord(13,7)] : true,
 
-            [utils.asGridCoord(0,12)] : true,
             [utils.asGridCoord(0,11)] : true,
             [utils.asGridCoord(0,10)] : true,
             [utils.asGridCoord(0,9)] : true,
-            [utils.asGridCoord(1,12)] : true,
+            [utils.asGridCoord(0,8)] : true,
             [utils.asGridCoord(1,11)] : true,
             [utils.asGridCoord(1,10)] : true,
             [utils.asGridCoord(1,9)] : true,
+            [utils.asGridCoord(1,8)] : true,
 
-            
+
 
         },
 
