@@ -125,37 +125,39 @@ export const OverworldMaps = {
             [utils.asGridCoord(0,0)] : true,
 
             //tronco
-            [utils.asGridCoord(15,11)] : true,
+            [utils.asGridCoord(15,9)] : true,
             [utils.asGridCoord(15,10)] : true,
+            [utils.asGridCoord(14,9)] : true,
+            [utils.asGridCoord(14,10)] : true,
 
             //cofre
-            [utils.asGridCoord(0,19)] : true,
-            [utils.asGridCoord(0,20)] : true,
+            [utils.asGridCoord(19,0)] : true,
+            [utils.asGridCoord(20,0)] : true,
 
 
             //verja
-            [utils.asGridCoord(4,19)] : true,
-            [utils.asGridCoord(4,20)] : true,
-            [utils.asGridCoord(4,21)] : true,
-            [utils.asGridCoord(4,22)] : true,
-            [utils.asGridCoord(4,23)] : true,
-            [utils.asGridCoord(5,19)] : true,
-            [utils.asGridCoord(5,20)] : true,
-            [utils.asGridCoord(5,21)] : true,
-            [utils.asGridCoord(5,22)] : true,
-            [utils.asGridCoord(5,23)] : true,
+            [utils.asGridCoord(19,4)] : true,
+            [utils.asGridCoord(20,4)] : true,
+            [utils.asGridCoord(21, 4)] : true,
+            [utils.asGridCoord(22, 4)] : true,
+            [utils.asGridCoord(23, 4)] : true,
+            [utils.asGridCoord(19, 5)] : true,
+            [utils.asGridCoord(20, 5)] : true,
+            [utils.asGridCoord(21,5)] : true,
+            [utils.asGridCoord(22,5)] : true,
+            [utils.asGridCoord(23,5)] : true,
 
 
             //banco 2
-            [utils.asGridCoord(10,19)] : true,
-            [utils.asGridCoord(10,20)] : true,
-            [utils.asGridCoord(10,21)] : true,
-            [utils.asGridCoord(10,22)] : true,
-            [utils.asGridCoord(10,23)] : true,
-            [utils.asGridCoord(9,20)] : true,
-            [utils.asGridCoord(9,21)] : true,
-            [utils.asGridCoord(9,22)] : true,
-            [utils.asGridCoord(9,23)] : true,
+            [utils.asGridCoord(19,10)] : true,
+            [utils.asGridCoord(20,10)] : true,
+            [utils.asGridCoord(21,10)] : true,
+            [utils.asGridCoord(22,10)] : true,
+            [utils.asGridCoord(23,10)] : true,
+            [utils.asGridCoord(20,9)] : true,
+            [utils.asGridCoord(21,9)] : true,
+            [utils.asGridCoord(22,9)] : true,
+            [utils.asGridCoord(23,9)] : true,
             
 
 
