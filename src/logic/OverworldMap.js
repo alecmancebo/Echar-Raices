@@ -29,8 +29,6 @@ export class OverworldMap {
 
     drawMapImage(ctx) {
     if (this.isLoaded) { 
-                console.log("Canvas size:", ctx.canvas.width, "x", ctx.canvas.height);
-        console.log("Imagen dibujada a 0,0 con tamaño:", this.image.width, "x", this.image.height);
         ctx.drawImage(this.image, 0, 0, ctx.canvas.width, ctx.canvas.height);    }
     }
 
@@ -44,7 +42,6 @@ export class OverworldMap {
         Object.values(this.gameObjects).forEach(o => {
         o.mount(this);
         })
-        console.log("Muros después de montar:", this.walls)
     }
 
     addWall(x,y) {
