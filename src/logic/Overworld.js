@@ -20,7 +20,8 @@ export class Overworld {
       // 2. Dibujar los objetos que existan en el mapa
       Object.values(this.map.gameObjects).forEach(object => {
         object.update({
-            arrow: this.directionInput.direction
+            arrow: this.directionInput.direction,
+            map: this.map,
         });
       });
 
@@ -42,6 +43,8 @@ export class Overworld {
   init() {
 
     this.map = new OverworldMap(OverworldMaps.Jardin);
+    this.map.mountObjects();
+
     this.directionInput = new DirectionInput();
     this.directionInput.init();
 
