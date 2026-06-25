@@ -131,8 +131,8 @@ export const OverworldMaps = {
             [utils.asGridCoord(14,10)] : true,
 
             //cofre
-            [utils.asGridCoord(19,0)] : true,
-            [utils.asGridCoord(20,0)] : true,
+            [utils.asGridCoord(18,-1)] : true,
+            [utils.asGridCoord(19,-1)] : true,
 
 
             //verja
