@@ -71,7 +71,6 @@ export const OverworldMaps = {
                 src: "/hero.png"
             }),
 
-            // NUEVO OBJETO VISUAL
             botas: new GameObject({
                 x: utils.withGrid(7), 
                 y: utils.withGrid(11),
@@ -79,7 +78,107 @@ export const OverworldMaps = {
                 useShadow: false,      
                 cutX: 30,             
                 cutY: 30             
-            })
+            }),
+
+            pajaro: new GameObject({
+                x: utils.withGrid(1), 
+                y: utils.withGrid(2),
+                src: "/pajarito.png",   
+                useShadow: false,      
+                cutX: 30,             
+                cutY: 30             
+            }),
+
+            sal: new GameObject({
+                x: utils.withGrid(2), 
+                y: utils.withGrid(6),
+                src: "/salero.png",   
+                useShadow: false,      
+                cutX: 30,             
+                cutY: 30             
+            }),
+
+            pociones: new GameObject({
+                x: utils.withGrid(6), 
+                y: utils.withGrid(2),
+                src: "/pociones.png",   
+                useShadow: false,      
+                cutX: 30,             
+                cutY: 30             
+            }),
+
+            regadera: new GameObject({
+                x: utils.withGrid(13), 
+                y: utils.withGrid(8),
+                src: "/regadera.png",   
+                useShadow: false,      
+                cutX: 30,             
+                cutY: 30             
+            }),
+
+            ratrillo: new GameObject({
+                x: utils.withGrid(13), 
+                y: utils.withGrid(12),
+                src: "/rastrillo.png",   
+                useShadow: false,      
+                cutX: 31,             
+                cutY: 28             
+            }),
+
+            tijeras: new GameObject({
+                x: utils.withGrid(4), 
+                y: utils.withGrid(10),
+                src: "/tijeras.png",   
+                useShadow: false,      
+                cutX: 30,             
+                cutY: 30             
+            }),
+
+            rana: new GameObject({
+                x: utils.withGrid(9), 
+                y: utils.withGrid(5),
+                src: "/rana.png",   
+                useShadow: false,      
+                cutX: 28,             
+                cutY: 28             
+            }),
+
+            fuego: new GameObject({
+                x: utils.withGrid(13), 
+                y: utils.withGrid(1),
+                src: "/fuego.png",   
+                useShadow: false,      
+                cutX: 35,             
+                cutY: 35             
+            }),
+
+            herbicida: new GameObject({
+                x: utils.withGrid(18), 
+                y: utils.withGrid(1),
+                src: "/herbicida.png",   
+                useShadow: false,      
+                cutX: 30,             
+                cutY: 30             
+            }),
+
+            maceta: new GameObject({
+                x: utils.withGrid(22), 
+                y: utils.withGrid(4),
+                src: "/maceta.png",   
+                useShadow: false,      
+                cutX: 30,             
+                cutY: 30             
+            }),
+
+            sombrilla: new GameObject({
+                x: utils.withGrid(18), 
+                y: utils.withGrid(7),
+                src: "/sombrilla.png",   
+                useShadow: false,      
+                cutX: 28,             
+                cutY: 28             
+            }),
+
         },
 
         walls: {
