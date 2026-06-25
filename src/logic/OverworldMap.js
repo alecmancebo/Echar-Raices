@@ -96,7 +96,7 @@ export const OverworldMaps = {
                 cutX: 30,             
                 cutY: 30,
                 offsetX: 0,  
-                offsetY: -4              
+                offsetY: -3              
             }),
 
             pociones: new GameObject({
@@ -278,18 +278,20 @@ export const OverworldMaps = {
             [utils.asGridCoord(7,10)] : true,
             [utils.asGridCoord(8,10)] : true,
             [utils.asGridCoord(7,11)] : true,
-            [utils.asGridCoord(13,11)] : true,
             [utils.asGridCoord(14,11)] : true,
             [utils.asGridCoord(14,12)] : true,
-            [utils.asGridCoord(14,7)] : true,
-            [utils.asGridCoord(14,8)] : true,
-            [utils.asGridCoord(9,4)] : true,
+            //[utils.asGridCoord(14,7)] : true,
+            //[utils.asGridCoord(14,8)] : true,
+            //[utils.asGridCoord(9,4)] : true,
             [utils.asGridCoord(9,5)] : true,
-            [utils.asGridCoord(10,4)] : true,
+            //[utils.asGridCoord(10,4)] : true,
             [utils.asGridCoord(10,5)] : true,
             [utils.asGridCoord(7,1)] : true,
             [utils.asGridCoord(8,1)] : true,
             [utils.asGridCoord(8,2)] : true,
+            [utils.asGridCoord(1,2)] : true,
+            [utils.asGridCoord(18,6)] : true,
+            [utils.asGridCoord(22,3)] : true,
 
         },
 
