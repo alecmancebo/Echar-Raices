@@ -73,6 +73,8 @@ export const OverworldMaps = {
         },
 
         walls: {
+
+            //banco
             [utils.asGridCoord(6,0)] : true,
             [utils.asGridCoord(7,0)] : true,
             [utils.asGridCoord(8,0)] : true,
@@ -80,6 +82,7 @@ export const OverworldMaps = {
             [utils.asGridCoord(7,1)] : true,
             [utils.asGridCoord(8,1)] : true,
 
+            //pozo
             [utils.asGridCoord(10,4)] : true,
             [utils.asGridCoord(11,4)] : true,
             [utils.asGridCoord(12,4)] : true,
@@ -93,15 +96,18 @@ export const OverworldMaps = {
             [utils.asGridCoord(12,6)] : true,
             [utils.asGridCoord(13,6)] : true,
 
+            //casa
             [utils.asGridCoord(0,11)] : true,
             [utils.asGridCoord(0,10)] : true,
             [utils.asGridCoord(0,9)] : true,
             [utils.asGridCoord(0,8)] : true,
+            [utils.asGridCoord(0,7)] : true,
             [utils.asGridCoord(1,11)] : true,
             [utils.asGridCoord(1,10)] : true,
             [utils.asGridCoord(1,9)] : true,
             [utils.asGridCoord(1,8)] : true,
 
+            //mesa
             [utils.asGridCoord(0,5)] : true,
             [utils.asGridCoord(0,6)] : true,
             [utils.asGridCoord(1,5)] : true,
@@ -111,6 +117,49 @@ export const OverworldMaps = {
             [utils.asGridCoord(3,5)] : true,
             [utils.asGridCoord(3,6)] : true,
             
+            //arbol
+            [utils.asGridCoord(0,4)] : true,
+            [utils.asGridCoord(0,3)] : true,
+            [utils.asGridCoord(0,2)] : true,
+            [utils.asGridCoord(0,1)] : true,
+            [utils.asGridCoord(0,0)] : true,
+
+            //tronco
+            [utils.asGridCoord(15,11)] : true,
+            [utils.asGridCoord(15,10)] : true,
+
+            //cofre
+            [utils.asGridCoord(0,19)] : true,
+            [utils.asGridCoord(0,20)] : true,
+
+
+            //verja
+            [utils.asGridCoord(4,19)] : true,
+            [utils.asGridCoord(4,20)] : true,
+            [utils.asGridCoord(4,21)] : true,
+            [utils.asGridCoord(4,22)] : true,
+            [utils.asGridCoord(4,23)] : true,
+            [utils.asGridCoord(5,19)] : true,
+            [utils.asGridCoord(5,20)] : true,
+            [utils.asGridCoord(5,21)] : true,
+            [utils.asGridCoord(5,22)] : true,
+            [utils.asGridCoord(5,23)] : true,
+
+
+            //banco 2
+            [utils.asGridCoord(10,19)] : true,
+            [utils.asGridCoord(10,20)] : true,
+            [utils.asGridCoord(10,21)] : true,
+            [utils.asGridCoord(10,22)] : true,
+            [utils.asGridCoord(10,23)] : true,
+            [utils.asGridCoord(9,20)] : true,
+            [utils.asGridCoord(9,21)] : true,
+            [utils.asGridCoord(9,22)] : true,
+            [utils.asGridCoord(9,23)] : true,
+            
+
+
+
 
 
 
