@@ -29,6 +29,8 @@ export class OverworldMap {
 
     drawMapImage(ctx) {
     if (this.isLoaded) { 
+                console.log("Dibujando imagen - Canvas:", ctx.canvas.width, "x", ctx.canvas.height);
+        console.log("Imagen nativa:", this.image.width, "x", this.image.height);
         ctx.drawImage(this.image, 0, 0, ctx.canvas.width, ctx.canvas.height);    }
     }
 
