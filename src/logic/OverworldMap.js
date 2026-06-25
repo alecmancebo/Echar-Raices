@@ -66,12 +66,8 @@ export const OverworldMaps = {
     Jardin : {
         src: "/jardin.png",
         gameObjects: {
-            character: new Person({
-                x: utils.withGrid(0),
-                y: utils.withGrid(0),
-                src: "/hero.png"
-            }),
 
+            
             botas: new GameObject({
                 x: utils.withGrid(7), 
                 y: utils.withGrid(11),
@@ -184,6 +180,13 @@ export const OverworldMaps = {
                 cutY: 28             
             }),
 
+
+            character: new Person({
+                x: utils.withGrid(0),
+                y: utils.withGrid(0),
+                src: "/hero.png"
+            }),
+
         },
 
         walls: {
@@ -239,7 +242,6 @@ export const OverworldMaps = {
             [utils.asGridCoord(0,1)] : true,
 
             //tronco
-          
             [utils.asGridCoord(15,11)] : true,
             [utils.asGridCoord(14,11)] : true,
 
@@ -247,7 +249,6 @@ export const OverworldMaps = {
             [utils.asGridCoord(18,1)] : true,
             [utils.asGridCoord(19,1)] : true,
             [utils.asGridCoord(20,1)] : true,
-
 
             //verja
             [utils.asGridCoord(19,5)] : true,
@@ -261,7 +262,6 @@ export const OverworldMaps = {
             [utils.asGridCoord(22,6)] : true,
             [utils.asGridCoord(23,6)] : true,
 
-
             //banco 2
             [utils.asGridCoord(19,11)] : true,
             [utils.asGridCoord(20,11)] : true,
@@ -272,7 +272,25 @@ export const OverworldMaps = {
             [utils.asGridCoord(21,10)] : true,
             [utils.asGridCoord(22,10)] : true,
             [utils.asGridCoord(23,10)] : true,
-            
+
+
+            //resto objetos
+            [utils.asGridCoord(7,10)] : true,
+            [utils.asGridCoord(8,10)] : true,
+            [utils.asGridCoord(7,11)] : true,
+            [utils.asGridCoord(13,11)] : true,
+            [utils.asGridCoord(14,11)] : true,
+            [utils.asGridCoord(14,12)] : true,
+            [utils.asGridCoord(14,7)] : true,
+            [utils.asGridCoord(14,8)] : true,
+            [utils.asGridCoord(9,4)] : true,
+            [utils.asGridCoord(9,5)] : true,
+            [utils.asGridCoord(10,4)] : true,
+            [utils.asGridCoord(10,5)] : true,
+            [utils.asGridCoord(7,1)] : true,
+            [utils.asGridCoord(8,1)] : true,
+            [utils.asGridCoord(8,2)] : true,
+
         },
 
     }
