@@ -84,9 +84,8 @@ export class Sprite {
         // Dibujar personaje
         this.isLoaded && ctx.drawImage(this.image, 
             frameX * 31, frameY * 43, 
-            31, 43,  
-            x, y,                 
-            //x - Math.floor((31 - 16) / 2), y - (43 - 16),                  
+            31, 43,                   
+            x, y,                     
             31, 43                    
         );
 

@@ -3,7 +3,6 @@ import { GameObject } from "./GameObject.js";
 export class Person extends GameObject {
     constructor(config){
         super(config);
-         console.log("Personaje creado en posición:", this.x, this.y, "(" + this.x/16 + "," + this.y/16 + " grid)");
         this.movementProgressRemaining = 0;
 
         this.directionUpdate = {
