@@ -10,7 +10,9 @@ export class GameObject {
             src: config.src || "/hero.png",
             useShadow: config.useShadow, 
             cutX: config.cutX,           
-            cutY: config.cutY
+            cutY: config.cutY,
+            offsetX: config.offsetX || 0, 
+            offsetY: config.offsetY || 0 
         });
     }
 

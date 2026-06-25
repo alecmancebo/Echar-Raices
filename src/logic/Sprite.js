@@ -9,8 +9,11 @@ export class Sprite {
         this.image.src = config.src;
 
         // 1. DIMENSIONES DINÁMICAS 
-        this.cutX = config.cutX || 23; // 23 por defecto para Personaje
-        this.cutY = config.cutY || 32; // 32 por defecto para  Personaje
+        this.cutX = config.cutX || 23; 
+        this.cutY = config.cutY || 32; 
+
+        this.offsetX = config.offsetX || 0;
+        this.offsetY = config.offsetY || 0;
 
         // 2. SOMBRAS OPCIONALES 
         this.shadow = new Image();
@@ -103,7 +106,7 @@ export class Sprite {
         this.isLoaded && ctx.drawImage(this.image, 
             frameX * this.cutX, frameY * this.cutY, 
             this.cutX, this.cutY,                   
-            x + currentOffset.x, y - 16,                
+            x + currentOffset.x + this.offsetX, y - 16 + this.offsetY,                
             this.cutX, this.cutY                    
         );
 

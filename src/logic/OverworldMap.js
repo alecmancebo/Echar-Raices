@@ -86,7 +86,9 @@ export const OverworldMaps = {
                 src: "/pajarito.png",   
                 useShadow: false,      
                 cutX: 30,             
-                cutY: 30             
+                cutY: 30,
+                offsetX: 0,  
+                offsetY: -1               
             }),
 
             sal: new GameObject({
@@ -95,7 +97,9 @@ export const OverworldMaps = {
                 src: "/salero.png",   
                 useShadow: false,      
                 cutX: 30,             
-                cutY: 30             
+                cutY: 30,
+                offsetX: 0,  
+                offsetY: -2               
             }),
 
             pociones: new GameObject({
