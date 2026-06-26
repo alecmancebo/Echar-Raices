@@ -33,16 +33,16 @@ export class GameObject {
             const diffX = Math.abs(hero.x - this.x);
             const diffY = Math.abs(hero.y - this.y);
             
-            // Si el jugador está en la misma casilla o a 16 píxeles (una casilla) de distancia
+            // Si el jugador está en la misma casilla o a 16 píxeles de distancia
             this.isHovered = (diffX <= 16 && diffY <= 16);
+
+            const wasHovered = this.isHovered;
+           
+
+            // Cambia la imagen si el estado ha cambiado
+            if (this.isHovered !== wasHovered && this.normalSrc && this.activeSrc) {
+                this.sprite.image.src = this.isHovered ? this.activeSrc : this.normalSrc;
+            }
         }
     }
     }
-
-    /*async doBehaviorEvent(map){
-        let eventConfig;
-        const eventHandler = new OverworldEvent({map, event: eventConfig});
-        await eventHandler.init();
-
-
-    }*/

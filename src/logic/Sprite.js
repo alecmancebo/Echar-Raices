@@ -91,7 +91,7 @@ export class Sprite {
         "walk-right":{ x: +1},
     };
 
-    const showGenericHover = this.gameObject.isHovered && !this.gameObject.disableGenericHover;
+    const showGenericHover = this.gameObject.isHovered && !this.gameObject.disableOriginalHover;
 
         if (showGenericHover) {
             ctx.save(); 
