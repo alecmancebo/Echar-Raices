@@ -208,12 +208,11 @@ export const OverworldMaps = {
 
             pozo: new GameObject({
                 x: utils.withGrid(10), 
-                y: utils.withGrid(8),
+                y: utils.withGrid(5),
                 src: "/pozo-inactive.png",   
                 useShadow: false,      
                 cutX: 54,             
                 cutY: 47,
-                isInteractive: true  
             })
         },
 
