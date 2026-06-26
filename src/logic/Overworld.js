@@ -27,26 +27,16 @@ export class Overworld {
         const player = this.map.gameObjects["character"];
         let objectNearPlayer = null;
 
-        // 1. Actualizar posiciones y buscar objetos interactivos cercanos
+        // 1. Actualizar posiciones de los objetos
         Object.values(this.map.gameObjects).forEach(object => {
           object.update({
             arrow: this.directionInput.direction,
             map: this.map,
           });
 
-          // Si es interactivo y NO es el jugador, medimos la distancia
-          if (player && object.isInteractive && object.id !== "character") {
-            const dist = Math.sqrt(Math.pow(object.x - player.x, 2) + Math.pow(object.y - player.y, 2));
-            if (dist < 24) {
-              objectNearPlayer = object;
-            }
-          }
-        });
-
-        // 2. Cambiar imágenes dinámicamente 
-        Object.values(this.map.gameObjects).forEach(object => {
-          if (object.activeSrc && object.normalSrc) {
-            object.sprite.image.src = (object === objectNearPlayer) ? object.activeSrc : object.normalSrc;
+          // Si el objeto sabe que estás cerca, nos guardamos ese objeto.
+          if (object.isInteractive && object.isHovered && object.id !== "character") {
+            objectNearPlayer = object;
           }
         });
 
@@ -60,12 +50,15 @@ export class Overworld {
           object.sprite.draw(this.ctx, player);
         });
 
-        // 5. Dibujar bocadillo si hay algo cerca
+        // 5. Dibujar bocadillo si hay un objeto interactivo cerca
         if (objectNearPlayer && player) {
-          this.interactionBubble.draw(this.ctx, player.x, player.y);
+          this.interactionBubble.draw(
+            this.ctx, 
+            player.x, 
+            player.y - 36, 
+            objectNearPlayer.interactText
+          );
         }
-        
-        // (El paso 6 de drawUpperImage ha sido eliminado)
       }
 
       requestAnimationFrame(() => {

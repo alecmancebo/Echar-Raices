@@ -19,5 +19,16 @@ export class InteractionBubble {
       // Dibujamos la imagen exactamente encima del objetivo (personaje)
       ctx.drawImage(this.image, targetX + this.offsetX, targetY + this.offsetY);
     }
+    // 2. Si hay texto, lo dibujamos encima
+      if (text) {
+        ctx.save();
+        ctx.fillStyle = "#000000"; 
+        ctx.textAlign = "center";    
+        ctx.textBaseline = "middle";  
+        
+        // Escribimos el texto en el centro de la burbuja. 
+        ctx.fillText(text, x + 10, y + 8); 
+        ctx.restore();
+      }
   }
 }

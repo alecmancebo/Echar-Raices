@@ -20,6 +20,7 @@ export class GameObject {
         this.normalSrc = config.normalSrc || null;
         this.activeSrc = config.activeSrc || null;
         this.disableOriginalHover = config.disableOriginalHover || false;
+        this.interactText = config.interactText || "¿Soy yo?";
     }
 
     mount(map) {
