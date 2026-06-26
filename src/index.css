@@ -897,9 +897,9 @@ canvas {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: #211f1f;
+    background-color: var(--color-oscuro);
     z-index: 9999;
-    display: flex; /* En React controlamos el mostrar/ocultar con el if de arriba */
+    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -908,9 +908,26 @@ canvas {
     text-align: center;
 }
 
+.rotate-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
 .rotate-icon {
-    font-size: 50px;
-    animation: rotate-animation 2s infinite ease-in-out;
+    width: 120px; 
+    height: 200px;
+    background: url('/movil.png') no-repeat center;
+    background-size: contain;
+    animation: rotate-animation 3s infinite ease-in-out
+}
+
+.rotate-container p {
+    color: var(--color-medio); 
+    font-family: var(--font-main); /* Si tienes una fuente pixelada, úsala aquí */
+    text-transform: lowercase;
+    font-size: var(--font-size-encabezado);
 }
 
 @keyframes rotate-animation {
@@ -921,6 +938,7 @@ canvas {
 }
 
 
+
 @media screen and (min-width: 1080px) {
 
 /*MARK: INVENTORY*/
@@ -928,6 +946,8 @@ canvas {
     font-size: var(--font-size-texto);
 }
 }
+
+
 
 @media screen and (min-width: 960px) {
 

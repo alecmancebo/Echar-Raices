@@ -21,9 +21,10 @@ export const DetectorPantalla = () => {
 
   return (
     <div className="rotate-device-screen">
-      <div className="rotate-message">
-        <p>¡Gira la pantalla para jugar!</p>
-        <div className="rotate-icon">📱</div>
+      <div className="rotate-container">
+        {/* Usamos tu imagen de rotación */}
+        <div className="rotate-icon"></div>
+        <p>rota la pantalla para poder jugar</p>
       </div>
     </div>
   );

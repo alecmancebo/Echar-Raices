@@ -1,5 +1,5 @@
 import './index.css';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { Context, GameProvider } from './context/Context';
 import GameContainer from './components/GameContainer/GameContainer.jsx';
 import StartMenu from './components/StartMenu.jsx';
@@ -11,6 +11,7 @@ import { DetectorPantalla } from './components/DetectorPantalla/DetectorPantalla
 
 function AppContent() {
   const { gameState, isInventoryOpen } = useContext(Context);
+  const [isPortrait, setIsPortrait] = useState(window.innerWidth < 480 && window.innerHeight > window.innerWidth);
 
   const renderScreen = () => {
     switch (gameState) {
@@ -32,10 +33,19 @@ function AppContent() {
     }
   };
 
+  useEffect(() => {
+    const handleResize = () => setIsPortrait(window.innerWidth < 480 && window.innerHeight > window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Si está en vertical, NO renderizamos el resto del juego
+  if (isPortrait) {
+    return <DetectorPantalla />;
+  }
 
   return (
     <>
-      <DetectorPantalla />
       {renderScreen()}
     </>
   );
