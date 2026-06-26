@@ -62,6 +62,8 @@ export class OverworldMap {
         this.addWall(x,y);
     }
 
+    
+
 }
 
 // Exportamos las configuraciones de los mapas 
@@ -126,7 +128,7 @@ export const OverworldMaps = {
                 isInteractive: true             
             }),
 
-            ratrillo: new GameObject({
+            rastrillo: new GameObject({
                 x: utils.withGrid(14), 
                 y: utils.withGrid(12),
                 src: "/rastrillo.png",   

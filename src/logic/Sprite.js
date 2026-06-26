@@ -103,15 +103,14 @@ export class Sprite {
 
     const [frameX, frameY] = this.frame;
 
-    // Calculamos la posición final donde se va a dibujar
         const finalX = x + (currentOffset.x || 0) + this.offsetX;
-        const finalY = y + this.offsetY; // O y - 16 + this.offsetY, según lo configuraras antes
+        const finalY = y + this.offsetY; 
 
         if (this.gameObject.isHovered) {
             ctx.save(); 
             
             ctx.shadowColor = "white";
-            ctx.shadowBlur = 8;
+            ctx.shadowBlur = 6;
             ctx.translate(0, -2);
            
         }
