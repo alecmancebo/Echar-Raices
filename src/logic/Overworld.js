@@ -55,7 +55,7 @@ export class Overworld {
           this.interactionBubble.draw(
             this.ctx, 
             player.x, 
-            player.y - 36, 
+            player.y - 8, 
             objectNearPlayer.interactText
           );
         }
