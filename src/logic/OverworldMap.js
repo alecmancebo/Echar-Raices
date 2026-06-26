@@ -63,14 +63,23 @@ export class OverworldMap {
     }
 
     
-
 }
 
-// Exportamos las configuraciones de los mapas 
 export const OverworldMaps = {
     Jardin : {
         src: "/jardin.png",
         gameObjects: {
+            
+            rana: new GameObject({
+                x: utils.withGrid(9), 
+                y: utils.withGrid(5),
+                src: "/rana.png",   
+                useShadow: false,      
+                cutX: 28,             
+                cutY: 28,
+                isInteractive: true
+
+            }),
 
               pozo: new GameObject({
                 x: utils.withGrid(10), 
@@ -154,17 +163,6 @@ export const OverworldMaps = {
                 cutX: 30,             
                 cutY: 30,
                 isInteractive: true             
-            }),
-
-            rana: new GameObject({
-                x: utils.withGrid(9), 
-                y: utils.withGrid(5),
-                src: "/rana.png",   
-                useShadow: false,      
-                cutX: 28,             
-                cutY: 28,
-                isInteractive: true
-
             }),
 
             fuego: new GameObject({

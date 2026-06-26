@@ -37,6 +37,11 @@ const GameContainer = () => {
 
   const handleInteraction = (e) => {
         const itemId = e.detail;
+        if (itemId === "pozo") {
+            openInventory();
+            return; 
+        }
+        
         if (ITEM_DATABASE[itemId]) {
             setSelectedItem(ITEM_DATABASE[itemId]);
         }
