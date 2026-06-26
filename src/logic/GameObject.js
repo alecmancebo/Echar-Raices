@@ -19,6 +19,7 @@ export class GameObject {
         this.isHovered = false;
         this.normalSrc = config.normalSrc || null;
         this.activeSrc = config.activeSrc || null;
+        this.disableOriginalHover = config.disableOriginalHover || false;
     }
 
     mount(map) {

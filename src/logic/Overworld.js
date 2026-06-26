@@ -97,35 +97,6 @@ export class Overworld {
       }
     });
 
-    // Interacción con RATÓN
-    this.canvas.addEventListener("click", (e) => {
-      if (this.isPaused) return;
-
-      const rect = this.canvas.getBoundingClientRect();
-      const scaleX = this.canvas.width / rect.width;
-      const scaleY = this.canvas.height / rect.height;
-      const clickX = (e.clientX - rect.left) * scaleX;
-      const clickY = (e.clientY - rect.top) * scaleY;
-
-      const player = this.map.gameObjects["character"];
-
-      const match = Object.values(this.map.gameObjects).find(obj => {
-        if (!obj.isInteractive) return false;
-        
-        const width = obj.sprite.cutX || 16;
-        const height = obj.sprite.cutY || 16;
-        
-        const screenX = obj.x - 8 + utils.withGrid(10.5) - player.x;
-        const screenY = obj.y - 18 + utils.withGrid(6) - player.y;
-
-        return clickX >= screenX && clickX <= (screenX + width) && 
-               clickY >= screenY && clickY <= (screenY + height);
-      });
-
-      if (match) {
-        document.dispatchEvent(new CustomEvent("ObjectInteraction", { detail: match.id }));
-      }
-    });
   }
 
   startMap(mapConfig) {

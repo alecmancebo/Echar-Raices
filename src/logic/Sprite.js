@@ -91,6 +91,15 @@ export class Sprite {
         "walk-right":{ x: +1},
     };
 
+    const showGenericHover = this.gameObject.isHovered && !this.gameObject.disableGenericHover;
+
+        if (showGenericHover) {
+            ctx.save(); 
+            ctx.shadowColor = "white";
+            ctx.shadowBlur = 6;
+            ctx.translate(0, -2);
+        }
+
     // Obtenemos el offset actual 
     const currentOffset = offsets[this.currentAnimation] || { x: -8, y: -16 };
 
@@ -125,6 +134,10 @@ export class Sprite {
         );
 
     if (this.gameObject.isHovered) {
+            ctx.restore(); 
+        }
+    
+    if (showGenericHover) {
             ctx.restore(); 
         }
 
