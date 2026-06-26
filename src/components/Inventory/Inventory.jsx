@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Context } from '../../context/Context.jsx';
 
 const Inventory = () => {
@@ -10,6 +10,31 @@ const Inventory = () => {
     if (!isInventoryOpen) return null;
 
     const selectedItem = inventoryItems.find(item => item.id === selectedItemId);
+
+    // Sub-componente interno para gestionar el estado individual de cada slot
+    const Slot = ({ item, isSelected, onClick }) => {
+        const [isHovered, setIsHovered] = useState(false);
+        
+        // Determina la imagen de fondo según el hover
+        const baseImage = isHovered ? '/slot-base-hover.png' : '/slot-base.png';
+
+        return (
+            <div 
+                className={`inventory__slot ${isSelected ? 'inventory__slot--active' : ''} ${!item ? 'inventory__slot--empty' : ''}`}
+                onClick={onClick}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+            >
+                {/* Capa 1: Imagen de fondo del slot */}
+                <img src={baseImage} alt="slot" className="inventory__slot-bg" />
+                
+                {/* Capa 2: Ícono del objeto (si existe) */}
+                {item && item.icon && (
+                    <img src={item.icon} alt={item.name} className="inventory__item-icon" />
+                )}
+            </div>
+        );
+    };
 
     return (
         <div className="modal-overlay">
@@ -36,26 +61,28 @@ const Inventory = () => {
                     </div>
 
                     {/* Panel Derecho: Cuadrícula de Inventario */}
-                    <div className="inventory__panel inventory__panel--right">
+                    <div className="inventory__panel--right">
                         <h3 className="inventory__title">Inventario</h3>
                         
                         <div className="inventory__grid">
+                            {/* Renderizar los objetos reales del inventario */}
                             {inventoryItems.map((item) => (
-                                <div 
+                                <Slot 
                                     key={item.id} 
-                                    className={`inventory__slot ${selectedItemId === item.id ? 'inventory__slot--active' : ''}`}
+                                    item={item} 
+                                    isSelected={selectedItemId === item.id}
                                     onClick={() => setSelectedItemId(item.id)}
-                                >
-                                    {item.icon ? (
-                                        <img src={item.icon} alt={item.name} className="inventory__item-icon pixelated" />
-                                    ) : (
-                                        <div className="inventory__item-icon--empty"></div>
-                                    )}
-                                </div>
+                                />
                             ))}
                             
+                            {/* Renderizar los slots vacíos necesarios para llegar a 12 */}
                             {[...Array(Math.max(0, 12 - inventoryItems.length))].map((_, index) => (
-                                <div key={`empty-${index}`} className="inventory__slot inventory__slot--empty"></div>
+                                <Slot 
+                                    key={`empty-${index}`} 
+                                    item={null} 
+                                    isSelected={false}
+                                    onClick={() => {}}
+                                />
                             ))}
                         </div>
                     </div>

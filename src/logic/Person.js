@@ -1,4 +1,5 @@
 import { GameObject } from "./GameObject.js";
+import { utils } from "./utils.js";
 
 export class Person extends GameObject {
     constructor(config){
@@ -36,18 +37,20 @@ export class Person extends GameObject {
         
         if (behavior.type === "walk") {
 
+            //muros laterales
             const {x, y} = utils.nextPosition(this.x, this.y, this.direction);
             const minX = 0;
             const maxX = 384 - 16; 
             const minY = 0;
             const maxY = 208 - 16;
             const isOutOfBounds = x < minX || x > maxX || y < minY || y > maxY;
-            //Stop here if space is not free
+
+            //para si hay muro
             if (state.map.isSpaceTaken(this.x, this.y, this.direction) || isOutOfBounds) {
                 return;
             }
 
-            //Ready to walk!
+            //Ready to walk
             this.movementProgressRemaining = 16;
             }
     }

@@ -206,6 +206,15 @@ export const OverworldMaps = {
                 src: "/hero.png"
             }),
 
+            pozo: new GameObject({
+                x: utils.withGrid(10), 
+                y: utils.withGrid(8),
+                src: "/pozo-inactive.png",   
+                useShadow: false,      
+                cutX: 54,             
+                cutY: 47,
+                isInteractive: true  
+            })
         },
 
         walls: {
@@ -219,7 +228,7 @@ export const OverworldMaps = {
             [utils.asGridCoord(8,2)] : true,
 
             //pozo
-            [utils.asGridCoord(10,5)] : true,
+            /*[utils.asGridCoord(10,5)] : true,
             [utils.asGridCoord(11,5)] : true,
             [utils.asGridCoord(12,5)] : true,
             [utils.asGridCoord(13,5)] : true,
@@ -230,7 +239,7 @@ export const OverworldMaps = {
             [utils.asGridCoord(10,7)] : true,
             [utils.asGridCoord(11,7)] : true,
             [utils.asGridCoord(12,7)] : true,
-            [utils.asGridCoord(13,7)] : true,
+            [utils.asGridCoord(13,7)] : true,*/
 
             //casa
             [utils.asGridCoord(0,12)] : true,
