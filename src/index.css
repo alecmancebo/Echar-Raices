@@ -172,6 +172,8 @@ canvas {
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
 }
 
 /* MARK: GAME UI (Block - Botones sobre el canvas) */
@@ -663,7 +665,7 @@ canvas {
 
 
 
-/* MARK: INVENTORY (Block) */
+/* MARK: INVENTORY */
 .inventory {
     position: relative;
     width: 100%;
@@ -887,12 +889,37 @@ canvas {
   color: var(--color-oscuro);
 }
 
-/*MARK: INVENTORY*/
-.inventory__text {
-    font-size: var(--font-size-texto);
+/*MARK: DETECTOR PANTALLA*/
+
+.rotate-device-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #211f1f;
+    z-index: 9999;
+    display: flex; /* En React controlamos el mostrar/ocultar con el if de arriba */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: monospace;
+    text-align: center;
+}
+
+.rotate-icon {
+    font-size: 50px;
+    animation: rotate-animation 2s infinite ease-in-out;
+}
+
+@keyframes rotate-animation {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(90deg); }
 }
 
 }
+
 
 @media screen and (min-width: 1080px) {
 

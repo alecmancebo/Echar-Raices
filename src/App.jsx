@@ -7,6 +7,7 @@ import Storyboard from './components/Storyboard/Storyboard.jsx';
 import Login from './components/Login/Login.jsx';
 import GameMenu from './components/GameMenu/GameMenu.jsx';
 import Inventory from './components/Inventory/Inventory.jsx'; 
+import { DetectorPantalla } from './components/DetectorPantalla/DetectorPantalla.jsx';
 
 function AppContent() {
   const { gameState, isInventoryOpen } = useContext(Context);
@@ -34,6 +35,7 @@ function AppContent() {
 
   return (
     <>
+      <DetectorPantalla />
       {renderScreen()}
     </>
   );

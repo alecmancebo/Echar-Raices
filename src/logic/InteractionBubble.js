@@ -16,8 +16,8 @@ export class InteractionBubble {
 
   draw(ctx, targetX, targetY) {
     if (this.isLoaded) {
-      const x = targetX + this.offsetX;
-      const y = targetY + this.offsetY;
+      const x = Math.round(targetX + this.offsetX);
+      const y = Math.round(targetY + this.offsetY);
 
       // 1. Dibujamos el fondo
       ctx.drawImage(this.image, x, y);
