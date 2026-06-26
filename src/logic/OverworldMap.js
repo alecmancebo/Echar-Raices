@@ -85,9 +85,11 @@ export const OverworldMaps = {
                 x: utils.withGrid(10), 
                 y: utils.withGrid(6),
                 src: "/pozo-inactive.png",   
+                activeSrc: "/pozo-active.png",
                 useShadow: false,      
                 cutX: 54,             
                 cutY: 47,
+                isInteractive: true
             }),
 
             botas: new GameObject({

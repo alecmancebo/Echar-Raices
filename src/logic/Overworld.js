@@ -3,6 +3,7 @@ import { OverworldMap, OverworldMaps } from "./OverWorldMap.js";
 import { DirectionInput } from "./DirectionInput.js";
 import { utils } from "./utils.js"; 
 import { InteractionBubble } from "./InteractionBubble.js";
+import { KeyPressListener } from "./KeyPressListener.js";
 
 export class Overworld {
   constructor(config) {
@@ -49,8 +50,8 @@ export class Overworld {
           }
         });
 
-        // 3. Dibujar capa inferior (suelo)
-        this.map.drawLowerImage(this.ctx, player);
+        // 3. Dibujar TODO el mapa
+        this.map.drawMapImage(this.ctx);
 
         // 4. Dibujar objetos ordenados por el eje Y
         Object.values(this.map.gameObjects).sort((a,b) => {
@@ -61,11 +62,10 @@ export class Overworld {
 
         // 5. Dibujar bocadillo si hay algo cerca
         if (objectNearPlayer && player) {
-          this.interactionBubble.draw(this.ctx, player, player);
+          this.interactionBubble.draw(this.ctx, player.x, player.y);
         }
-
-        // 6. Dibujar capa superior (tejados, copas de árboles)
-        this.map.drawUpperImage(this.ctx, player);
+        
+        // (El paso 6 de drawUpperImage ha sido eliminado)
       }
 
       requestAnimationFrame(() => {
@@ -136,7 +136,7 @@ export class Overworld {
 
   init() {
     // NOTA: Asegúrate de poner aquí el nombre de tu mapa inicial real
-    this.startMap(window.OverworldMaps.Jardin); 
+    this.startMap(OverworldMaps.Jardin); 
 
     this.bindActionInput();
 

@@ -17,6 +17,8 @@ export class GameObject {
         });
         this.isInteractive = config.isInteractive || false; 
         this.isHovered = false;
+        this.normalSrc = config.normalSrc || null;
+        this.activeSrc = config.activeSrc || null;
     }
 
     mount(map) {
