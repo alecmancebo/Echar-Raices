@@ -81,17 +81,28 @@ export class Sprite {
         const y = this.gameObject.y;
 
         const offsets = {
-        "idle-down": { x: -1},
-        "idle-up":   { x: -1},
-        "idle-left": { x: -1}, 
-        "idle-right":{ x: +1},  
-        "walk-down": { x: -1},
-        "walk-up":   { x: -1},
-        "walk-left": { x: -1}, 
-        "walk-right":{ x: +1},
-    };
+            "idle-down": { x: -1},
+            "idle-up":   { x: -1},
+            "idle-left": { x: -1}, 
+            "idle-right":{ x: +1},  
+            "walk-down": { x: -1},
+            "walk-up":   { x: -1},
+            "walk-left": { x: -1}, 
+            "walk-right":{ x: +1},
+        };
 
-    const showGenericHover = this.gameObject.isHovered && !this.gameObject.disableOriginalHover;
+        // Obtenemos el offset actual 
+        const currentOffset = offsets[this.currentAnimation] || { x: -8, y: -16 };
+
+        // 1. Dibujar sombra del suelo (modo multiplicar)
+        if (this.isShadowLoaded && this.useShadow) {
+            ctx.globalCompositeOperation = "multiply"; 
+            ctx.drawImage(this.shadow, x - 3, y - 23);
+            ctx.globalCompositeOperation = "source-over";
+        }
+
+        // 2. Comprobar si debemos aplicar el efecto visual (Hover genérico)
+        const showGenericHover = this.gameObject.isHovered && !this.gameObject.disableOriginalHover;
 
         if (showGenericHover) {
             ctx.save(); 
@@ -100,48 +111,22 @@ export class Sprite {
             ctx.translate(0, -2);
         }
 
-    // Obtenemos el offset actual 
-    const currentOffset = offsets[this.currentAnimation] || { x: -8, y: -16 };
+        const [frameX, frameY] = this.frame;
 
-    // Dibujar sombra con modo multiplicar
-    if (this.isShadowLoaded && this.useShadow) {
-            ctx.globalCompositeOperation = "multiply"; 
-            ctx.drawImage(this.shadow, x -3, y - 23);
-            ctx.globalCompositeOperation = "source-over";
-    }
-
-    const [frameX, frameY] = this.frame;
-
-        const finalX = x + (currentOffset.x || 0) + this.offsetX;
-        const finalY = y + this.offsetY; 
-
-        if (this.gameObject.isHovered) {
-            ctx.save(); 
-            
-            ctx.shadowColor = "white";
-            ctx.shadowBlur = 6;
-            ctx.translate(0, -2);
-           
-        }
-      
-
-    // Dibujar personaje
-    this.isLoaded && ctx.drawImage(this.image, 
+        // 3. Dibujar personaje u objeto
+        this.isLoaded && ctx.drawImage(this.image, 
             frameX * this.cutX, frameY * this.cutY, 
             this.cutX, this.cutY,                   
             x + currentOffset.x + this.offsetX, y - 16 + this.offsetY,                
             this.cutX, this.cutY                    
         );
 
-    if (this.gameObject.isHovered) {
-            ctx.restore(); 
-        }
-    
-    if (showGenericHover) {
+        // 4. Restaurar el canvas SOLO si aplicamos el efecto
+        if (showGenericHover) {
             ctx.restore(); 
         }
 
-    this.updateAnimationProgress();
+        this.updateAnimationProgress();
     }
 
 }
