@@ -72,6 +72,14 @@ export const OverworldMaps = {
         src: "/jardin.png",
         gameObjects: {
 
+              pozo: new GameObject({
+                x: utils.withGrid(10), 
+                y: utils.withGrid(6),
+                src: "/pozo-inactive.png",   
+                useShadow: false,      
+                cutX: 54,             
+                cutY: 47,
+            })
             
             botas: new GameObject({
                 x: utils.withGrid(7), 
@@ -206,14 +214,6 @@ export const OverworldMaps = {
                 src: "/hero.png"
             }),
 
-            pozo: new GameObject({
-                x: utils.withGrid(10), 
-                y: utils.withGrid(7),
-                src: "/pozo-inactive.png",   
-                useShadow: false,      
-                cutX: 54,             
-                cutY: 47,
-            })
         },
 
         walls: {
