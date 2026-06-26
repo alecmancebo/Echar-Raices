@@ -35,7 +35,7 @@ export class Overworld {
           });
 
           // Si el objeto sabe que estás cerca, nos guardamos ese objeto.
-          if (object.isInteractive && object.isHovered && object.id !== "character") {
+          if (object.isInteractive && object.isHovered && object.useBubble && object.id !== "character") {
             objectNearPlayer = object;
           }
         });
@@ -99,7 +99,7 @@ export class Overworld {
   }
 
   init() {
-    // NOTA: Asegúrate de poner aquí el nombre de tu mapa inicial real
+
     this.startMap(OverworldMaps.Jardin); 
 
     this.bindActionInput();
