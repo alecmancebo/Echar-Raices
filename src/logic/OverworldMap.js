@@ -90,7 +90,7 @@ export const OverworldMaps = {
                 cutX: 54,             
                 cutY: 47,
                 isInteractive: true,
-                disableGenericHover: true
+                disableOriginalHover: true
             }),
 
             botas: new GameObject({
