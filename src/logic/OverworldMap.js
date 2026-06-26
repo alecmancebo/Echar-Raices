@@ -84,7 +84,8 @@ export const OverworldMaps = {
               pozo: new GameObject({
                 x: utils.withGrid(10), 
                 y: utils.withGrid(6),
-                src: "/pozo-inactive.png",   
+                src: "/pozo-inactive.png",
+                normalSrc: "/pozo-inactive.png",   
                 activeSrc: "/pozo-active.png",
                 useShadow: false,      
                 cutX: 54,             
@@ -234,8 +235,6 @@ export const OverworldMaps = {
             [utils.asGridCoord(10,6)] : true,
             [utils.asGridCoord(11,6)] : true,
             [utils.asGridCoord(12,6)] : true,
-            [utils.asGridCoord(11,7)] : true,
-            [utils.asGridCoord(12,7)] : true,
 
             //casa
             [utils.asGridCoord(0,12)] : true,
