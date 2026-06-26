@@ -14,24 +14,13 @@ export class InteractionBubble {
   }
 
 
-  draw(ctx, targetX, targetY, text = "¿Soy yo?") {
+  draw(ctx, targetX, targetY) {
     if (this.isLoaded) {
       const x = targetX + this.offsetX;
       const y = targetY + this.offsetY;
 
       // 1. Dibujamos el fondo
       ctx.drawImage(this.image, x, y);
-
-      // 2. Dibujamos el texto
-      if (text) {
-        ctx.save();
-        ctx.font = "bold 12px Arial";
-        ctx.fillStyle = "#000000";
-        ctx.textAlign = "center";
-        ctx.textBaseline = "middle";
-        ctx.fillText(text, x + 10, y + 8); 
-        ctx.restore();
-      }
     }
   }
 }

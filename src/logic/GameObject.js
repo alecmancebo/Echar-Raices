@@ -20,7 +20,6 @@ export class GameObject {
         this.normalSrc = config.normalSrc || null;
         this.activeSrc = config.activeSrc || null;
         this.disableOriginalHover = config.disableOriginalHover || false;
-        this.interactText = config.interactText || "¿Soy yo?";
     }
 
     mount(map) {
@@ -35,10 +34,8 @@ export class GameObject {
             const diffY = Math.abs(hero.y - this.y);
             
             // Si el jugador está en la misma casilla o a 16 píxeles de distancia
-            this.isHovered = (diffX <= 16 && diffY <= 16);
-
             const wasHovered = this.isHovered;
-           
+            this.isHovered = (diffX <= 16 && diffY <= 16);
 
             // Cambia la imagen si el estado ha cambiado
             if (this.isHovered !== wasHovered && this.normalSrc && this.activeSrc) {
