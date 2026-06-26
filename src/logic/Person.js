@@ -36,14 +36,20 @@ export class Person extends GameObject {
         
         if (behavior.type === "walk") {
 
-        //Stop here if space is not free
-        if (state.map.isSpaceTaken(this.x, this.y, this.direction)) {
-            return;
-        }
+            const {x, y} = utils.nextPosition(this.x, this.y, this.direction);
+            const minX = 0;
+            const maxX = 384 - 16; 
+            const minY = 0;
+            const maxY = 208 - 16;
+            const isOutOfBounds = x < minX || x > maxX || y < minY || y > maxY;
+            //Stop here if space is not free
+            if (state.map.isSpaceTaken(this.x, this.y, this.direction) || isOutOfBounds) {
+                return;
+            }
 
-        //Ready to walk!
-        this.movementProgressRemaining = 16;
-        }
+            //Ready to walk!
+            this.movementProgressRemaining = 16;
+            }
     }
 
     updatePosition() {

@@ -41,14 +41,14 @@ export class Overworld {
         if (e.code === "Enter" && !this.isPaused) {
             const hero = this.map.gameObjects["character"];
             if (!hero) return;
-            const nextCoords = utils.nextPosition(hero.x, hero.y, hero.direction);
+            
             const match = Object.values(this.map.gameObjects).find(obj => {
    
             const dist = Math.sqrt(
-            Math.pow(obj.x - nextCoords.x, 2) + 
-            Math.pow(obj.y - nextCoords.y, 2)
+            Math.pow(obj.x - hero.x, 2) + 
+            Math.pow(obj.y - hero.y, 2)
             );
-            return dist < 8 && obj.isInteractive;
+            return dist < 24 && obj.isInteractive;
     });
         if (match) {
                 document.dispatchEvent(new CustomEvent("ObjectInteraction", { detail: match.id }));
