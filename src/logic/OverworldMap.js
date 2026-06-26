@@ -79,8 +79,8 @@ export const OverworldMaps = {
                 useShadow: false,      
                 cutX: 54,             
                 cutY: 47,
-            })
-            
+            }),
+
             botas: new GameObject({
                 x: utils.withGrid(7), 
                 y: utils.withGrid(11),
@@ -227,7 +227,7 @@ export const OverworldMaps = {
             [utils.asGridCoord(8,2)] : true,
 
             //pozo
-            /*[utils.asGridCoord(10,5)] : true,
+            [utils.asGridCoord(10,5)] : true,
             [utils.asGridCoord(11,5)] : true,
             [utils.asGridCoord(12,5)] : true,
             [utils.asGridCoord(13,5)] : true,
@@ -235,10 +235,9 @@ export const OverworldMaps = {
             [utils.asGridCoord(11,6)] : true,
             [utils.asGridCoord(12,6)] : true,
             [utils.asGridCoord(13,6)] : true,
-            [utils.asGridCoord(10,7)] : true,
             [utils.asGridCoord(11,7)] : true,
             [utils.asGridCoord(12,7)] : true,
-            [utils.asGridCoord(13,7)] : true,*/
+            [utils.asGridCoord(13,7)] : true,
 
             //casa
             [utils.asGridCoord(0,12)] : true,
