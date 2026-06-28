@@ -1,5 +1,5 @@
 import './index.css';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Context, GameProvider } from './context/Context';
 import GameContainer from './components/GameContainer/GameContainer.jsx';
 import StartMenu from './components/StartMenu.jsx';

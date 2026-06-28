@@ -148,6 +148,51 @@ canvas {
     transform: translateY(2px);
 }
 
+/*MARK: DETECTOR PANTALLA*/
+
+.rotate-device-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--color-oscuro);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.rotate-device-screen__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 0px 10px;
+}
+
+.rotate-device-screen__icon {
+    width: 120px; 
+    height: 200px;
+    background: url('/movil.png') no-repeat center;
+    background-size: contain;
+    animation: rotate-animation 3s infinite ease-in-out;
+}
+
+.rotate-device-screen__text {
+    color: var(--color-medio); 
+    font-family: var(--font-main); 
+    text-transform: lowercase;
+    font-size: var(--font-size-encabezado);
+}
+
+@keyframes rotate-animation {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(90deg); }
+}
+
 @media screen and (min-width: 640px) {
 
 /* MARK: GAME CONTAINER*/
@@ -751,7 +796,7 @@ canvas {
 
 .inventory__text {
     font-family: var(--font-main);
-    font-size: var(--font-size-encabezado);
+    font-size: var(--font-size-texto);
     color: var(--color-oscuro);
     text-align: center;
     width: 80%;
@@ -889,62 +934,6 @@ canvas {
   color: var(--color-oscuro);
 }
 
-/*MARK: DETECTOR PANTALLA*/
-
-.rotate-device-screen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: var(--color-oscuro);
-    z-index: 9999;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-family: monospace;
-    text-align: center;
-}
-
-.rotate-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-}
-
-.rotate-icon {
-    width: 120px; 
-    height: 200px;
-    background: url('/movil.png') no-repeat center;
-    background-size: contain;
-    animation: rotate-animation 3s infinite ease-in-out
-}
-
-.rotate-container p {
-    color: var(--color-medio); 
-    font-family: var(--font-main); /* Si tienes una fuente pixelada, úsala aquí */
-    text-transform: lowercase;
-    font-size: var(--font-size-encabezado);
-}
-
-@keyframes rotate-animation {
-    0%, 100% { transform: rotate(0deg); }
-    50% { transform: rotate(90deg); }
-}
-
-}
-
-
-
-@media screen and (min-width: 1080px) {
-
-/*MARK: INVENTORY*/
-    .inventory__text {
-    font-size: var(--font-size-texto);
-}
 }
 
 
@@ -969,4 +958,13 @@ canvas {
 
 /*MARK: LOGIN */
 
+}
+
+
+@media screen and (min-width: 1080px) {
+
+/*MARK: INVENTORY*/
+    .inventory__text {
+    font-size: var(--font-size-encabezado);
+}
 }
