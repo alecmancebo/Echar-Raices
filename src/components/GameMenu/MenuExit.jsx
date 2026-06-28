@@ -18,18 +18,22 @@ const MenuExit = ({ onCancel }) => {
 
     return (
         <div className="exit">
+            <button className="controls__back-btn" onClick={onCancel}>
+                <img className="controls__back-icon" src="/flecha-grande.png" alt="" />
+                VOLVER A MENÚ
+            </button>
             <h2 className="modal__title">¿Quieres salir?</h2>
             
             <p className="exit__warning">
                 Se perderá todo el progreso de esta<br/>sesión si no lo guardas.
             </p>
             
-            <div className="modal__actions exit__actions">
-                <button className="modal__btn" onClick={handleExitWithoutSaving}>
+            <div className="exit__actions">
+                <button className="pixel-btn__secondary" onClick={handleExitWithoutSaving}>
                     salir sin guardar
                 </button>
                 
-                <button className="modal__btn" onClick={handleSaveAndExit}>
+                <button className="pixel-btn__secondary" onClick={handleSaveAndExit}>
                     guardar y salir
                 </button>
             </div>

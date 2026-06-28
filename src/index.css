@@ -1,3 +1,7 @@
+/* =========================================
+   1. ESTILOS BASE Y ESCRITORIO (Desktop First)
+   ========================================= */
+
 * {
     margin: 0;
     padding: 0;
@@ -7,6 +11,11 @@
 :root {
 /* Tipografías */
     --font-main: "Micro 5", monospace;
+
+/* Tamaños versión extra-grande */
+    --font-size-titulo-xl: 8rem;
+    --font-size-encabezado-xl: 3rem;
+    --font-size-texto-xl: 2rem;
 
 /* Tamaños versión escritorio */
     --font-size-titulo: 6rem;
@@ -94,10 +103,12 @@ canvas {
     align-items: center;
 }
 
+/* MARK: BOTONES GENÉRICOS */
 .pixel-btn {
     font-family: var(--font-main);
-    font-size: var(--font-size-texto);
+    font-size: var(--font-size-texto-xl);
     background-color: var(--color-claro);
+    color: var(--color-oscuro);
     border: none;
     padding: 6px 12px;
     cursor: pointer;
@@ -113,7 +124,7 @@ canvas {
 
 .pixel-btn__secondary {
     font-family: var(--font-main);
-    font-size: var(--font-size-texto);
+    font-size: var(--font-size-texto-xl);
     background-color: var(--color-medio);
     color: var(--color-claro);
     border: none;
@@ -141,15 +152,13 @@ canvas {
 .pixel-btn__secondary:hover {
     background-color: var(--color-claro);
     color: var(--color-medio);
-
 }
 
 .pixel-btn__secondary:active {
     transform: translateY(2px);
 }
 
-/*MARK: DETECTOR PANTALLA*/
-
+/* MARK: DETECTOR PANTALLA */
 .rotate-device-screen {
     position: fixed;
     top: 0;
@@ -193,9 +202,8 @@ canvas {
     50% { transform: rotate(90deg); }
 }
 
-@media screen and (min-width: 640px) {
 
-/* MARK: GAME CONTAINER*/
+/* MARK: GAME CONTAINER */
 .game-container {
     position: relative;
     aspect-ratio: 384 / 208;
@@ -221,7 +229,8 @@ canvas {
     image-rendering: crisp-edges;
 }
 
-/* MARK: GAME UI (Block - Botones sobre el canvas) */
+
+/* MARK: GAME UI */
 .game-ui__btn {
     position: absolute;
     top: 10px;
@@ -264,7 +273,7 @@ canvas {
 }
 
 
-/* MARK: START MENU (Block) */
+/* MARK: START MENU */
 .start-menu {
     display: flex;
     flex-direction: column;
@@ -309,7 +318,7 @@ canvas {
     background: transparent;
     color: var(--color-claro);
     font-family: var(--font-main);
-    font-size: var(--font-size-texto);
+    font-size: var(--font-size-encabezado);
     padding: 0;
     gap: var(--gap-sm);
     display: flex;
@@ -319,7 +328,7 @@ canvas {
 }
 
 .start-menu__arrow {
-    height: 10px;
+    height: 24px; 
     object-fit: contain;
     opacity: 0;
 }
@@ -333,7 +342,8 @@ canvas {
     transform: translateX(10px); 
 }
 
-/* MARK: LOGIN (Block) */
+
+/* MARK: LOGIN */
 .login {
     display: flex;
     justify-content: center;
@@ -343,7 +353,7 @@ canvas {
 
 .login__bg {
     position: absolute;
-    max-width: 500px;
+    max-width: 700px;
     height: 85%;
     object-fit: contain;
     z-index: 1;
@@ -356,14 +366,14 @@ canvas {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 55%;
+    width: 65%;
     max-width: 500px;
     padding: var(--spacing-sm);
 }
 
 .login__title {
     font-family: var(--font-main);
-    font-size: var(--font-size-encabezado);
+    font-size: var(--font-size-encabezado-xl);
     color: var(--color-claro);
 }
 
@@ -378,12 +388,12 @@ canvas {
 .login__field {
     display: flex;
     flex-direction: column;
-    width: 85%;
+    width: 95%;
 }
 
 .login__field label {
     font-family: var(--font-main);
-    font-size: var(--font-size-texto);
+    font-size: var(--font-size-texto-xl);
     color: var(--color-oscuro);
     margin-bottom: 12px;
 }
@@ -391,7 +401,7 @@ canvas {
 .login__input {
     background-color: var(--color-medio);
     font-family: var(--font-main);
-    font-size: var(--font-size-texto);
+    font-size: var(--font-size-texto-xl);
     padding: 6px 10px;
     color: var(--color-fondo);
     outline: none;
@@ -413,19 +423,18 @@ canvas {
     gap: 15px;
     width: 45%;
     margin-top: 15px;
-}
-
-.login__actions{
     flex: 1; 
 }
 
-.login__btn{
+.login__btn {
     background-color: var(--color-claro);
     color: var(--color-oscuro);
+    font-size: var(--font-size-texto-xl);
 
 }
 
-/* MARK: MODAL OVERLAY (Block general para superposiciones) */
+
+/* MARK: MODAL OVERLAY */
 .modal-overlay {
     position: absolute;
     top: 0;
@@ -439,11 +448,12 @@ canvas {
     align-items: center;
 }
 
-/* MARK: MODAL */
+
+/* MARK: MODAL MENU */
 .modal {
     position: relative;
     width: 60%; 
-    max-width: 400px;
+    max-width: 600px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -462,7 +472,7 @@ canvas {
     z-index: 10;
     top: -1.5%; 
     right: -3%;
-    width: 10%;
+    width: 8%;
     box-shadow: 
         0px -4px 0 0 var(--color-medio), 
         0 4px 0 0 var(--color-medio), 
@@ -485,7 +495,7 @@ canvas {
 
 .modal__title {
     font-family: var(--font-main);
-    font-size: var(--font-size-encabezado);
+    font-size: var(--font-size-encabezado-xl);
     color: var(--color-medio); 
     margin-bottom: var(--spacing-sm);
 }
@@ -500,7 +510,7 @@ canvas {
 
 .modal__btn {
     font-family: var(--font-main);
-    font-size: var(--font-size-texto);
+    font-size: var(--font-size-texto-xl);
     color: var(--color-medio);
     background-color: transparent;
     padding: 4px 0;
@@ -520,7 +530,7 @@ canvas {
 }
 
 
-/* MARK: CONTROLS (Block) */
+/* MARK: CONTROLS*/
 .controls {
     display: flex;
     flex-direction: column;
@@ -536,10 +546,10 @@ canvas {
     gap: 10px;
     background: transparent;
     font-family: var(--font-main);
-    font-size: var(--font-size-encabezado);
+    font-size: var(--font-size-encabezado-xl);
     color: var(--color-medio);
     padding: 0;
-    margin-bottom: 5px; 
+    margin-bottom: 8%; 
 }
 
 .controls__back-btn:hover {
@@ -566,11 +576,10 @@ canvas {
     width: 100%;
 }
 
-.controls__item p {
+.controls p{
     font-family: var(--font-main);
-    font-size: var(--font-size-texto);
+    font-size: var(--font-size-texto-xl);
     color: var(--color-oscuro);
-    line-height: 1;
     text-align: left;
     max-width: 65%;
 }
@@ -584,7 +593,7 @@ canvas {
 }
 
 
-/* MARK: CREDITS (Block) */
+/* MARK: CREDITS */
 .credits {
     display: flex;
     flex-direction: column;
@@ -594,22 +603,31 @@ canvas {
     margin-top: 15px;
 }
 
-.credits p {
+.credits p{
     font-family: var(--font-main);
-    font-size: var(--font-size-texto);
+    font-size: var(--font-size-texto-xl);
     color: var(--color-oscuro);
-    line-height: 1.1;
     text-align: center;
 }
 
 .credits__boxes {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+}
+
+.credits__boxes__images {
+    display: flex;
+    flex-direction: row;
     justify-content: center;
     gap: 20px;
     width: 100%;
 }
 
 .credits__box {
+    flex-direction: row;
     width: 60px;
     height: 60px;
     background-color: #d1d1d1;
@@ -617,7 +635,7 @@ canvas {
 }
 
 
-/* MARK: EXIT (Block) */
+/* MARK: EXIT*/
 .exit {
     display: flex;
     flex-direction: column;
@@ -629,19 +647,19 @@ canvas {
 
 .exit__warning {
     font-family: var(--font-main);
-    font-size: var(--font-size-texto);
+    font-size: var(--font-size-texto-xl);
     color: var(--color-oscuro);
-    line-height: 1.1;
     text-align: center;
     margin-bottom: var(--spacing-md);
 }
 
 .exit__actions {
-    gap: 15px; 
+    display: flex;
+    gap: 40px; 
 }
 
 
-/* MARK: STORYBOARD (Block) */
+/* MARK: STORYBOARD */
 .storyboard {
     display: flex;
     justify-content: center;
@@ -702,12 +720,11 @@ canvas {
 
 .storyboard__text-box p {
     font-family: var(--font-main);
-    font-size: var(--font-size-texto);
+    font-size: var(--font-size-texto-xl);
     color: var(--color-fondo); 
     line-height: 1.1;
     text-align: center;
 }
-
 
 
 /* MARK: INVENTORY */
@@ -731,18 +748,22 @@ canvas {
 
 .inventory__close-btn {
     position: absolute;
-    top: 15px;
-    right: 15px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    z-index: 3;
-    padding: 5px;
+    background-color: var(--color-claro);
+    position: absolute;
+    z-index: 10;
+    top: 6%;
+    right: 12%;
+    width: 4%;
+    box-shadow: 
+        0px -4px 0 0 var(--color-medio), 
+        0 4px 0 0 var(--color-medio), 
+        -4px 0 0 0 var(--color-medio), 
+        4px 0 0 0 var(--color-medio);
 }
 
 .inventory__close-btn img {
-    width: 10px;
-    height: 10px;
+    width: 100%;
+   
 }
 
 .inventory__content {
@@ -765,7 +786,6 @@ canvas {
 
 .inventory__panel--right {
     padding: 10px 8% 10px 4%;
-
     flex: 1.1;
     display: flex;
     flex-direction: column;
@@ -796,7 +816,7 @@ canvas {
 
 .inventory__text {
     font-family: var(--font-main);
-    font-size: var(--font-size-texto);
+    font-size: var(--font-size-encabezado);
     color: var(--color-oscuro);
     text-align: center;
     width: 80%;
@@ -842,8 +862,6 @@ canvas {
 
 .inventory__item-icon {
     position: absolute;
-    width: 80%;
-    height: 80%;
     transform: translate(-50%, -50%); 
     width: 60%; 
     height: 60%;
@@ -854,10 +872,7 @@ canvas {
 }
 
 
-
-/*MARK: OVERLAY OBJETO*/
-
-/* Block: item-modal */
+/* MARK: ITEM MODAL OVERLAY OBJETO */
 .item-modal {
   position: absolute;
   top: 0;
@@ -868,13 +883,16 @@ canvas {
   justify-content: center;
   align-items: center;
   z-index: 100;
+  background-color: rgba(1, 25, 21, 0.85);
 }
 
-/* Elements */
 .item-modal__container {
   position: relative;
-  width: 600px;
-  height: 400px;
+  width: 90%;
+  height: auto;
+  aspect-ratio: 4/3;
+  max-width: 700px;
+  max-height: 500px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -892,30 +910,25 @@ canvas {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  width: 80%;
+  width: 100%;
   color: var(--color-oscuro);
-  font-family: var(--font-main) !important;
+  font-family: var(--font-main) ;
 }
 
 .item-modal__title {
-  font-family: var(--font-main) !important;
-  font-size: 24px;
-  margin-bottom: 20px;
+  font-size: var(--font-size-encabezado-xl);
   letter-spacing: 2px;
 }
 
 .item-modal__image {
-  width: 80px;
-  height: 80px;
+  width: 130px;
   image-rendering: pixelated;
   margin-bottom: 20px;
 }
 
 .item-modal__desc {
-  font-family: var(--font-main) !important;
-  font-size: 14px;
-  line-height: 1.4;
-  margin-bottom: 30px;
+  font-size: var(--font-size-texto-xl);
+  margin-bottom: var(--spacing-lg);
   max-width: 80%;
 }
 
@@ -925,46 +938,344 @@ canvas {
 }
 
 .item-modal__btn {
-  font-family: var(--font-main) !important;
+  font-size: var(--font-size-texto-xl);  
   padding: 10px 30px;
   cursor: pointer;
-  border: 2px solid var(--color-oscuro);
-  background: var(--color-brillante);
-  font-size: 16px;
   color: var(--color-oscuro);
 }
 
-}
 
-
-
-@media screen and (min-width: 960px) {
-
-/*MARK: STARTMENU*/
-
-.start-menu__link {
-    font-size: var(--font-size-encabezado);
-    gap: var(--gap-sm);
-}
-
-.start-menu__arrow {
-    height: 24px;
-}
-
-/*MARK: INVENTORY*/
-.inventory__text {
+/* Pantallas inferiores a 1080px */
+@media screen and (max-width: 1080px) {
+    
+/*BOTONES GENERICOS*/
+.pixel-btn{
     font-size: var(--font-size-texto);
 }
 
-/*MARK: LOGIN */
-
+.pixel-btn__secondary{
+    font-size: var(--font-size-texto);
 }
 
+/* MARK: LOGIN */
+.login__bg { 
+    max-width: 500px;
+}
 
-@media screen and (min-width: 1080px) {
+.login__content{
+    width: 55%;
+}
 
-/*MARK: INVENTORY*/
-    .inventory__text {
+.login__title {
     font-size: var(--font-size-encabezado);
 }
+
+.login__field {
+    width: 85%;
+}
+
+.login__field label {
+    font-size: var(--font-size-texto);
+}
+
+.login__input {
+    font-size: var(--font-size-texto);
+}
+
+.inventory__text {
+        font-size: var(--font-size-texto);
+    }
+
+.login__btn {
+    background-color: var(--color-claro);
+    color: var(--color-oscuro);
+    font-size: var(--font-size-texto);
+}
+
+/*MARK: STORYBOARD*/
+.storyboard__text-box p {
+    font-family: var(--font-main);
+    font-size: var(--font-size-texto);
+    color: var(--color-fondo); 
+    line-height: 1.1;
+    text-align: center;
+}
+
+
+.modal__btn {
+    font-size: var(--font-size-texto);
+}
+
+
+/* MARK: ITEM MODAL OVERLAY OBJETO */
+
+.item-modal__container {
+  width: 60%;
+  max-width: 600px;
+
+}
+
+.item-modal__content {
+  width: 90%;
+}
+
+.item-modal__title {
+  font-size: var(--font-size-encabezado);
+  letter-spacing: 2px;
+}
+
+.item-modal__image {
+  width: 100px;
+  image-rendering: pixelated;
+  margin-bottom: 16px;
+}
+
+.item-modal__desc {
+  font-size: var(--font-size-texto);
+  margin-bottom: var(--spacing-md);
+  max-width: 80%;
+}
+
+.item-modal__btn {
+  font-size: var(--font-size-texto);  
+}
+
+/* MARK: MODAL MENU */
+.modal {    
+    width: 60%; 
+    max-width: 500px;
+}
+
+
+.modal__close-btn {
+    width: 8%;
+}
+
+.modal__content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 7%; 
+}
+
+.modal__title {
+    font-size: var(--font-size-encabezado);
+
+}
+
+/* MARK: CONTROLS*/
+
+.controls__back-btn {
+    font-size: var(--font-size-encabezado);
+}
+
+.controls p{
+    font-size: var(--font-size-texto);
+ 
+}
+
+/* MARK: CREDITS */
+.credits p{
+    font-size: var(--font-size-texto);
+}
+
+/* MARK: EXIT*/
+
+.exit__warning {
+    font-size: var(--font-size-texto);
+}
+
+/*MARK:INVENTORY*/
+.inventory__text {
+    line-height: 0.9;
+    font-size: var(--font-size-encabezado);
+    width: 100%;
+}
+
+}
+
+/* Pantallas inferiores a 960px */
+@media screen and (max-width: 959px) {
+
+/* MARK: START-MENU*/
+
+    .start-menu__link {
+        font-size: var(--font-size-texto);
+        gap: var(--gap-sm);
+    }
+    
+    .start-menu__arrow {
+        height: 10px;
+    }
+
+/*MARK:INVENTORY*/
+
+.inventory__reflection-box {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: var(--spacing-md);
+}
+
+.inventory__text {
+    line-height: 0.9;
+    font-size: var(--font-size-texto);
+    width: 100%;
+}
+
+.inventory__title {
+    margin-bottom: var(--spacing-md);
+}
+
+    
+}
+
+@media screen and (max-width: 670px) {
+
+.pixel-btn {
+    font-size: var(--font-size-texto-t);
+    border: none;
+    padding: 4px 12px;
+
+}
+
+.pixel-btn__secondary {
+    font-size: var(--font-size-texto-t);
+    padding: 4px 12px;
+
+}
+
+/* MARK: LOGIN */
+
+.login__bg {
+    height: 90%;
+}
+
+.login__title {
+    font-size: var(--font-size-encabezado-t);
+}
+
+.login__form {
+    gap: 16px;
+}
+
+
+.login__field label {
+    font-size: var(--font-size-texto-t);
+    margin-bottom: 8px;
+}
+
+.login__input{
+    font-size: var(--font-size-texto-t);
+}
+
+.login__actions {
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.login__btn {
+    padding: 0px;
+    font-size: var(--font-size-texto-t);
+}
+
+/*MARK: MODAL MENU*/
+.modal__content {
+    left:5%;
+    width: 90%;
+    height: 90%;
+}
+
+/* MARK: CONTROLS*/
+
+.controls__back-btn {
+    font-size: var(--font-size-encabezado-t);
+}
+
+.controls p{
+    font-size: var(--font-size-texto-t);
+ 
+}
+
+/* MARK: CREDITS */
+.credits p{
+    font-size: var(--font-size-texto-t);
+}
+
+/* MARK: EXIT*/
+.exit__warning {
+    font-size: var(--font-size-texto-t);
+}
+
+
+/* MARK: ITEM MODAL OVERLAY OBJETO */
+.item-modal__container {
+  width: 60%;
+  max-width: 600px;
+  aspect-ratio: 4 / 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.item-modal__content {
+  width: 90%;
+}
+
+.item-modal__title {
+  font-size: var(--font-size-encabezado-t);
+  letter-spacing: 2px;
+}
+
+.item-modal__image {
+  width: 60px;
+  image-rendering: pixelated;
+  margin-bottom: 16px;
+}
+
+.item-modal__desc {
+  font-size: var(--font-size-texto-t);
+  margin-bottom: var(--spacing-md);
+  max-width: 80%;
+}
+
+.item-modal__btn {
+  font-size: var(--font-size-texto-t);  
+}
+
+/*MARK:INVENTORY*/
+
+.inventory__reflection-box {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: var(--spacing-sm);
+}
+
+.inventory__text {
+    line-height: 0.9;
+    font-size: var(--font-size-encabezado-t);
+    width: 100%;
+}
+
+.inventory__title {
+    font-size: var(--font-size-encabezado-t);
+    margin-bottom: var(--spacing-sm);
+}
+
+}
+
+
+@media screen and (max-width: 480px) and (orientation: portrait) {
+    .game-container { 
+        display: none; 
+    }
 }

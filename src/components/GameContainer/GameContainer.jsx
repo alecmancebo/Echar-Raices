@@ -61,10 +61,6 @@ const GameContainer = () => {
 
   return (
       <div className="game-container" ref={containerRef}>
-          <button className="game-ui__btn game-ui__btn--inventory" onClick={openInventory}>
-              <img className="game-ui__icon" src="/casa.png" alt="Inventario" />
-          </button>
-          
           <canvas className="game-container__canvas" width="384" height="208"></canvas>
 
           <ItemModal 

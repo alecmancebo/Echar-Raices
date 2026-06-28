@@ -212,8 +212,8 @@ export const OverworldMaps = {
 
 
             character: new Person({
-                x: utils.withGrid(0),
-                y: utils.withGrid(0),
+                x: utils.withGrid(5),
+                y: utils.withGrid(6),
                 src: "/hero.png"
             }),
 

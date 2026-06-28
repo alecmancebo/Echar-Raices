@@ -11,7 +11,7 @@ const MenuMain = ({ onNavigate, onClose }) => {
             <div className="modal__actions">
                 <button className="modal__btn" onClick={() => onNavigate('CONTROLES')}>controles</button>
                 <button className="modal__btn" onClick={() => onNavigate('CREDITOS')}>créditos</button>
-                <button className="modal__btn" onClick={onClose}>salir del juego</button>
+                <button className="modal__btn" onClick={() => onNavigate('EXIT')}>salir del juego</button>
             </div>
         </>
     );

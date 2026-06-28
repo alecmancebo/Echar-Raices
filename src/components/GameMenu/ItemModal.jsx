@@ -7,7 +7,9 @@ const ItemModal = ({ item, onClose }) => {
     return (
         <div className="item-modal">
             <div className="item-modal__container">
-                {/* Fondo de la modal */}
+                <button className="modal__close-btn" onClick={onClose}>
+                    <img src="/x.png" alt="Close" />
+                </button>
                 <img className="item-modal__bg" src="/Overlay-Item.png" alt="" />
                 
                 <div className="item-modal__content">
@@ -20,8 +22,8 @@ const ItemModal = ({ item, onClose }) => {
                     <p className="item-modal__desc">{item.description}</p>
                     
                     <div className="item-modal__actions">
-                        <button className="pixel-btn">usar</button>
-                        <button className="pixel-btn__secondary" onClick={onClose}>dejar</button>
+                        <button className="pixel-btn item-modal__btn ">usar</button>
+                        <button className="pixel-btn__secondary item-modal__btn " onClick={onClose}>dejar</button>
                     </div>
                 </div>
             </div>
