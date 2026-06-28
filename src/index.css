@@ -947,7 +947,7 @@ canvas {
 
 /* Pantallas inferiores a 1080px */
 @media screen and (max-width: 1080px) {
-    
+
 /*BOTONES GENERICOS*/
 .pixel-btn{
     font-size: var(--font-size-texto);
@@ -1193,6 +1193,7 @@ canvas {
     height: 90%;
 }
 
+
 /* MARK: CONTROLS*/
 
 .controls__back-btn {
@@ -1210,6 +1211,10 @@ canvas {
 }
 
 /* MARK: EXIT*/
+.modal__title {
+    font-size: var(--font-size-encabezado-t);
+
+}
 .exit__warning {
     font-size: var(--font-size-texto-t);
 }
