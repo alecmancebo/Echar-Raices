@@ -2,7 +2,16 @@ import { useContext } from 'react';
 import { Context } from '../../context/Context.jsx'; 
 
 const ItemModal = ({ item, onClose }) => {
+    const { saveInventoryItem } = useContext(Context);
+
     if (!item) return null;
+
+    const handleSave = async () => {
+        const ok = await saveInventoryItem(item);
+        if (ok) {
+            onClose();
+        }
+    };
 
     return (
         <div className="item-modal">
@@ -22,8 +31,8 @@ const ItemModal = ({ item, onClose }) => {
                     <p className="item-modal__desc">{item.description}</p>
                     
                     <div className="item-modal__actions">
-                        <button className="pixel-btn item-modal__btn ">usar</button>
-                        <button className="pixel-btn__secondary item-modal__btn " onClick={onClose}>dejar</button>
+                        <button className="pixel-btn item-modal__btn" onClick={handleSave}>guardar</button>
+                        <button className="pixel-btn__secondary item-modal__btn" onClick={onClose}>dejar</button>
                     </div>
                 </div>
             </div>

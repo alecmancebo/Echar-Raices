@@ -90,8 +90,11 @@ export const GameProvider = ({ children }) => {
     const resetProgress = () => {
         setCurrentStoryScreen(1);
         setInventoryItems(Items);
+        setSelectedItemId(1);
+        setIsMenuOpen(false);
+        setIsInventoryOpen(false);
         localStorage.removeItem('lastGameScreen');
-        setPersistedGameState('START_MENU');
+        setGameState('LOGIN');
     };
 
     const openMenu = () => {
@@ -105,6 +108,31 @@ export const GameProvider = ({ children }) => {
         setIsMenuOpen(false); 
     };
     const closeInventory = () => setIsInventoryOpen(false);
+
+    const saveInventoryItem = async (item) => {
+        if (!token || !item) return false;
+
+        try {
+            const response = await fetch("http://localhost:4000/api/usuario/items", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                },
+                body: JSON.stringify({ item: item.name })
+            });
+
+            if (!response.ok) throw new Error("No se pudo guardar el item");
+
+            const data = await response.json();
+            const newInventory = Array.isArray(data.items) ? data.items : [...inventoryItems, item];
+            setInventoryItems(newInventory);
+            return true;
+        } catch (error) {
+            console.error("Error guardando item:", error);
+            return false;
+        }
+    };
 
     const advanceStory = async () => {
     
@@ -131,7 +159,7 @@ export const GameProvider = ({ children }) => {
             inventoryItems, setInventoryItems,
             isMenuOpen, openMenu, closeMenu,
             isInventoryOpen, openInventory, closeInventory,
-            selectedItemId, setSelectedItemId, startGame, pauseGame, resetProgress, loading, setLoading, loadGameData
+            selectedItemId, setSelectedItemId, startGame, pauseGame, resetProgress, saveInventoryItem, loading, setLoading, loadGameData
         }}>
             {children}
         </Context.Provider>
