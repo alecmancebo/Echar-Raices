@@ -2,6 +2,7 @@ import { useContext, useState } from 'react';
 import { Context } from '../../context/Context.jsx';
 import { AuthContext } from '../../context/AuthContext'; 
 
+
 const Login = () => {
     const { setGameState } = useContext(Context);
     const { login } = useContext(AuthContext);
@@ -24,11 +25,8 @@ const Login = () => {
             }
 
             const data = await respuesta.json();
-            
             login(data.token);
-            
-            setGameState('STORYBOARD');
-            
+            setGameState('LOADING_GAME');
         } catch (err) {
 
             console.error("Error en login:", err);

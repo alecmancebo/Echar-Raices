@@ -2,8 +2,15 @@ import { useContext } from 'react';
 import { Context } from '../context/Context';
 
 const StartMenu = () => {
-    
-    const { startGame } = useContext(Context);
+    const { setGameState, resetProgress } = useContext(Context);
+
+    const handleContinuar = () => {
+        setGameState('LOGIN');
+    };
+
+    const handleNuevaPartida = () => {
+        resetProgress();
+    };
 
     return (
         <div className="game-container start-menu">
@@ -12,12 +19,12 @@ const StartMenu = () => {
                 <img className="start-menu__logo" src="/titulo.png" alt="Echar Raíces" />
 
                 <div className="start-menu__links">
-                    <button className="start-menu__link" onClick={startGame}>
+                    <button className="start-menu__link" onClick={handleNuevaPartida}>
                         <img className="start-menu__arrow" src="/flecha-der.png" alt="" />
                         NUEVA PARTIDA
                     </button>
                 
-                    <button className="start-menu__link" onClick={() => console.log('Continuar no implementado aún')}>
+                    <button className="start-menu__link" onClick={handleContinuar}>
                         <img className="start-menu__arrow" src="/flecha-der.png" alt="" />
                         CONTINUAR
                     </button>

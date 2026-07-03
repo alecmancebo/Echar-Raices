@@ -12,7 +12,7 @@ import { AuthContext, AuthProvider } from './context/AuthContext';
 
 function AppContent() {
   const { loadingAuth, token } = useContext(AuthContext);
-  const { gameState, isInventoryOpen, loading } = useContext(Context);
+  const { gameState, loading } = useContext(Context);
   const [isPortrait, setIsPortrait] = useState(window.innerWidth < 480 && window.innerHeight > window.innerWidth);
 
   useEffect(() => {
@@ -30,9 +30,9 @@ function AppContent() {
   switch (gameState) {
       case 'LOGIN': return <Login />;
       case 'STORYBOARD': return <Storyboard />;
-      case 'PLAYING': 
-      return token ? <GameContainer /> : <Login />;
-      case 'START_MENU': 
+      case 'PLAYING': return token ? <GameContainer /> : <Login />;
+      case 'LOADING_GAME': return <div>Cargando datos...</div>;
+      case 'START_MENU':
       default: return <StartMenu />;
   }
 

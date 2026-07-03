@@ -19,7 +19,6 @@ const Items = [
 ];
 
 export const GameProvider = ({ children }) => {
-    
     const [gameState, setGameState] = useState('START_MENU');
     const [currentStoryScreen, setCurrentStoryScreen] = useState(1);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -29,42 +28,71 @@ export const GameProvider = ({ children }) => {
     const [loading, setLoading] = useState(false);
     const { token } = useContext(AuthContext);
 
-    // cargar datos del juego
+    const setPersistedGameState = (nextState) => {
+        setGameState(nextState);
+
+        if (nextState === 'PLAYING' || nextState === 'STORYBOARD' || nextState === 'PAUSED') {
+            localStorage.setItem('lastGameScreen', nextState);
+        }
+    };
+
     useEffect(() => {
-        const cargarRecursosJuego = async () => {
-
-            if (!token) {
-                setLoading(false);
-                return;
+        if (!token) {
+            if (gameState === 'PLAYING' || gameState === 'STORYBOARD' || gameState === 'LOADING_GAME') {
+                setPersistedGameState('START_MENU');
             }
+            return;
+        }
 
-            setLoading(true);
-            try {
-                // Aquí va tu lógica de fetch para el progreso/inventario
-                const response = await fetch("/api/juego/datos", {
-                    headers: { "Authorization": `Bearer ${token}` }
-                });
-                
-                if (!response.ok) throw new Error("Error en la carga de recursos");
-                
-                const data = await response.json();
-                setInventoryItems(data.items);
-                // ... setear otros estados
-            } catch (error) {
-                console.error("Fallo al inicializar el juego:", error);
-            } finally {
-                setLoading(false);
-            }
-        };
+        if (gameState === 'LOADING_GAME') {
+            loadGameData();
+        }
+    }, [token, gameState]);
 
-        cargarRecursosJuego();
-    }, [token]);
+    const loadGameData = async () => {
+        if (!token) return;
+        setLoading(true);
+        try {
+            const response = await fetch("http://localhost:4000/api/juego/datos", {
+                headers: { "Authorization": `Bearer ${token}` }
+            });
+            if (!response.ok) throw new Error("Error en la carga");
+
+            const data = await response.json();
+            setInventoryItems(data.items || []);
+            setCurrentStoryScreen(data.progreso || 1);
+            const restoredScreen = data.ultimaPantalla || data.lastScreen || (data.narrativaCompletada ? 'PLAYING' : 'STORYBOARD');
+            const savedScreen = localStorage.getItem('lastGameScreen');
+            const finalScreen = savedScreen && ['PLAYING', 'STORYBOARD', 'PAUSED'].includes(savedScreen)
+                ? savedScreen
+                : restoredScreen;
+
+            setPersistedGameState(finalScreen);
+            return data;
+        } catch (error) {
+            console.error("Fallo al inicializar el juego:", error);
+            setPersistedGameState('LOGIN');
+            return null;
+        } finally {
+            setLoading(false);
+        }
+    };
 
     const startGame = () => {
         setCurrentStoryScreen(1);
-        setGameState('LOGIN');};
+        setInventoryItems(Items);
+        localStorage.removeItem('lastGameScreen');
+        setPersistedGameState('LOGIN');
+    };
 
-    const pauseGame = () => setGameState('PAUSED');
+    const pauseGame = () => setPersistedGameState('PAUSED');
+
+    const resetProgress = () => {
+        setCurrentStoryScreen(1);
+        setInventoryItems(Items);
+        localStorage.removeItem('lastGameScreen');
+        setPersistedGameState('START_MENU');
+    };
 
     const openMenu = () => {
         setIsMenuOpen(true);
@@ -85,11 +113,11 @@ export const GameProvider = ({ children }) => {
         } else {
        
             try {
-                await fetch("/api/usuario/narrativa", {
+                await fetch("http://localhost:4000/api/usuario/narrativa", {
                     method: "PATCH",
                     headers: { "Authorization": `Bearer ${token}` }
                 });
-                setGameState('PLAYING');
+                setPersistedGameState('PLAYING');
             } catch (e) {
                 console.error("Error guardando progreso");
             }
@@ -98,12 +126,12 @@ export const GameProvider = ({ children }) => {
 
     return (
         <Context.Provider value={{ 
-            gameState, setGameState, 
+            gameState, setGameState: setPersistedGameState, 
             advanceStory, currentStoryScreen, setCurrentStoryScreen,
             inventoryItems, setInventoryItems,
             isMenuOpen, openMenu, closeMenu,
             isInventoryOpen, openInventory, closeInventory,
-            selectedItemId, setSelectedItemId, startGame, pauseGame, loading, setLoading
+            selectedItemId, setSelectedItemId, startGame, pauseGame, resetProgress, loading, setLoading, loadGameData
         }}>
             {children}
         </Context.Provider>
