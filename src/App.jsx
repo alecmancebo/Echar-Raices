@@ -8,30 +8,12 @@ import Login from './components/Login/Login.jsx';
 import GameMenu from './components/GameMenu/GameMenu.jsx';
 import Inventory from './components/Inventory/Inventory.jsx'; 
 import { DetectorPantalla } from './components/DetectorPantalla/DetectorPantalla.jsx';
+import { AuthContext, AuthProvider } from './context/AuthContext';
 
 function AppContent() {
-  const { gameState, isInventoryOpen } = useContext(Context);
+  const { loadingAuth, token } = useContext(AuthContext);
+  const { gameState, isInventoryOpen, loading } = useContext(Context);
   const [isPortrait, setIsPortrait] = useState(window.innerWidth < 480 && window.innerHeight > window.innerWidth);
-
-  const renderScreen = () => {
-    switch (gameState) {
-      case 'START_MENU':
-        return <StartMenu />;
-      case 'LOGIN':
-        return <Login />;
-      case 'STORYBOARD':
-        return <Storyboard />;
-      case 'PLAYING':
-        return (
-          <>
-            <GameContainer />
-          </>
-        );
-      
-      default:
-        return null;
-    }
-  };
 
   useEffect(() => {
     const handleResize = () => setIsPortrait(window.innerWidth < 480 && window.innerHeight > window.innerWidth);
@@ -39,23 +21,33 @@ function AppContent() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Si está en vertical, NO renderizamos el resto del juego
-  if (isPortrait) {
-    return <DetectorPantalla />;
+  if (isPortrait) return <DetectorPantalla />;
+ 
+  //pantallas de carga 
+  if (loadingAuth) return <div>Cargando sesión...</div>;
+  if (loading) return <div>Cargando recursos del juego...</div>;
+
+  switch (gameState) {
+      case 'LOGIN': return <Login />;
+      case 'STORYBOARD': return <Storyboard />;
+      case 'PLAYING': 
+      return token ? <GameContainer /> : <Login />;
+      case 'START_MENU': 
+      default: return <StartMenu />;
   }
 
-  return (
-    <>
-      {renderScreen()}
-    </>
-  );
 }
+
+  
+
 
 function App() {
   return (
+    <AuthProvider>
     <GameProvider>
       <AppContent />
     </GameProvider>
+    </AuthProvider>
   );
 }
 
