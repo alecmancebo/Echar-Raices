@@ -1,13 +1,29 @@
 import { useContext } from 'react';
 import { Context } from '../../context/Context.jsx'; 
 
-const ItemModal = ({ item, onClose }) => {
+const ItemModal = ({ item, onClose, onUse, onDrop, onSave }) => {
     const { saveInventoryItem } = useContext(Context);
 
     if (!item) return null;
 
     const handleSave = async () => {
-        const ok = await saveInventoryItem(item);
+        const ok = await (onSave ? onSave(item) : saveInventoryItem(item));
+        if (ok) {
+            onClose();
+        }
+    };
+
+    const handleUse = async () => {
+        if (!onUse) return;
+        const ok = await onUse(item);
+        if (ok) {
+            onClose();
+        }
+    };
+
+    const handleDrop = async () => {
+        if (!onDrop) return;
+        const ok = await onDrop(item);
         if (ok) {
             onClose();
         }
@@ -31,8 +47,16 @@ const ItemModal = ({ item, onClose }) => {
                     <p className="item-modal__desc">{item.description}</p>
                     
                     <div className="item-modal__actions">
-                        <button className="pixel-btn item-modal__btn" onClick={handleSave}>guardar</button>
-                        <button className="pixel-btn__secondary item-modal__btn" onClick={onClose}>dejar</button>
+                        {onUse ? (
+                            <button className="pixel-btn item-modal__btn" onClick={handleUse}>usar</button>
+                        ) : (
+                            <button className="pixel-btn item-modal__btn" onClick={handleSave}>guardar</button>
+                        )}
+                        {onDrop ? (
+                            <button className="pixel-btn__secondary item-modal__btn" onClick={handleDrop}>dejar</button>
+                        ) : (
+                            <button className="pixel-btn__secondary item-modal__btn" onClick={onClose}>dejar</button>
+                        )}
                     </div>
                 </div>
             </div>

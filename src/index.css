@@ -862,13 +862,22 @@ canvas {
 
 .inventory__item-icon {
     position: absolute;
-    transform: translate(-50%, -50%); 
-    width: 60%; 
-    height: 60%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 72%;
+    height: 72%;
+    max-width: 56px;
+    max-height: 56px;
     z-index: 2;
     object-fit: contain;
     image-rendering: pixelated;
     pointer-events: none;
+}
+
+.inventory__item-icon--used {
+    opacity: 0.5;
+    filter: grayscale(1);
 }
 
 

@@ -1,15 +1,17 @@
 import React, { useContext, useState } from 'react';
 import { Context } from '../../context/Context.jsx';
+import ItemModal from '../GameMenu/ItemModal.jsx';
 
 const Inventory = () => {
     const { 
-        isInventoryOpen, closeInventory, 
-        inventoryItems, selectedItemId, setSelectedItemId 
+        isInventoryOpen, closeInventory,
+        inventoryItems, selectedItemId, setSelectedItemId,
+        useInventoryItem, dropInventoryItem
     } = useContext(Context);
 
-    if (!isInventoryOpen) return null;
+    const [activeInventoryItem, setActiveInventoryItem] = useState(null);
 
-    const selectedItem = inventoryItems.find(item => item.id === selectedItemId);
+    if (!isInventoryOpen) return null;
 
     // Sub-componente interno para gestionar el estado individual de cada slot
     const Slot = ({ item, isSelected, onClick }) => {
@@ -25,12 +27,14 @@ const Inventory = () => {
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
             >
-                {/* Capa 1: Imagen de fondo del slot */}
                 <img src={baseImage} alt="slot" className="inventory__slot-bg" />
                 
-                {/* Capa 2: Ícono del objeto (si existe) */}
-                {item && item.icon && (
-                    <img src={item.icon} alt={item.name} className="inventory__item-icon" />
+                {item && (item.icon || item.src) && (
+                    <img 
+                        src={item.icon || item.src} 
+                        alt={item.name} 
+                        className={`inventory__item-icon ${item.isUsed ? 'inventory__item-icon--used' : ''}`}
+                    />
                 )}
             </div>
         );
@@ -47,7 +51,6 @@ const Inventory = () => {
                 
                 <div className="inventory__content">
                     
-                    {/* Panel Izquierdo: Reflejo */}
                     <div className="inventory__panel">
                         <h3 className="inventory__title">Reflejo</h3>
                         
@@ -60,22 +63,22 @@ const Inventory = () => {
                         </p>
                     </div>
 
-                    {/* Panel Derecho: Cuadrícula de Inventario */}
                     <div className="inventory__panel--right">
                         <h3 className="inventory__title">Inventario</h3>
                         
                         <div className="inventory__grid">
-                            {/* Renderizar los objetos reales del inventario */}
                             {inventoryItems.map((item) => (
                                 <Slot 
                                     key={item.id} 
                                     item={item} 
                                     isSelected={selectedItemId === item.id}
-                                    onClick={() => setSelectedItemId(item.id)}
+                                    onClick={() => {
+                                        setSelectedItemId(item.id);
+                                        setActiveInventoryItem(item);
+                                    }}
                                 />
                             ))}
                             
-                            {/* Renderizar los slots vacíos necesarios para llegar a 12 */}
                             {[...Array(Math.max(0, 12 - inventoryItems.length))].map((_, index) => (
                                 <Slot 
                                     key={`empty-${index}`} 
@@ -89,6 +92,29 @@ const Inventory = () => {
 
                 </div>
             </div>
+
+            {activeInventoryItem && (
+                <ItemModal
+                    item={activeInventoryItem}
+                    onClose={() => setActiveInventoryItem(null)}
+                    onUse={async (item) => {
+                        const ok = await useInventoryItem(item);
+                        if (ok) {
+                            closeInventory();
+                            setActiveInventoryItem(null);
+                        }
+                        return ok;
+                    }}
+                    onDrop={async (item) => {
+                        const ok = await dropInventoryItem(item);
+                        if (ok) {
+                            closeInventory();
+                            setActiveInventoryItem(null);
+                        }
+                        return ok;
+                    }}
+                />
+            )}
         </div>
     );
 };
