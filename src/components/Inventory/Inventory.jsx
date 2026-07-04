@@ -13,19 +13,24 @@ const Inventory = () => {
 
     if (!isInventoryOpen) return null;
 
-    // Sub-componente interno para gestionar el estado individual de cada slot
     const Slot = ({ item, isSelected, onClick }) => {
         const [isHovered, setIsHovered] = useState(false);
+        const isDisabled = Boolean(item?.isUsed);
         
-        // Determina la imagen de fondo según el hover
-        const baseImage = isHovered ? '/slot-base-hover.png' : '/slot-base.png';
+        const baseImage = isHovered && !isDisabled ? '/slot-base-hover.png' : '/slot-base.png';
 
         return (
             <div 
-                className={`inventory__slot ${isSelected ? 'inventory__slot--active' : ''} ${!item ? 'inventory__slot--empty' : ''}`}
-                onClick={onClick}
-                onMouseEnter={() => setIsHovered(true)}
+                className={`inventory__slot ${isSelected ? 'inventory__slot--active' : ''} ${!item ? 'inventory__slot--empty' : ''} ${isDisabled ? 'inventory__slot--disabled' : ''}`}
+                onClick={() => {
+                    if (isDisabled || !item) return;
+                    onClick();
+                }}
+                onMouseEnter={() => {
+                    if (!isDisabled) setIsHovered(true);
+                }}
                 onMouseLeave={() => setIsHovered(false)}
+                style={{ cursor: isDisabled ? 'default' : 'pointer' }}
             >
                 <img src={baseImage} alt="slot" className="inventory__slot-bg" />
                 
@@ -73,6 +78,7 @@ const Inventory = () => {
                                     item={item} 
                                     isSelected={selectedItemId === item.id}
                                     onClick={() => {
+                                        if (item.isUsed) return;
                                         setSelectedItemId(item.id);
                                         setActiveInventoryItem(item);
                                     }}

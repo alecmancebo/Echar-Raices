@@ -7,6 +7,8 @@ import Storyboard from './components/Storyboard/Storyboard.jsx';
 import Login from './components/Login/Login.jsx';
 import GameMenu from './components/GameMenu/GameMenu.jsx';
 import Inventory from './components/Inventory/Inventory.jsx'; 
+import EndingFade from './components/EndingFade/EndingFade.jsx';
+import GameOver from './components/GameOver/GameOver.jsx';
 import { DetectorPantalla } from './components/DetectorPantalla/DetectorPantalla.jsx';
 import { AuthContext, AuthProvider } from './context/AuthContext';
 
@@ -30,6 +32,8 @@ function AppContent() {
   switch (gameState) {
       case 'LOGIN': return <Login />;
       case 'STORYBOARD': return <Storyboard />;
+      case 'ENDING_FADE': return <EndingFade />;
+      case 'GAME_OVER': return <GameOver />;
       case 'PLAYING': return token ? <GameContainer /> : <Login />;
       case 'LOADING_GAME': return <div>Cargando datos...</div>;
       case 'START_MENU':

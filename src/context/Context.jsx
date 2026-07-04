@@ -3,34 +3,21 @@ import { AuthContext } from './AuthContext';
 
 export const Context = createContext();
 
-const Items = [
-    { id: 1, name: 'Rama', description: 'Una rama de árbol común.', icon: null },
-    { id: 2, name: 'Piedra', description: 'Una piedra pequeña.', icon: null },
-    { id: 3, name: 'Agua', description: 'Una cantimplora con agua.', icon: null },
-    { id: 4, name: 'Mapa', description: 'Un mapa del bosque.', icon: null },
-    { id: 5, name: 'Llave', description: 'Una llave oxidada.', icon: null },
-    { id: 6, name: 'Baya', description: 'Una baya silvestre.', icon: null },
-    { id: 7, name: 'Cuerda', description: 'Una cuerda resistente.', icon: null },
-    { id: 8, name: 'Diario', description: 'Un diario viejo.', icon: null },
-    { id: 9, name: 'Brújula', description: 'Una brújula.', icon: null },
-    { id: 10, name: 'Antorcha', description: 'Una antorcha.', icon: null },
-    { id: 11, name: 'Hacha', description: 'Un hacha pequeña.', icon: null },
-    { id: 12, name: 'Vendaje', description: 'Un vendaje.', icon: null },
-];
+const Items = [];
 
 const ITEM_DATABASE = {
-    botas: { id: 'botas', name: 'BOTAS', src: '/botas.png', description: 'Es cierto, estoy descalce. Debería ponérmelas, siento cómo la tierra me llama a través de los dedos de los pies.' },
-    pajaro: { id: 'pajaro', name: 'PÁJARO', src: '/pajarito.png', description: 'Se ha apoyado un gorrión en mi mano y me siento bendecide. Cuando escucho su canto me llena de alegría.' },
-    sal: { id: 'sal', name: 'SALERO', src: '/salero.png', description: 'La sal es mala para las plantas, ¿verdad? Voy a tragarme un poco y lanzar un puñado por encima del hombro, por si acaso. Nunca viene mal protegerse de la mala suerte.' },
-    pociones: { id: 'pociones', name: 'POCIONES', src: '/pociones.png', description: '¡Las pociones curativas que me regaló Rosaura! Hay una llamada “recordar quien eras” que parece perfecta para esta situación.' },
-    regadera: { id: 'regadera', name: 'REGADERA', src: '/regadera.png', description: 'Me muero de calor. Me apetece tanto echarme un poco de agua por encima para refrescarme, seguro que me siento mejor.' },
-    tijeras: { id: 'tijeras', name: 'TIJERAS', src: '/tijeras.png', description: 'Perfecto, así puedo cortar todas estas raíces y hojas que no paran de salir a través de mi piel.' },
-    rana: { id: 'rana', name: 'RANA', src: '/rana.png', description: '¿Intento darle un beso? No pierdo nada por probar y en las historias siempre funciona.' },
-    rastrillo: { id: 'rastrillo', name: 'RASTRILLO', src: '/rastrillo.png', description: 'Está todo el jardín lleno de hojas caídas. Si las recogiera, podría tumbarme un rato sobre ellas. Parecen tan acogedoras.' },
-    fuego: { id: 'fuego', name: 'FUEGO', src: '/fuego.png', description: 'Es una medida un poco drástica, pero quizá si provoco un pequeño incendio… Uno pequeñito, solo dentro de mí…' },
-    herbicida: { id: 'herbicida', name: 'HERBICIDA', src: '/herbicida.png', description: 'Justo lo que necesito para acabar con este extraño proceso. Tan solo tengo que rociarme un poco.' },
-    maceta: { id: 'maceta', name: 'MACETA', src: '/maceta.png', description: 'Estas pobres No-me-olvides necesitan tierra donde crecer. Debería pararme un momento a transplantarlas.' },
-    sombrilla: { id: 'sombrilla', name: 'SOMBRILLA', src: '/sombrilla.png', description: 'A las plantas les gusta el sol, podría ayudar ocultarme un poco de él.' },
+    botas: { id: 'botas', name: 'BOTAS', src: '/botas.png', description: 'Es cierto, estoy descalce. Debería ponérmelas, siento cómo la tierra me llama a través de los dedos de los pies.', itinerary: 'c' },
+    pajaro: { id: 'pajaro', name: 'PÁJARO', src: '/pajarito.png', description: 'Se ha apoyado un gorrión en mi mano y me siento bendecide. Cuando escucho su canto me lleno de alegría.', itinerary: 'a' },
+    sal: { id: 'sal', name: 'SALERO', src: '/salero.png', description: 'La sal es mala para las plantas, ¿verdad? Voy a tragarme un poco y lanzar un puñado por encima del hombro, por si acaso. Nunca viene mal protegerse de la mala suerte.', itinerary: 'c' },
+    pociones: { id: 'pociones', name: 'POCIONES', src: '/pociones.png', description: '¡Las pociones curativas que me regaló Rosaura! Hay una llamada “recordar quien eras” que parece perfecta para esta situación.', itinerary: 'c' },
+    regadera: { id: 'regadera', name: 'REGADERA', src: '/regadera.png', description: 'Me muero de calor. Me apetece tanto echarme un poco de agua por encima para refrescarme, seguro que me siento mejor.', itinerary: 'a' },
+    tijeras: { id: 'tijeras', name: 'TIJERAS', src: '/tijeras.png', description: 'Perfecto, así puedo cortar todas estas raíces y hojas que no paran de salir a través de mi piel.', itinerary: 'b' },
+    rana: { id: 'rana', name: 'RANA', src: '/rana.png', description: '¿Intento darle un beso? No pierdo nada por probar y en las historias siempre funciona.', itinerary: 'b' },
+    rastrillo: { id: 'rastrillo', name: 'RASTRILLO', src: '/rastrillo.png', description: 'Está todo el jardín lleno de hojas caídas. Si las recogiera, podría tumbarme un rato sobre ellas. Parecen tan acogedoras.', itinerary: 'a' },
+    fuego: { id: 'fuego', name: 'FUEGO', src: '/fuego.png', description: 'Es una medida un poco drástica, pero quizá si provoco un pequeño incendio… Uno pequeñito, solo dentro de mí…', itinerary: 'b' },
+    herbicida: { id: 'herbicida', name: 'HERBICIDA', src: '/herbicida.png', description: 'Justo lo que necesito para acabar con este extraño proceso. Tan solo tengo que rociarme un poco.', itinerary: 'c' },
+    maceta: { id: 'maceta', name: 'MACETA', src: '/maceta.png', description: 'Estas pobres No-me-olvides necesitan tierra donde crecer. Debería pararme un momento a transplantarlas.', itinerary: 'a' },
+    sombrilla: { id: 'sombrilla', name: 'SOMBRILLA', src: '/sombrilla.png', description: 'A las plantas les gusta el sol, podría ayudar ocultarme un poco de él.', itinerary: 'b' },
 };
 
 const normalizeText = (value) => value?.toString().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
@@ -68,7 +55,8 @@ const normalizeInventoryItems = (payload) => {
                         ...(entry.src ? { src: entry.src } : {}),
                         ...(entry.icon ? { icon: entry.icon } : {}),
                         ...(entry.usedSrc ? { usedSrc: entry.usedSrc } : {}),
-                        ...(entry.isUsed !== undefined ? { isUsed: Boolean(entry.isUsed) } : {})
+                        ...(entry.isUsed !== undefined ? { isUsed: Boolean(entry.isUsed) } : {}),
+                        ...(entry.itinerary ? { itinerary: entry.itinerary } : {})
                     };
                 }
 
@@ -80,7 +68,8 @@ const normalizeInventoryItems = (payload) => {
                             ...(entry.src ? { src: entry.src } : {}),
                             ...(entry.icon ? { icon: entry.icon } : {}),
                             ...(entry.usedSrc ? { usedSrc: entry.usedSrc } : {}),
-                            ...(entry.isUsed !== undefined ? { isUsed: Boolean(entry.isUsed) } : {})
+                            ...(entry.isUsed !== undefined ? { isUsed: Boolean(entry.isUsed) } : {}),
+                            ...(entry.itinerary ? { itinerary: entry.itinerary } : {})
                         };
                     }
                 }
@@ -101,8 +90,27 @@ export const GameProvider = ({ children }) => {
         const savedInventory = JSON.parse(localStorage.getItem('inventoryState') || '[]');
         return normalizeInventoryItems(savedInventory.length ? savedInventory : Items);
     });
+    const [itineraryUsage, setItineraryUsage] = useState(() => {
+        const savedUsage = JSON.parse(localStorage.getItem('itineraryUsage') || '{}');
+        return {
+            a: Number(savedUsage.a) || 0,
+            b: Number(savedUsage.b) || 0,
+            c: Number(savedUsage.c) || 0,
+        };
+    });
+    const [itineraryThresholds, setItineraryThresholds] = useState(() => {
+        const savedThresholds = JSON.parse(localStorage.getItem('itineraryThresholds') || '{}');
+        return {
+            a: savedThresholds.a ?? null,
+            b: savedThresholds.b ?? null,
+            c: savedThresholds.c ?? null,
+        };
+    });
+    const [winningItinerary, setWinningItinerary] = useState(() => localStorage.getItem('winningItinerary') || null);
     const [selectedItemId, setSelectedItemId] = useState(1);
     const [loading, setLoading] = useState(false);
+    const [storyMode, setStoryMode] = useState(() => localStorage.getItem('storyMode') || 'intro');
+    const [endingTriggered, setEndingTriggered] = useState(() => Boolean(localStorage.getItem('endingTriggered')));
     const { token } = useContext(AuthContext);
 
     const setPersistedGameState = (nextState) => {
@@ -133,6 +141,40 @@ export const GameProvider = ({ children }) => {
         return normalizedItems;
     };
 
+    const resetEndingFlow = () => {
+        setStoryMode('intro');
+        setEndingTriggered(false);
+        setCurrentStoryScreen(1);
+        localStorage.setItem('storyMode', 'intro');
+        localStorage.removeItem('endingTriggered');
+    };
+
+    const resolveWinningItinerary = (usage, thresholds) => {
+        const itineraryOrder = ['a', 'b', 'c'];
+        const totalUses = itineraryOrder.reduce((sum, itinerary) => sum + Number(usage?.[itinerary] || 0), 0);
+
+        if (totalUses < 4) return null;
+
+        const maxCount = Math.max(...itineraryOrder.map((itinerary) => Number(usage?.[itinerary] || 0)));
+        const tiedItineraries = itineraryOrder.filter((itinerary) => Number(usage?.[itinerary] || 0) === maxCount);
+
+        if (tiedItineraries.length === 1) {
+            return tiedItineraries[0];
+        }
+
+        const ranked = tiedItineraries
+            .map((itinerary) => ({
+                itinerary,
+                reachedAt: thresholds?.[itinerary] ?? Number.MAX_SAFE_INTEGER,
+            }))
+            .sort((left, right) => {
+                if (left.reachedAt !== right.reachedAt) return left.reachedAt - right.reachedAt;
+                return itineraryOrder.indexOf(left.itinerary) - itineraryOrder.indexOf(right.itinerary);
+            });
+
+        return ranked[0]?.itinerary || null;
+    };
+
     const loadGameData = async () => {
         if (!token) return;
         setLoading(true);
@@ -149,8 +191,37 @@ export const GameProvider = ({ children }) => {
             const restoredInventory = backendItems.length > 0
                 ? normalizeInventoryItems(backendItems)
                 : normalizeInventoryItems(savedInventory.length > 0 ? savedInventory : storedItems);
+            const restoredUsage = data.itineraryUsage || {};
+            const restoredThresholds = data.itineraryThresholds || {};
+            const restoredWinner = data.winningItinerary || localStorage.getItem('winningItinerary') || null;
 
             persistInventoryState(restoredInventory);
+            setItineraryUsage({
+                a: Number(restoredUsage.a) || 0,
+                b: Number(restoredUsage.b) || 0,
+                c: Number(restoredUsage.c) || 0,
+            });
+            localStorage.setItem('itineraryUsage', JSON.stringify({
+                a: Number(restoredUsage.a) || 0,
+                b: Number(restoredUsage.b) || 0,
+                c: Number(restoredUsage.c) || 0,
+            }));
+            setItineraryThresholds({
+                a: restoredThresholds.a ?? null,
+                b: restoredThresholds.b ?? null,
+                c: restoredThresholds.c ?? null,
+            });
+            localStorage.setItem('itineraryThresholds', JSON.stringify({
+                a: restoredThresholds.a ?? null,
+                b: restoredThresholds.b ?? null,
+                c: restoredThresholds.c ?? null,
+            }));
+            setWinningItinerary(restoredWinner);
+            if (restoredWinner) {
+                localStorage.setItem('winningItinerary', restoredWinner);
+            } else {
+                localStorage.removeItem('winningItinerary');
+            }
             setCurrentStoryScreen(data.progreso || 1);
             const restoredScreen = data.ultimaPantalla || data.lastScreen || (data.narrativaCompletada ? 'PLAYING' : 'STORYBOARD');
             const savedScreen = localStorage.getItem('lastGameScreen');
@@ -172,9 +243,16 @@ export const GameProvider = ({ children }) => {
     const startGame = () => {
         setCurrentStoryScreen(1);
         setInventoryItems(Items);
+        setItineraryUsage({ a: 0, b: 0, c: 0 });
+        localStorage.setItem('itineraryUsage', JSON.stringify({ a: 0, b: 0, c: 0 }));
         localStorage.removeItem('lastGameScreen');
         localStorage.removeItem('collectedObjects');
         localStorage.removeItem('inventoryState');
+        localStorage.removeItem('itineraryThresholds');
+        localStorage.removeItem('winningItinerary');
+        setItineraryThresholds({ a: null, b: null, c: null });
+        setWinningItinerary(null);
+        resetEndingFlow();
         setPersistedGameState('LOGIN');
     };
 
@@ -187,9 +265,16 @@ export const GameProvider = ({ children }) => {
         setIsMenuOpen(false);
         setIsInventoryOpen(false);
 
+        setItineraryUsage({ a: 0, b: 0, c: 0 });
+        localStorage.setItem('itineraryUsage', JSON.stringify({ a: 0, b: 0, c: 0 }));
         localStorage.removeItem('lastGameScreen');
         localStorage.removeItem('collectedObjects');
         localStorage.removeItem('inventoryState');
+        localStorage.removeItem('itineraryThresholds');
+        localStorage.removeItem('winningItinerary');
+        setItineraryThresholds({ a: null, b: null, c: null });
+        setWinningItinerary(null);
+        resetEndingFlow();
         setGameState('STORYBOARD');
     };
 
@@ -207,9 +292,16 @@ export const GameProvider = ({ children }) => {
             console.error('Error al reiniciar partida:', error);
         }
 
+        setItineraryUsage({ a: 0, b: 0, c: 0 });
+        localStorage.setItem('itineraryUsage', JSON.stringify({ a: 0, b: 0, c: 0 }));
         localStorage.removeItem('lastGameScreen');
         localStorage.removeItem('collectedObjects');
         localStorage.removeItem('inventoryState');
+        localStorage.removeItem('itineraryThresholds');
+        localStorage.removeItem('winningItinerary');
+        setItineraryThresholds({ a: null, b: null, c: null });
+        setWinningItinerary(null);
+        resetEndingFlow();
         setPersistedGameState('STORYBOARD');
     };
 
@@ -229,7 +321,11 @@ export const GameProvider = ({ children }) => {
         if (!token || !item) return false;
 
         const normalizedItemId = resolveObjectKey(item.id || item.name);
-        const itemReference = normalizedItemId ? { ...item, id: normalizedItemId } : item;
+        const itemReference = normalizedItemId ? {
+            ...item,
+            id: normalizedItemId,
+            itinerary: item.itinerary || ITEM_DATABASE[normalizedItemId]?.itinerary || null,
+        } : item;
 
         const alreadyExists = inventoryItems.some((inventoryItem) => {
             const currentName = inventoryItem?.name?.toLowerCase();
@@ -259,7 +355,7 @@ export const GameProvider = ({ children }) => {
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${token}`
                 },
-                body: JSON.stringify({ item: item.id || item.name })
+                body: JSON.stringify({ item: normalizedItemId || item.id || item.name })
             });
 
             if (!response.ok) throw new Error("No se pudo guardar el item");
@@ -280,6 +376,7 @@ export const GameProvider = ({ children }) => {
         const itemKey = resolveObjectKey(item.id || item.name);
         const payloadItem = itemKey || item.id || item.name;
 
+        const itinerary = item.itinerary || ITEM_DATABASE[itemKey]?.itinerary || null;
         const updatedItems = inventoryItems.map((inventoryItem) => {
             const currentKey = resolveObjectKey(inventoryItem?.id || inventoryItem?.name);
             const sameItem = currentKey === itemKey || inventoryItem?.id === item.id || inventoryItem?.name === item.name;
@@ -293,6 +390,33 @@ export const GameProvider = ({ children }) => {
         });
 
         persistInventoryState(updatedItems);
+
+        if (itinerary) {
+            const nextUsage = {
+                ...itineraryUsage,
+                [itinerary]: (itineraryUsage[itinerary] || 0) + 1,
+            };
+            const nextThresholds = {
+                ...itineraryThresholds,
+                [itinerary]: itineraryThresholds[itinerary] ?? (nextUsage[itinerary] >= 4 ? Date.now() : null),
+            };
+            setItineraryUsage(nextUsage);
+            setItineraryThresholds(nextThresholds);
+            localStorage.setItem('itineraryUsage', JSON.stringify(nextUsage));
+            localStorage.setItem('itineraryThresholds', JSON.stringify(nextThresholds));
+
+            const winner = resolveWinningItinerary(nextUsage, nextThresholds);
+            if (winner && !endingTriggered) {
+                setWinningItinerary(winner);
+                localStorage.setItem('winningItinerary', winner);
+                setEndingTriggered(true);
+                localStorage.setItem('endingTriggered', 'true');
+                setStoryMode('ending');
+                localStorage.setItem('storyMode', 'ending');
+                setPersistedGameState('ENDING_FADE');
+                setCurrentStoryScreen(1);
+            }
+        }
 
         if (!token) return true;
 
@@ -311,6 +435,15 @@ export const GameProvider = ({ children }) => {
             const data = await response.json();
             if (Array.isArray(data.items)) {
                 persistInventoryState(data.items);
+            }
+            if (data.itineraryUsage) {
+                const nextUsage = {
+                    a: Number(data.itineraryUsage.a) || 0,
+                    b: Number(data.itineraryUsage.b) || 0,
+                    c: Number(data.itineraryUsage.c) || 0,
+                };
+                setItineraryUsage(nextUsage);
+                localStorage.setItem('itineraryUsage', JSON.stringify(nextUsage));
             }
 
             return true;
@@ -371,12 +504,26 @@ export const GameProvider = ({ children }) => {
         }
     };
 
+    const completeEndingTransition = () => {
+        setPersistedGameState('STORYBOARD');
+        setStoryMode('ending');
+        setCurrentStoryScreen(1);
+        localStorage.setItem('storyMode', 'ending');
+    };
+
     const advanceStory = async () => {
-    
+        if (storyMode === 'ending') {
+            if (currentStoryScreen < 4) {
+                setCurrentStoryScreen(prev => prev + 1);
+            } else {
+                setPersistedGameState('GAME_OVER');
+            }
+            return;
+        }
+
         if (currentStoryScreen < 4) {
             setCurrentStoryScreen(prev => prev + 1);
         } else {
-       
             try {
                 await fetch("http://localhost:4000/api/usuario/narrativa", {
                     method: "PATCH",
@@ -393,8 +540,8 @@ export const GameProvider = ({ children }) => {
         <Context.Provider value={{ 
             gameState, setGameState: setPersistedGameState, 
             pendingAction, setPendingAction,
-            advanceStory, currentStoryScreen, setCurrentStoryScreen,
-            inventoryItems, setInventoryItems,
+            advanceStory, completeEndingTransition, currentStoryScreen, setCurrentStoryScreen,
+            inventoryItems, setInventoryItems, itineraryUsage, itineraryThresholds, winningItinerary, storyMode, setStoryMode, endingTriggered,
             isMenuOpen, openMenu, closeMenu,
             isInventoryOpen, openInventory, closeInventory,
             selectedItemId, setSelectedItemId, startGame, pauseGame, resetProgress, initializeNewRun, saveInventoryItem, useInventoryItem, dropInventoryItem, loading, setLoading, loadGameData
