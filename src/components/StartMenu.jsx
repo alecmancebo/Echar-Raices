@@ -2,13 +2,15 @@ import { useContext } from 'react';
 import { Context } from '../context/Context';
 
 const StartMenu = () => {
-    const { setGameState } = useContext(Context);
+    const { setGameState, setPendingAction } = useContext(Context);
 
     const handleContinuar = () => {
+        setPendingAction('continue');
         setGameState('LOGIN');
     };
 
     const handleNuevaPartida = () => {
+        setPendingAction('new');
         setGameState('LOGIN');
     };
 

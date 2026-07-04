@@ -93,6 +93,7 @@ const normalizeInventoryItems = (payload) => {
 
 export const GameProvider = ({ children }) => {
     const [gameState, setGameState] = useState('START_MENU');
+    const [pendingAction, setPendingAction] = useState(null);
     const [currentStoryScreen, setCurrentStoryScreen] = useState(1);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isInventoryOpen, setIsInventoryOpen] = useState(false);
@@ -276,8 +277,12 @@ export const GameProvider = ({ children }) => {
     const useInventoryItem = async (item) => {
         if (!item) return false;
 
+        const itemKey = resolveObjectKey(item.id || item.name);
+        const payloadItem = itemKey || item.id || item.name;
+
         const updatedItems = inventoryItems.map((inventoryItem) => {
-            const sameItem = inventoryItem?.id === item.id || inventoryItem?.name === item.name;
+            const currentKey = resolveObjectKey(inventoryItem?.id || inventoryItem?.name);
+            const sameItem = currentKey === itemKey || inventoryItem?.id === item.id || inventoryItem?.name === item.name;
             if (!sameItem) return inventoryItem;
 
             return {
@@ -288,13 +293,38 @@ export const GameProvider = ({ children }) => {
         });
 
         persistInventoryState(updatedItems);
-        return true;
+
+        if (!token) return true;
+
+        try {
+            const response = await fetch('http://localhost:4000/api/inventario/usar', {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({ item: payloadItem })
+            });
+
+            if (!response.ok) throw new Error('No se pudo usar el item');
+
+            const data = await response.json();
+            if (Array.isArray(data.items)) {
+                persistInventoryState(data.items);
+            }
+
+            return true;
+        } catch (error) {
+            console.error('Error usando item:', error);
+            return true;
+        }
     };
 
     const dropInventoryItem = async (item) => {
         if (!item) return false;
 
         const itemKey = resolveObjectKey(item.id || item.name);
+        const payloadItem = itemKey || item.id || item.name;
         const updatedItems = inventoryItems.filter((inventoryItem) => {
             const currentKey = resolveObjectKey(inventoryItem?.id || inventoryItem?.name);
             const sameItem = currentKey === itemKey || inventoryItem?.name === item.name || inventoryItem?.id === item.id;
@@ -312,10 +342,33 @@ export const GameProvider = ({ children }) => {
         localStorage.setItem('collectedObjects', JSON.stringify(filteredItems));
 
         if (itemKey) {
-            window.dispatchEvent(new CustomEvent("GameObjectAdded", { detail: itemKey }));
+            window.dispatchEvent(new CustomEvent('GameObjectAdded', { detail: itemKey }));
         }
 
-        return true;
+        if (!token) return true;
+
+        try {
+            const response = await fetch('http://localhost:4000/api/inventario/dejar', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({ item: payloadItem })
+            });
+
+            if (!response.ok) throw new Error('No se pudo dejar el item');
+
+            const data = await response.json();
+            if (Array.isArray(data.items)) {
+                persistInventoryState(data.items);
+            }
+
+            return true;
+        } catch (error) {
+            console.error('Error dejando item:', error);
+            return true;
+        }
     };
 
     const advanceStory = async () => {
@@ -339,6 +392,7 @@ export const GameProvider = ({ children }) => {
     return (
         <Context.Provider value={{ 
             gameState, setGameState: setPersistedGameState, 
+            pendingAction, setPendingAction,
             advanceStory, currentStoryScreen, setCurrentStoryScreen,
             inventoryItems, setInventoryItems,
             isMenuOpen, openMenu, closeMenu,

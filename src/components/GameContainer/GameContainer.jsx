@@ -60,6 +60,28 @@ const GameContainer = () => {
   const { gameState, openInventory, isMenuOpen } = useContext(Context);
   const [selectedItem, setSelectedItem] = useState(null);
 
+  const restoreObjectInWorld = (objectId) => {
+    const map = overworldRef.current?.map;
+    if (!map?.gameObjects || !objectId) return false;
+
+    const normalizedId = normalizeObjectKey(objectId);
+    if (!normalizedId) return false;
+
+    if (map.gameObjects[normalizedId]) return true;
+
+    const layout = OBJECT_LAYOUT[normalizedId];
+    if (!layout) return false;
+
+    const restoredObject = new GameObject({
+      ...layout,
+      id: normalizedId
+    });
+
+    map.gameObjects[normalizedId] = restoredObject;
+    restoredObject.mount(map);
+    return true;
+  };
+
   useEffect(() => {
     if (containerRef.current && !overworldRef.current) {
       overworldRef.current = new Overworld({
@@ -105,22 +127,8 @@ const GameContainer = () => {
 
     const handleObjectAdded = (e) => {
       const objectId = e.detail;
-      const map = overworldRef.current?.map;
-      if (!map?.gameObjects || !objectId) return;
-
-      if (map.gameObjects[objectId]) return;
-
-      const normalizedId = normalizeObjectKey(objectId);
-      const layout = OBJECT_LAYOUT[normalizedId];
-      if (!layout) return;
-
-      const restoredObject = new GameObject({
-        ...layout,
-        id: normalizedId
-      });
-
-      map.gameObjects[normalizedId] = restoredObject;
-      restoredObject.mount(map);
+      if (!objectId) return;
+      restoreObjectInWorld(objectId);
     };
 
     window.addEventListener("GameObjectRemoved", handleObjectRemoved);

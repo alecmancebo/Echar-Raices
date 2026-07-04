@@ -4,7 +4,7 @@ import { AuthContext } from '../../context/AuthContext';
 
 
 const Login = () => {
-    const { setGameState, initializeNewRun } = useContext(Context);
+    const { setGameState, initializeNewRun, pendingAction, setPendingAction } = useContext(Context);
     const { login } = useContext(AuthContext);
 
     const [usuario, setUsuario] = useState('');
@@ -26,7 +26,12 @@ const Login = () => {
 
             const data = await respuesta.json();
             login(data.token);
-            await initializeNewRun();
+
+            if (pendingAction === 'new') {
+                await initializeNewRun();
+            }
+
+            setPendingAction(null);
             setGameState('LOADING_GAME');
         } catch (err) {
 
