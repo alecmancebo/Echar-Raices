@@ -5,14 +5,48 @@ import { Sprite } from "./Sprite.js";
 import { Overworld } from "./Overworld.js";
 import { DirectionInput } from "./DirectionInput.js";
 
+function cloneGameObject(templateObject) {
+    const baseConfig = {
+        x: templateObject.x,
+        y: templateObject.y,
+        direction: templateObject.direction,
+        src: templateObject.sprite?.image?.src,
+        useShadow: templateObject.sprite?.useShadow,
+        cutX: templateObject.sprite?.cutX,
+        cutY: templateObject.sprite?.cutY,
+        offsetX: templateObject.sprite?.offsetX || 0,
+        offsetY: templateObject.sprite?.offsetY || 0,
+        isInteractive: Boolean(templateObject.isInteractive),
+        normalSrc: templateObject.normalSrc || null,
+        activeSrc: templateObject.activeSrc || null,
+        disableOriginalHover: Boolean(templateObject.disableOriginalHover),
+        useBubble: Boolean(templateObject.useBubble),
+        interactionTiles: Array.isArray(templateObject.interactionTiles)
+            ? templateObject.interactionTiles.map((tile) => (Array.isArray(tile) ? [...tile] : tile))
+            : null,
+    };
+
+    if (templateObject instanceof Person) {
+        return new Person(baseConfig);
+    }
+
+    return new GameObject(baseConfig);
+}
+
+function createFreshGameObjects(templateGameObjects = {}) {
+    return Object.fromEntries(
+        Object.entries(templateGameObjects).map(([objectId, templateObject]) => [objectId, cloneGameObject(templateObject)])
+    );
+}
+
 
 // DEFINICION DEL MAPA Y SUS REGLAS
 export class OverworldMap {
     constructor(config){
 
         // Colección de objetos
-        this.gameObjects = config.gameObjects || {};
-        this.walls = config.walls || {};
+        this.gameObjects = createFreshGameObjects(config.gameObjects || {});
+        this.walls = { ...(config.walls || {}) };
 
         // Imagen de fondo del mapa
         this.image = new Image();

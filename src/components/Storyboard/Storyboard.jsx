@@ -20,21 +20,21 @@ const introStoryData = {
 // DATOS DE NARRATIVA FINAL
 const endingStoryData = {
     a: {
-        1: { gif: "/Narrativa/final_A_01.png", text: "Una sensación de paz te inunda cuando abrazas la transformación." },
-        2: { gif: "/Narrativa/final_A_01.png", text: "En el fondo, nunca le has tenido miedo al cambio. Lo deseabas." },
-        3: { gif: "/Narrativa/final_A_01.png", text: "El sol te calienta, el viento mece tus hojas, los pájaros se apoyan en tus ramas y estás en paz." },
-        4: { gif: "/Narrativa/final_A_01.png", text: "Tu existencia por siempre conectada con todo aquello que amas. No necesitas nada más." }
+        1: { gif: "/Narrativa/final_A_animado.gif", text: "Una sensación de paz te inunda cuando abrazas la transformación." },
+        2: { gif: "/Narrativa/final_A_animado.gif", text: "En el fondo, nunca le has tenido miedo al cambio. Lo deseabas." },
+        3: { gif: "/Narrativa/final_A_animado.gif", text: "El sol te calienta, el viento mece tus hojas, los pájaros se apoyan en tus ramas y estás en paz." },
+        4: { gif: "/Narrativa/final_A_animado.gif", text: "Tu existencia por siempre conectada con todo aquello que amas. No necesitas nada más." }
     },
     b: {
-        1: { gif: "/Narrativa/final_B_01.png", text: "Nada funciona." },
-        2: { gif: "/Narrativa/final_B_01.png", text: "No puedes evitar cómo esta retorcida metamorfosis poco a poco consume cada centímetro de tu cuerpo y mente hasta que ya no puedes moverte ni gritar." },
-        3: { gif: "/Narrativa/final_B_01.png", text: "Las hormigas trepan por tu corteza y la lluvia cae sobre tus hojas, pero tú ya no piensas ni sientes nada." }
+        1: { gif: "/Narrativa/final_B_animado.gif", text: "Nada funciona." },
+        2: { gif: "/Narrativa/final_B_animado.gif", text: "No puedes evitar cómo esta retorcida metamorfosis poco a poco consume cada centímetro de tu cuerpo y mente hasta que ya no puedes moverte ni gritar." },
+        3: { gif: "/Narrativa/final_B_animado.gif", text: "Las hormigas trepan por tu corteza y la lluvia cae sobre tus hojas, pero tú ya no piensas ni sientes nada." }
     },
     c: {
-        1: { gif: "/Narrativa/final_C_01.png", text: "Lo has conseguido." },
-        2: { gif: "/Narrativa/final_C_01.png", text: "Notas la sangre fluir por tus venas y tu piel es más suave ahora que han dejado de crecer hojas en ella." },
-        3: { gif: "/Narrativa/final_C_01.png", text: "Todo ha vuelto a la normalidad." },
-        4: { gif: "/Narrativa/final_C_01.png", text: "El alivio por seguir conservando tu cuerpo es mayor que la curiosidad de saber qué habría pasado si hubieras dejado que la metamorfosis siguiera su curso." }
+        1: { gif: "/Narrativa/final_C_animado.gif", text: "Lo has conseguido." },
+        2: { gif: "/Narrativa/final_C_animado.gif", text: "Notas la sangre fluir por tus venas y tu piel es más suave ahora que han dejado de crecer hojas en ella." },
+        3: { gif: "/Narrativa/final_C_animado.gif", text: "Todo ha vuelto a la normalidad." },
+        4: { gif: "/Narrativa/final_C_animado.gif", text: "El alivio por seguir conservando tu cuerpo es mayor que la curiosidad de saber qué habría pasado si hubieras dejado que la metamorfosis siguiera su curso." }
     }
 };
 
