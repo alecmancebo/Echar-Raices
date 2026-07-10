@@ -15,7 +15,7 @@ const MenuControls = ({ onBack }) => (
                 
             </li>
             <li className="controls__item">
-                <p>Para ir al inventario, dale a <br/> acercándote al pozo.</p>
+                <p>Para ir al inventario, dale a Enter<br/> acercándote al pozo.</p>
                 
             </li>
             <li className="controls__item">

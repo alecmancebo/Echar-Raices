@@ -166,6 +166,17 @@ const GameContainer = () => {
     const map = overworldRef.current?.map;
     if (!map?.gameObjects || !Array.isArray(inventoryItems)) return;
 
+    // evitar arrastre entre partidas.
+    Object.keys(OBJECT_LAYOUT).forEach((objectId) => {
+      const existingObject = map.gameObjects[objectId];
+      if (existingObject) {
+        delete map.gameObjects[objectId];
+        delete map.walls[`${existingObject.x},${existingObject.y}`];
+      }
+
+      restoreObjectInWorld(objectId);
+    });
+
     inventoryItems.forEach((item) => {
       const objectId = normalizeObjectKey(item?.id || item?.name);
       if (!objectId) return;
