@@ -39,7 +39,7 @@ const OBJECT_LAYOUT = {
   sombrilla: { x: utils.withGrid(18), y: utils.withGrid(7), src: '/Objetos/sombrilla.png', useShadow: false, cutX: 28, cutY: 28, isInteractive: true },
 };
 
-// HELPERS DE RESOLUCION DE OBJETOS
+// NORMALIZAR TEXTO PARA COMPARACION DE OBJETOS
 const normalizeObjectKey = (value) => {
   if (!value) return null;
   return value.toString().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
