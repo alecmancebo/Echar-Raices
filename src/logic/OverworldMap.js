@@ -73,7 +73,7 @@ export const OverworldMaps = {
             rana: new GameObject({
                 x: utils.withGrid(9), 
                 y: utils.withGrid(5),
-                src: "/rana.png",   
+                src: "/Objetos/rana.png",   
                 useShadow: false,      
                 cutX: 28,             
                 cutY: 28,
@@ -98,7 +98,7 @@ export const OverworldMaps = {
             botas: new GameObject({
                 x: utils.withGrid(7), 
                 y: utils.withGrid(11),
-                src: "/botas.png",   
+                src: "/Objetos/botas.png",   
                 useShadow: false,      
                 cutX: 30,             
                 cutY: 30,
@@ -108,7 +108,7 @@ export const OverworldMaps = {
             pajaro: new GameObject({
                 x: utils.withGrid(1), 
                 y: utils.withGrid(3),
-                src: "/pajarito.png",   
+                src: "/Objetos/pajarito.png",   
                 useShadow: false,      
                 cutX: 30,             
                 cutY: 30,
@@ -120,7 +120,7 @@ export const OverworldMaps = {
             sal: new GameObject({
                 x: utils.withGrid(2), 
                 y: utils.withGrid(7),
-                src: "/salero.png",   
+                src: "/Objetos/salero.png",   
                 useShadow: false,      
                 cutX: 30,             
                 cutY: 30,
@@ -132,7 +132,7 @@ export const OverworldMaps = {
             pociones: new GameObject({
                 x: utils.withGrid(7), 
                 y: utils.withGrid(2),
-                src: "/pociones.png",   
+                src: "/Objetos/pociones.png",   
                 useShadow: false,      
                 cutX: 30,             
                 cutY: 30,
@@ -143,7 +143,7 @@ export const OverworldMaps = {
             regadera: new GameObject({
                 x: utils.withGrid(13), 
                 y: utils.withGrid(8),
-                src: "/regadera.png",   
+                src: "/Objetos/regadera.png",   
                 useShadow: false,      
                 cutX: 30,             
                 cutY: 30,
@@ -153,7 +153,7 @@ export const OverworldMaps = {
             rastrillo: new GameObject({
                 x: utils.withGrid(14), 
                 y: utils.withGrid(12),
-                src: "/rastrillo.png",   
+                src: "/Objetos/rastrillo.png",   
                 useShadow: false,      
                 cutX: 31,             
                 cutY: 28,
@@ -163,7 +163,7 @@ export const OverworldMaps = {
             tijeras: new GameObject({
                 x: utils.withGrid(4), 
                 y: utils.withGrid(10),
-                src: "/tijeras.png",   
+                src: "/Objetos/tijeras.png",   
                 useShadow: false,      
                 cutX: 30,             
                 cutY: 30,
@@ -173,7 +173,7 @@ export const OverworldMaps = {
             fuego: new GameObject({
                 x: utils.withGrid(13), 
                 y: utils.withGrid(1),
-                src: "/fuego.png",   
+                src: "/Objetos/fuego.png",   
                 useShadow: false,      
                 cutX: 35,             
                 cutY: 35,
@@ -183,7 +183,7 @@ export const OverworldMaps = {
             herbicida: new GameObject({
                 x: utils.withGrid(18), 
                 y: utils.withGrid(2),
-                src: "/herbicida.png",   
+                src: "/Objetos/herbicida.png",   
                 useShadow: false,      
                 cutX: 30,             
                 cutY: 30,
@@ -193,7 +193,7 @@ export const OverworldMaps = {
             maceta: new GameObject({
                 x: utils.withGrid(22), 
                 y: utils.withGrid(4),
-                src: "/maceta.png",   
+                src: "/Objetos/maceta.png",   
                 useShadow: false,      
                 cutX: 30,             
                 cutY: 30,
@@ -203,7 +203,7 @@ export const OverworldMaps = {
             sombrilla: new GameObject({
                 x: utils.withGrid(18), 
                 y: utils.withGrid(7),
-                src: "/sombrilla.png",   
+                src: "/Objetos/sombrilla.png",   
                 useShadow: false,      
                 cutX: 28,             
                 cutY: 28,

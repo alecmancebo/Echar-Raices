@@ -6,18 +6,18 @@ export const Context = createContext();
 const Items = [];
 
 const ITEM_DATABASE = {
-    botas: { id: 'botas', name: 'BOTAS', src: '/botas.png', description: 'Es cierto, estoy descalce. Debería ponérmelas, siento cómo la tierra me llama a través de los dedos de los pies.', itinerary: 'c' },
-    pajaro: { id: 'pajaro', name: 'PÁJARO', src: '/pajarito.png', description: 'Se ha apoyado un gorrión en mi mano y me siento bendecide. Cuando escucho su canto me lleno de alegría.', itinerary: 'a' },
-    sal: { id: 'sal', name: 'SALERO', src: '/salero.png', description: 'La sal es mala para las plantas, ¿verdad? Voy a tragarme un poco y lanzar un puñado por encima del hombro, por si acaso. Nunca viene mal protegerse de la mala suerte.', itinerary: 'c' },
-    pociones: { id: 'pociones', name: 'POCIONES', src: '/pociones.png', description: '¡Las pociones curativas que me regaló Rosaura! Hay una llamada “recordar quien eras” que parece perfecta para esta situación.', itinerary: 'c' },
-    regadera: { id: 'regadera', name: 'REGADERA', src: '/regadera.png', description: 'Me muero de calor. Me apetece tanto echarme un poco de agua por encima para refrescarme, seguro que me siento mejor.', itinerary: 'a' },
-    tijeras: { id: 'tijeras', name: 'TIJERAS', src: '/tijeras.png', description: 'Perfecto, así puedo cortar todas estas raíces y hojas que no paran de salir a través de mi piel.', itinerary: 'b' },
-    rana: { id: 'rana', name: 'RANA', src: '/rana.png', description: '¿Intento darle un beso? No pierdo nada por probar y en las historias siempre funciona.', itinerary: 'b' },
-    rastrillo: { id: 'rastrillo', name: 'RASTRILLO', src: '/rastrillo.png', description: 'Está todo el jardín lleno de hojas caídas. Si las recogiera, podría tumbarme un rato sobre ellas. Parecen tan acogedoras.', itinerary: 'a' },
-    fuego: { id: 'fuego', name: 'FUEGO', src: '/fuego.png', description: 'Es una medida un poco drástica, pero quizá si provoco un pequeño incendio… Uno pequeñito, solo dentro de mí…', itinerary: 'b' },
-    herbicida: { id: 'herbicida', name: 'HERBICIDA', src: '/herbicida.png', description: 'Justo lo que necesito para acabar con este extraño proceso. Tan solo tengo que rociarme un poco.', itinerary: 'c' },
-    maceta: { id: 'maceta', name: 'MACETA', src: '/maceta.png', description: 'Estas pobres No-me-olvides necesitan tierra donde crecer. Debería pararme un momento a transplantarlas.', itinerary: 'a' },
-    sombrilla: { id: 'sombrilla', name: 'SOMBRILLA', src: '/sombrilla.png', description: 'A las plantas les gusta el sol, podría ayudar ocultarme un poco de él.', itinerary: 'b' },
+    botas: { id: 'botas', name: 'BOTAS', src: '/Objetos/botas.png', description: 'Es cierto, estoy descalce. Debería ponérmelas, siento cómo la tierra me llama a través de los dedos de los pies.', itinerary: 'c' },
+    pajaro: { id: 'pajaro', name: 'PÁJARO', src: '/Objetos/pajarito.png', description: 'Se ha apoyado un gorrión en mi mano y me siento bendecide. Cuando escucho su canto me lleno de alegría.', itinerary: 'a' },
+    sal: { id: 'sal', name: 'SALERO', src: '/Objetos/salero.png', description: 'La sal es mala para las plantas, ¿verdad? Voy a tragarme un poco y lanzar un puñado por encima del hombro, por si acaso. Nunca viene mal protegerse de la mala suerte.', itinerary: 'c' },
+    pociones: { id: 'pociones', name: 'POCIONES', src: '/Objetos/pociones.png', description: '¡Las pociones curativas que me regaló Rosaura! Hay una llamada “recordar quien eras” que parece perfecta para esta situación.', itinerary: 'c' },
+    regadera: { id: 'regadera', name: 'REGADERA', src: '/Objetos/regadera.png', description: 'Me muero de calor. Me apetece tanto echarme un poco de agua por encima para refrescarme, seguro que me siento mejor.', itinerary: 'a' },
+    tijeras: { id: 'tijeras', name: 'TIJERAS', src: '/Objetos/tijeras.png', description: 'Perfecto, así puedo cortar todas estas raíces y hojas que no paran de salir a través de mi piel.', itinerary: 'b' },
+    rana: { id: 'rana', name: 'RANA', src: '/Objetos/rana.png', description: '¿Intento darle un beso? No pierdo nada por probar y en las historias siempre funciona.', itinerary: 'b' },
+    rastrillo: { id: 'rastrillo', name: 'RASTRILLO', src: '/Objetos/rastrillo.png', description: 'Está todo el jardín lleno de hojas caídas. Si las recogiera, podría tumbarme un rato sobre ellas. Parecen tan acogedoras.', itinerary: 'a' },
+    fuego: { id: 'fuego', name: 'FUEGO', src: '/Objetos/fuego.png', description: 'Es una medida un poco drástica, pero quizá si provoco un pequeño incendio… Uno pequeñito, solo dentro de mí…', itinerary: 'b' },
+    herbicida: { id: 'herbicida', name: 'HERBICIDA', src: '/Objetos/herbicida.png', description: 'Justo lo que necesito para acabar con este extraño proceso. Tan solo tengo que rociarme un poco.', itinerary: 'c' },
+    maceta: { id: 'maceta', name: 'MACETA', src: '/Objetos/maceta.png', description: 'Estas pobres No-me-olvides necesitan tierra donde crecer. Debería pararme un momento a transplantarlas.', itinerary: 'a' },
+    sombrilla: { id: 'sombrilla', name: 'SOMBRILLA', src: '/Objetos/sombrilla.png', description: 'A las plantas les gusta el sol, podría ayudar ocultarme un poco de él.', itinerary: 'b' },
 };
 
 const normalizeText = (value) => value?.toString().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
