@@ -1,6 +1,7 @@
 import { GameObject } from "./GameObject.js";
 import { utils } from "./utils.js";
 
+// PERSONAJE CONTROLADO POR JUGADOR
 export class Person extends GameObject {
     constructor(config){
         super(config);

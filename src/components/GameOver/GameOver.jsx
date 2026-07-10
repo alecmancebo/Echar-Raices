@@ -7,6 +7,7 @@ const routeLabels = {
   c: 'C',
 };
 
+// PANTALLA FINAL DE PARTIDA
 const GameOver = () => {
   const { setGameState, winningItinerary } = useContext(Context);
 

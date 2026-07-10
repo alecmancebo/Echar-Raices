@@ -5,6 +5,7 @@ import MenuControls from './MenuControls.jsx';
 import MenuCredits from './MenuCredits.jsx';
 import MenuExit from './MenuExit.jsx';
 
+// MENU EN PARTIDA
 const GameMenu = () => {
 
     const { isMenuOpen, openMenu, closeMenu } = useContext(Context);

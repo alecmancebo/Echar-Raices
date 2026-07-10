@@ -1,6 +1,7 @@
 import { Sprite } from "./Sprite.js";
 import { utils } from "./utils.js";
 
+// ENTIDAD BASE DEL MAPA
 export class GameObject {
     constructor(config){
         this.id = config?.id || null;

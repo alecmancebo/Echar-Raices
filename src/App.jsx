@@ -12,6 +12,7 @@ import GameOver from './components/GameOver/GameOver.jsx';
 import { DetectorPantalla } from './components/DetectorPantalla/DetectorPantalla.jsx';
 import { AuthContext, AuthProvider } from './context/AuthContext';
 
+// ENRUTADOR DE PANTALLAS PRINCIPALES
 function AppContent() {
   const { loadingAuth, token } = useContext(AuthContext);
   const { gameState, loading } = useContext(Context);
@@ -45,6 +46,7 @@ function AppContent() {
   
 
 
+// ROOT DE PROVEEDORES DE CONTEXTO
 function App() {
   return (
     <AuthProvider>

@@ -1,3 +1,4 @@
+// UTILIDADES DE GRID Y MOVIMIENTO
 export const utils = {
     withGrid(n){
         return n * 16;

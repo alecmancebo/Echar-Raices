@@ -6,6 +6,7 @@ import { Overworld } from "./Overworld.js";
 import { DirectionInput } from "./DirectionInput.js";
 
 
+// DEFINICION DEL MAPA Y SUS REGLAS
 export class OverworldMap {
     constructor(config){
         // Colección de objetos en este mapa
@@ -63,6 +64,7 @@ export class OverworldMap {
     
 }
 
+// CONFIGURACION ESTATICA DE MAPAS
 export const OverworldMaps = {
     Jardin : {
         src: "/UI/jardin.png",

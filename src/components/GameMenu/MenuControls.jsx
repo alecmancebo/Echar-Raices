@@ -1,3 +1,4 @@
+// VISTA DE CONTROLES
 const MenuControls = ({ onBack }) => (
     <div className="controls">
         <button className="controls__back-btn" onClick={onBack}>

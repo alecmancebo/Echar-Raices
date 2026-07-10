@@ -1,6 +1,7 @@
 import { useEffect, useContext } from 'react';
 import { Context } from '../../context/Context.jsx';
 
+// TRANSICION ENTRE ESCENAS
 const EndingFade = () => {
   const { gameState, completeEndingTransition, completeIntroTransition } = useContext(Context);
 

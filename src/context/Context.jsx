@@ -1,10 +1,12 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import { AuthContext } from './AuthContext';
 
+// CONTEXTO GLOBAL DE JUEGO
 export const Context = createContext();
 
 const Items = [];
 
+// CATALOGO DE OBJETOS
 const ITEM_DATABASE = {
     botas: { id: 'botas', name: 'BOTAS', src: '/Objetos/botas.png', usedSrc: '/Objetos/botas_usadas.png', description: 'Es cierto, estoy descalce. Debería ponérmelas, siento cómo la tierra me llama a través de los dedos de los pies.', itinerary: 'c' },
     pajaro: { id: 'pajaro', name: 'PÁJARO', src: '/Objetos/pajarito.png', usedSrc: '/Objetos/pajarito_usado.png', description: 'Se ha apoyado un gorrión en mi mano y me siento bendecide. Cuando escucho su canto me lleno de alegría.', itinerary: 'a' },
@@ -20,6 +22,7 @@ const ITEM_DATABASE = {
     sombrilla: { id: 'sombrilla', name: 'SOMBRILLA', src: '/Objetos/sombrilla.png', usedSrc: '/Objetos/sombrilla_usada.png', description: 'A las plantas les gusta el sol, podría ayudar ocultarme un poco de él.', itinerary: 'b' },
 };
 
+// HELPERS DE NORMALIZACION
 const normalizeText = (value) => value?.toString().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 
 const resolveObjectKey = (value) => {
@@ -91,6 +94,7 @@ const normalizeInventoryItems = (payload) => {
         .filter(Boolean);
 };
 
+// PROVEEDOR DE ESTADO Y ACCIONES DEL JUEGO
 export const GameProvider = ({ children }) => {
     const [gameState, setGameState] = useState('START_MENU');
     const [loginNotice, setLoginNotice] = useState('');
@@ -108,6 +112,7 @@ export const GameProvider = ({ children }) => {
     const [endingTriggered, setEndingTriggered] = useState(false);
     const { token, logout } = useContext(AuthContext);
 
+    // PERSISTENCIA DE PANTALLA EN BACKEND
     const persistScreenToBackend = async (screen) => {
         if (!token) return;
 
@@ -133,6 +138,7 @@ export const GameProvider = ({ children }) => {
         persistScreenToBackend(nextState);
     };
 
+    // CARGA INICIAL DE DATOS
     useEffect(() => {
         if (!token) {
             if (gameState === 'PLAYING' || gameState === 'STORYBOARD' || gameState === 'LOADING_GAME') {
@@ -146,6 +152,7 @@ export const GameProvider = ({ children }) => {
         }
     }, [token, gameState]);
 
+    // HELPERS DE ESTADO EN MEMORIA
     const persistInventoryState = (items) => {
         const normalizedItems = normalizeInventoryItems(items);
         setInventoryItems(normalizedItems);
@@ -184,6 +191,7 @@ export const GameProvider = ({ children }) => {
         return ranked[0]?.itinerary || null;
     };
 
+    // CARGAR PARTIDA DESDE BACKEND
     const loadGameData = async () => {
         if (!token) return;
         setLoading(true);
@@ -233,6 +241,7 @@ export const GameProvider = ({ children }) => {
         }
     };
 
+    // FLUJOS PRINCIPALES DE PARTIDA
     const startGame = () => {
         setCurrentStoryScreen(1);
         setInventoryItems(Items);
@@ -336,6 +345,7 @@ export const GameProvider = ({ children }) => {
         return { ok: true };
     };
 
+    // UI DE MENU E INVENTARIO
     const openMenu = () => {
         setIsMenuOpen(true);
         setIsInventoryOpen(false);
@@ -348,6 +358,7 @@ export const GameProvider = ({ children }) => {
     };
     const closeInventory = () => setIsInventoryOpen(false);
 
+    // ACCIONES DE INVENTARIO
     const saveInventoryItem = async (item) => {
         if (!token || !item) return false;
 
@@ -530,6 +541,7 @@ export const GameProvider = ({ children }) => {
         }
     };
 
+    // TRANSICIONES DE PANTALLA
     const completeEndingTransition = () => {
         setPersistedGameState('STORYBOARD');
         setStoryMode('ending');
@@ -566,6 +578,7 @@ export const GameProvider = ({ children }) => {
         }
     };
 
+    // CONTEXTO EXPUESTO A COMPONENTES
     return (
         <Context.Provider value={{ 
             gameState, setGameState: setPersistedGameState, 

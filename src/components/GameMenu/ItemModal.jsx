@@ -1,6 +1,7 @@
 import { useContext, useState } from 'react';
 import { Context } from '../../context/Context.jsx'; 
 
+// MODAL DE ACCIONES DE OBJETO
 const ItemModal = ({ item, onClose, onUse, onDrop, onSave }) => {
     const { saveInventoryItem } = useContext(Context);
     const [assetWarning, setAssetWarning] = useState('');

@@ -1,3 +1,4 @@
+// BOCADILLO DE INTERACCION EN CANVAS
 export class InteractionBubble {
   constructor(config) {
     this.image = new Image();

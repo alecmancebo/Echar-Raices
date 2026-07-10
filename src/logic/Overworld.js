@@ -5,6 +5,7 @@ import { utils } from "./utils.js";
 import { InteractionBubble } from "./InteractionBubble.js";
 import { KeyPressListener } from "./KeyPressListener.js";
 
+// CONTROLADOR PRINCIPAL DEL MUNDO
 export class Overworld {
   constructor(config) {
     this.element = config.element;

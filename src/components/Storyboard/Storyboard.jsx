@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { Context } from '../../context/Context.jsx'; 
 
+// DATOS DE NARRATIVA INICIAL
 const introStoryData = {
     1: { gif: "/Narrativa/inicio_01.png", text: "Hmmm…\nQué raro." },
     2: { gif: "/Narrativa/inicio_02.png", text: "Hmmm…\nQué raro." },
@@ -16,6 +17,7 @@ const introStoryData = {
     12: { gif: "/Narrativa/texto_inicio_03.png", text: "Sigue creciendo.\nQuizá debería hacer algo al respecto." }
 };
 
+// DATOS DE NARRATIVA FINAL
 const endingStoryData = {
     a: {
         1: { gif: "/Narrativa/final_A_01.png", text: "Una sensación de paz te inunda cuando abrazas la transformación." },
@@ -36,6 +38,7 @@ const endingStoryData = {
     }
 };
 
+// PANTALLA DE STORYBOARD
 const Storyboard = () => {
     const { currentStoryScreen, advanceStory, storyMode, winningItinerary } = useContext(Context);
     const [assetWarning, setAssetWarning] = useState('');
@@ -46,6 +49,7 @@ const Storyboard = () => {
         ? endingStoryData[route]?.[currentStoryScreen]
         : introStoryData[currentStoryScreen];
 
+    // AVANCE POR TECLADO
     useEffect(() => {
         setAssetWarning('');
         const handleKeyPress = (event) => {
@@ -59,6 +63,7 @@ const Storyboard = () => {
         };
     }, [advanceStory, maxStoryScreens]); 
 
+    // FALLBACK DE IMAGENES
     const handleFrameError = (event) => {
         event.currentTarget.onerror = null;
         event.currentTarget.src = '/UI/fondo.png';

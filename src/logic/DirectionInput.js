@@ -1,3 +1,4 @@
+// CAPTURA DE DIRECCIONES DE TECLADO
 export class DirectionInput {
     constructor(){
         this.heldDirections = [];

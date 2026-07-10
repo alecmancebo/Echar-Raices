@@ -1,3 +1,4 @@
+// LISTENER DE TECLA CON ANTIREPETICION
 export class KeyPressListener {
   constructor(keyCode, callback) {
     let keySafe = true;

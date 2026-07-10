@@ -1,3 +1,4 @@
+// VISTA DE CREDITOS
 const MenuCredits = ({ onBack }) => (
     <div className="credits">
         <button className="controls__back-btn" onClick={onBack}>

@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { Context } from '../../context/Context.jsx';
 
+// VISTA PRINCIPAL DEL MENU
 const MenuMain = ({ onNavigate, onClose }) => { 
     
     const { startGame } = useContext(Context);

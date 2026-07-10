@@ -1,3 +1,4 @@
+// RENDER Y ANIMACION DE SPRITES
 export class Sprite {
     constructor(config){
 

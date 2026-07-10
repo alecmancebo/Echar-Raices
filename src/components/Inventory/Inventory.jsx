@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Context } from '../../context/Context.jsx';
 import ItemModal from '../GameMenu/ItemModal.jsx';
 
+// MODAL DE INVENTARIO
 const Inventory = () => {
     const { 
         isInventoryOpen, closeInventory,
@@ -13,6 +14,7 @@ const Inventory = () => {
 
     if (!isInventoryOpen) return null;
 
+    // RENDER DE SLOT INDIVIDUAL
     const Slot = ({ item, isSelected, onClick }) => {
         const [isHovered, setIsHovered] = useState(false);
         const isDisabled = Boolean(item?.isUsed);

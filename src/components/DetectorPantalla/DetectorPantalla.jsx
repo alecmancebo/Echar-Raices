@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
+// AVISOS DE ORIENTACION Y TAMAÑO DE PANTALLA
 export const DetectorPantalla = () => {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [isPortrait, setIsPortrait] = useState(false);

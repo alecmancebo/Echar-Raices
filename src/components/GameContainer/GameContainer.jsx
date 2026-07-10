@@ -7,6 +7,7 @@ import InGameMenu from '../GameMenu/GameMenu.jsx';
 import Inventory from '../Inventory/Inventory.jsx';
 import ItemModal from '../GameMenu/ItemModal.jsx';
 
+// CATALOGO DE OBJETOS INTERACTIVOS
 const ITEM_DATABASE = {
     botas: { id: "botas", name: "BOTAS", src: "/Objetos/botas.png", description: "Es cierto, estoy descalce. Debería ponérmelas, siento cómo la tierra me llama a través de los dedos de los pies."},
     pajaro: { id: "pajaro", name: "PÁJARO", src: "/Objetos/pajarito.png", description: "Se ha apoyado un gorrión en mi mano y me siento bendecide. Cuando escucho su canto me lleno de alegría." },
@@ -22,6 +23,7 @@ const ITEM_DATABASE = {
     sombrilla: { id: "sombrilla", name: "SOMBRILLA", src: "/Objetos/sombrilla.png", description: "A las plantas les gusta el sol, podría ayudar ocultarme un poco de él." },
 };
 
+// UBICACIONES BASE DE OBJETOS EN EL MAPA
 const OBJECT_LAYOUT = {
   botas: { x: utils.withGrid(7), y: utils.withGrid(11), src: '/Objetos/botas.png', useShadow: false, cutX: 30, cutY: 30, isInteractive: true },
   pajaro: { x: utils.withGrid(1), y: utils.withGrid(3), src: '/Objetos/pajarito.png', useShadow: false, cutX: 30, cutY: 30, offsetX: 0, offsetY: -3, isInteractive: true },
@@ -37,6 +39,7 @@ const OBJECT_LAYOUT = {
   sombrilla: { x: utils.withGrid(18), y: utils.withGrid(7), src: '/Objetos/sombrilla.png', useShadow: false, cutX: 28, cutY: 28, isInteractive: true },
 };
 
+// HELPERS DE RESOLUCION DE OBJETOS
 const normalizeObjectKey = (value) => {
   if (!value) return null;
   return value.toString().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
@@ -54,6 +57,7 @@ const resolveInteractiveItem = (value) => {
   return byName || null;
 };
 
+// CONTENEDOR PRINCIPAL DE JUEGO Y CANVAS
 const GameContainer = () => {
   const containerRef = useRef(null);
   const overworldRef = useRef(null); 
@@ -61,6 +65,7 @@ const GameContainer = () => {
   const [selectedItem, setSelectedItem] = useState(null);
   const [bubbleOverlay, setBubbleOverlay] = useState({ visible: false, xPercent: 50, yPercent: 50, text: '¿Soy yo?' });
 
+  // RESTAURA OBJETOS EN EL MUNDO CUANDO CORRESPONDE
   const restoreObjectInWorld = (objectPayload) => {
     const map = overworldRef.current?.map;
     if (!map?.gameObjects || !objectPayload) return false;

@@ -4,6 +4,7 @@ import { AuthContext } from '../../context/AuthContext';
 
 
 const Login = () => {
+// PANTALLA DE LOGIN
     const { setGameState, initializeNewRun, pendingAction, setPendingAction, loginNotice, setLoginNotice } = useContext(Context);
     const { login } = useContext(AuthContext);
 
@@ -12,6 +13,7 @@ const Login = () => {
     const [error, setError] = useState('');
 
     const handleLoginBgError = (event) => {
+    // FALLBACK DE RECURSOS VISUALES
         event.currentTarget.onerror = null;
         event.currentTarget.src = '/UI/fondo.png';
         setError((prev) => prev || 'No se pudo cargar una imagen de la pantalla de login.');
@@ -24,6 +26,7 @@ const Login = () => {
         }
     }, [loginNotice, setLoginNotice]);
 
+    // ENVIO DE CREDENCIALES Y ERRORES DE LOGIN
     const handleEnter = async (e) => {
         e.preventDefault();
 

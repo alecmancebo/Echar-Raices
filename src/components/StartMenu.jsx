@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { Context } from '../context/Context';
 
+// PANTALLA DE INICIO
 const StartMenu = () => {
     const { setGameState, setPendingAction } = useContext(Context);
 

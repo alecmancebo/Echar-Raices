@@ -1,6 +1,7 @@
 import { useContext, useState } from 'react';
 import { Context } from '../../context/Context.jsx'; 
 
+// VISTA DE SALIDA DE PARTIDA
 const MenuExit = ({ onCancel }) => {
     const { setGameState, closeMenu, saveAndExitToMenu } = useContext(Context);
     const [isSaving, setIsSaving] = useState(false);
