@@ -2,10 +2,18 @@ import { useContext, useEffect } from 'react';
 import { Context } from '../../context/Context.jsx'; 
 
 const introStoryData = {
-    1: { gif: "/story1.gif", text: "Hmmm…\nQué raro.\nAlgo se mueve dentro de mí." },
-    2: { gif: "/story2.gif", text: "Esto no debería estar ahí." },
-    3: { gif: "/story3.gif", text: "Sigue creciendo.\nQuizá debería hacer algo al respecto." },
-    4: { gif: "/story4.gif", text: "Narrativa de la pantalla 4" }
+    1: { gif: "/Narrativa/inicio_01.png", text: "" },
+    2: { gif: "/Narrativa/inicio_02.png", text: "" },
+    3: { gif: "/Narrativa/inicio_03.png", text: "" },
+    4: { gif: "/Narrativa/inicio_04.png", text: "" },
+    5: { gif: "/Narrativa/inicio_05.png", text: "" },
+    6: { gif: "/Narrativa/inicio_06.png", text: "" },
+    7: { gif: "/Narrativa/inicio_07.png", text: "" },
+    8: { gif: "/Narrativa/inicio_08.png", text: "" },
+    9: { gif: "/Narrativa/inicio_09.png", text: "" },
+    10: { gif: "/Narrativa/texto_inicio_01.png", text: "Hmmm…\nQué raro.\nAlgo se mueve dentro de mí." },
+    11: { gif: "/Narrativa/texto_inicio_02.png", text: "Esto no debería estar ahí." },
+    12: { gif: "/Narrativa/texto_inicio_03.png", text: "Sigue creciendo.\nQuizá debería hacer algo al respecto." }
 };
 
 const endingStoryData = {
@@ -65,7 +73,7 @@ const Storyboard = () => {
                 </div>
 
                 <div className="storyboard__text-box">
-                    <p>{currentData?.text || "Continuara..."}</p>
+                    <p>{currentData?.text ?? "Continuara..."}</p>
                 </div>
 
             </div>
