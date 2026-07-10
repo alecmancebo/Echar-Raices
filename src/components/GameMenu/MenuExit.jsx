@@ -19,7 +19,7 @@ const MenuExit = ({ onCancel }) => {
     return (
         <div className="exit">
             <button className="controls__back-btn" onClick={onCancel}>
-                <img className="controls__back-icon" src="/flecha-grande.png" alt="" />
+                <img className="controls__back-icon" src="/UI/flecha-grande.png" alt="" />
                 VOLVER A MENÚ
             </button>
             <h2 className="modal__title">¿Quieres salir?</h2>

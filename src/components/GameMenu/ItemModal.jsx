@@ -33,9 +33,9 @@ const ItemModal = ({ item, onClose, onUse, onDrop, onSave }) => {
         <div className="item-modal">
             <div className="item-modal__container">
                 <button className="modal__close-btn" onClick={onClose}>
-                    <img src="/x.png" alt="Close" />
+                    <img src="/UI/x.png" alt="Close" />
                 </button>
-                <img className="item-modal__bg" src="/Overlay-Item.png" alt="" />
+                <img className="item-modal__bg" src="/UI/Overlay-Item.png" alt="" />
                 
                 <div className="item-modal__content">
                     <h2 className="item-modal__title">{item.name}</h2>

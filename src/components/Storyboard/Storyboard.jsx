@@ -51,7 +51,7 @@ const Storyboard = () => {
     return (
         <div className="storyboard">
            
-            <img className="storyboard__bg" src="/animaciones.png" alt="Marco" />
+            <img className="storyboard__bg" src="/UI/animaciones.png" alt="Marco" />
 
             <div className="storyboard__content">
                 

@@ -8,7 +8,7 @@ export class GameObject {
         this.direction = config.direction || "down";
         this.sprite = new Sprite({
             gameObject: this,
-            src: config.src || "/hero.png",
+            src: config.src || "/UI/hero.png",
             useShadow: config.useShadow, 
             cutX: config.cutX,           
             cutY: config.cutY,

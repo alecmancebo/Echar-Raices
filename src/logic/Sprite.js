@@ -24,7 +24,7 @@ export class Sprite {
             this.isShadowLoaded = true;
         }
         if(this.useShadow){
-            this.shadow.src = "/shadow.png";
+            this.shadow.src = "/UI/shadow.png";
         }
 
         // configuraciones de animación

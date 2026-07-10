@@ -1,7 +1,7 @@
 export class InteractionBubble {
   constructor(config) {
     this.image = new Image();
-    this.image.src = config.src || "/bocadillo.png";
+    this.image.src = config.src || "/UI/bocadillo.png";
     this.isLoaded = false;
     
     this.image.onload = () => {

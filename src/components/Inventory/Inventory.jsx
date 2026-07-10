@@ -17,7 +17,7 @@ const Inventory = () => {
         const [isHovered, setIsHovered] = useState(false);
         const isDisabled = Boolean(item?.isUsed);
         
-        const baseImage = isHovered && !isDisabled ? '/slot-base-hover.png' : '/slot-base.png';
+        const baseImage = isHovered && !isDisabled ? '/UI/slot-base-hover.png' : '/UI/slot-base.png';
 
         return (
             <div 
@@ -48,10 +48,10 @@ const Inventory = () => {
     return (
         <div className="modal-overlay">
             <div className="inventory">
-                <img className="inventory__bg" src="inventario.png" alt="" />
+                <img className="inventory__bg" src="/UI/inventario.png" alt="" />
                 
                 <button className="inventory__close-btn" onClick={closeInventory}>
-                    <img src="/x.png" alt="Close" />
+                    <img src="/UI/x.png" alt="Close" />
                 </button>
                 
                 <div className="inventory__content">
@@ -60,7 +60,7 @@ const Inventory = () => {
                         <h3 className="inventory__title">Reflejo</h3>
                         
                         <div className="inventory__reflection-box">
-                            <img src="/pozo.png" alt="Reflejo" className="inventory__reflection-icon pixelated" />
+                            <img src="/UI/pozo.png" alt="Reflejo" className="inventory__reflection-icon pixelated" />
                         </div>
                         
                         <p className="inventory__text">

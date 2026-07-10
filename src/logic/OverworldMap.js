@@ -67,7 +67,7 @@ export class OverworldMap {
 
 export const OverworldMaps = {
     Jardin : {
-        src: "/jardin.png",
+        src: "/UI/jardin.png",
         gameObjects: {
             
             rana: new GameObject({
@@ -84,9 +84,9 @@ export const OverworldMaps = {
               pozo: new GameObject({
                 x: utils.withGrid(10), 
                 y: utils.withGrid(6),
-                src: "/pozo-inactive.png",
-                normalSrc: "/pozo-inactive.png",   
-                activeSrc: "/pozo-active.png",
+                src: "/UI/pozo-inactive.png",
+                normalSrc: "/UI/pozo-inactive.png",   
+                activeSrc: "/UI/pozo-active.png",
                 useShadow: false,      
                 cutX: 54,             
                 cutY: 47,
@@ -214,7 +214,7 @@ export const OverworldMaps = {
             character: new Person({
                 x: utils.withGrid(5),
                 y: utils.withGrid(6),
-                src: "/hero.png"
+                src: "/UI/hero.png"
             }),
 
         },

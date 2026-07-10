@@ -46,7 +46,7 @@ const Login = () => {
 
     return (
         <div className="login game-container">
-            <img className="login__bg" src="/login.png" alt="" />
+            <img className="login__bg" src="/UI/login.png" alt="" />
 
             <div className="login__content">
                 <h2 className="login__title">INICIA SESIÓN</h2>

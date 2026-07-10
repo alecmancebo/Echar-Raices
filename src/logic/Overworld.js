@@ -15,7 +15,7 @@ export class Overworld {
 
     // Instanciamos el sistema de bocadillos
     this.interactionBubble = new InteractionBubble({
-      src: "/bocadillo.png" 
+      src: "/UI/bocadillo.png" 
     });
   }
 

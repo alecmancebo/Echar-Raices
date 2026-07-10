@@ -385,7 +385,7 @@ export const GameProvider = ({ children }) => {
             return {
                 ...inventoryItem,
                 isUsed: true,
-                src: inventoryItem.usedSrc || inventoryItem.src || '/shadow.png'
+                src: inventoryItem.usedSrc || inventoryItem.src || '/UI/shadow.png'
             };
         });
 
