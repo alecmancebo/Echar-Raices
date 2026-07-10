@@ -9,11 +9,10 @@ import { DirectionInput } from "./DirectionInput.js";
 // DEFINICION DEL MAPA Y SUS REGLAS
 export class OverworldMap {
     constructor(config){
-        // Colección de objetos en este mapa
+
+        // Colección de objetos
         this.gameObjects = config.gameObjects || {};
-
         this.walls = config.walls || {};
-
 
         // Imagen de fondo del mapa
         this.image = new Image();

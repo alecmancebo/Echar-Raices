@@ -1,7 +1,6 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import { AuthContext } from './AuthContext';
 
-// CONTEXTO GLOBAL DE JUEGO
 export const Context = createContext();
 
 const Items = [];
@@ -578,7 +577,6 @@ export const GameProvider = ({ children }) => {
         }
     };
 
-    // CONTEXTO EXPUESTO A COMPONENTES
     return (
         <Context.Provider value={{ 
             gameState, setGameState: setPersistedGameState, 

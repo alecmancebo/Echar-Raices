@@ -1,12 +1,10 @@
 import { createContext, useState, useEffect } from 'react';
 
-// CONTEXTO DE AUTENTICACION
 export const AuthContext = createContext();
 
 
 export const AuthProvider = ({ children }) => {
 
-    // ESTADO DE SESION
     const [token, setToken] = useState(null);
     const [loadingAuth, setLoadingAuth] = useState(true);
 
@@ -14,7 +12,6 @@ export const AuthProvider = ({ children }) => {
     setLoadingAuth(false);
     }, []);
 
-    // ACCIONES DE SESION
     const login = (newToken) => {
         setToken(newToken);
     };
