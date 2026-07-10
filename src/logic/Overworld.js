@@ -12,6 +12,7 @@ export class Overworld {
     this.ctx = this.canvas.getContext("2d");
     this.map = null;
     this.isPaused = false; 
+    this.bubbleVisible = false;
 
     // Instanciamos el sistema de bocadillos
     this.interactionBubble = new InteractionBubble({
@@ -52,13 +53,24 @@ export class Overworld {
 
         // 5. Dibujar bocadillo si hay un objeto interactivo cerca
         if (objectNearPlayer && player) {
+          this.bubbleVisible = true;
           this.interactionBubble.draw(
             this.ctx, 
             player.x, 
             player.y - 8, 
             objectNearPlayer.interactText
           );
+        } else if (this.bubbleVisible) {
+          window.dispatchEvent(new CustomEvent('InteractionBubbleState', {
+            detail: { visible: false }
+          }));
+          this.bubbleVisible = false;
         }
+      } else if (this.bubbleVisible) {
+        window.dispatchEvent(new CustomEvent('InteractionBubbleState', {
+          detail: { visible: false }
+        }));
+        this.bubbleVisible = false;
       }
 
       requestAnimationFrame(() => {

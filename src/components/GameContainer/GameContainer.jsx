@@ -59,6 +59,7 @@ const GameContainer = () => {
   const overworldRef = useRef(null); 
   const { gameState, openInventory, isMenuOpen } = useContext(Context);
   const [selectedItem, setSelectedItem] = useState(null);
+  const [bubbleOverlay, setBubbleOverlay] = useState({ visible: false, xPercent: 50, yPercent: 50, text: '¿Soy yo?' });
 
   const restoreObjectInWorld = (objectPayload) => {
     const map = overworldRef.current?.map;
@@ -137,12 +138,29 @@ const GameContainer = () => {
       restoreObjectInWorld(payload);
     };
 
+    const handleBubbleState = (e) => {
+      const detail = e.detail || {};
+      if (!detail.visible) {
+        setBubbleOverlay((prev) => ({ ...prev, visible: false }));
+        return;
+      }
+
+      setBubbleOverlay({
+        visible: true,
+        xPercent: Number(detail.xPercent) || 50,
+        yPercent: Number(detail.yPercent) || 50,
+        text: detail.text || '¿Soy yo?'
+      });
+    };
+
     window.addEventListener("GameObjectRemoved", handleObjectRemoved);
     window.addEventListener("GameObjectAdded", handleObjectAdded);
+    window.addEventListener('InteractionBubbleState', handleBubbleState);
     return () => {
       document.removeEventListener("ObjectInteraction", handleInteraction);
       window.removeEventListener("GameObjectRemoved", handleObjectRemoved);
       window.removeEventListener("GameObjectAdded", handleObjectAdded);
+      window.removeEventListener('InteractionBubbleState', handleBubbleState);
     };
 
  }, []);
@@ -157,6 +175,15 @@ const GameContainer = () => {
   return (
       <div className="game-container" ref={containerRef}>
           <canvas className="game-container__canvas" width="384" height="208"></canvas>
+
+          {bubbleOverlay.visible && (
+            <div
+              className="interaction-bubble__text-overlay"
+              style={{ left: `${bubbleOverlay.xPercent}%`, top: `calc(${bubbleOverlay.yPercent}% - 5px)` }}
+            >
+              {bubbleOverlay.text}
+            </div>
+          )}
 
           <ItemModal 
                 item={selectedItem} 

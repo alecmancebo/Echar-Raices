@@ -229,6 +229,20 @@ canvas {
     image-rendering: crisp-edges;
 }
 
+.interaction-bubble__text-overlay {
+    position: absolute;
+    transform: translate(-50%, -52%);
+    z-index: 9;
+    pointer-events: none;
+    white-space: nowrap;
+    font-family: var(--font-main);
+    font-size: clamp(16px, 2.1vw, 30px);
+    color: var(--color-oscuro);
+    text-shadow: 1px 1px 0 var(--color-claro);
+    letter-spacing: 0.3px;
+    line-height: 1;
+}
+
 
 /* MARK: GAME UI */
 .game-ui__btn {
