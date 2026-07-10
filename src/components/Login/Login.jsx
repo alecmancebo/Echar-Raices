@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { Context } from '../../context/Context.jsx';
 import { AuthContext } from '../../context/AuthContext'; 
+import { API_URL } from '../../config/api';
 
 
 const Login = () => {
@@ -41,7 +42,7 @@ const Login = () => {
         setError('');
 
         try {
-            const respuesta = await fetch("http://localhost:4000/api/login", {
+            const respuesta = await fetch(`${API_URL}/api/login`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ usuario: usuarioLimpio, password: passwordLimpia })

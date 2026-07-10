@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import { AuthContext } from './AuthContext';
+import { API_URL } from '../config/api';
 
 export const Context = createContext();
 
@@ -119,7 +120,7 @@ export const GameProvider = ({ children }) => {
         if (!screensToPersist.includes(screen)) return;
 
         try {
-            await fetch('http://localhost:4000/api/juego/estado', {
+            await fetch(`${API_URL}/api/juego/estado`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -195,7 +196,7 @@ export const GameProvider = ({ children }) => {
         if (!token) return;
         setLoading(true);
         try {
-            const response = await fetch("http://localhost:4000/api/juego/datos", {
+            const response = await fetch(`${API_URL}/api/juego/datos`, {
                 headers: { "Authorization": `Bearer ${token}` }
             });
 
@@ -260,7 +261,7 @@ export const GameProvider = ({ children }) => {
         }
 
         try {
-            const response = await fetch('http://localhost:4000/api/juego/estado', {
+            const response = await fetch(`${API_URL}/api/juego/estado`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -310,7 +311,7 @@ export const GameProvider = ({ children }) => {
         if (!tokenToUse) return { ok: false, message: 'No hay sesión activa.' };
 
         try {
-            const response = await fetch('http://localhost:4000/api/juego/nueva-partida', {
+            const response = await fetch(`${API_URL}/api/juego/nueva-partida`, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${tokenToUse}`
@@ -385,7 +386,7 @@ export const GameProvider = ({ children }) => {
         }
 
         try {
-            const response = await fetch("http://localhost:4000/api/nuevo", {
+            const response = await fetch(`${API_URL}/api/nuevo`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -466,7 +467,7 @@ export const GameProvider = ({ children }) => {
         if (!token) return true;
 
         try {
-            const response = await fetch('http://localhost:4000/api/inventario/usar', {
+            const response = await fetch(`${API_URL}/api/inventario/usar`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -517,7 +518,7 @@ export const GameProvider = ({ children }) => {
         if (!token) return true;
 
         try {
-            const response = await fetch('http://localhost:4000/api/inventario/dejar', {
+            const response = await fetch(`${API_URL}/api/inventario/dejar`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -565,7 +566,7 @@ export const GameProvider = ({ children }) => {
             setCurrentStoryScreen(prev => prev + 1);
         } else {
             try {
-                await fetch("http://localhost:4000/api/usuario/narrativa", {
+                await fetch(`${API_URL}/api/usuario/narrativa`, {
                     method: "PATCH",
                     headers: { "Authorization": `Bearer ${token}` }
                 });
