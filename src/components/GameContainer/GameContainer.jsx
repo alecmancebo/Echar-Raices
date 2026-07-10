@@ -57,7 +57,7 @@ const resolveInteractiveItem = (value) => {
 const GameContainer = () => {
   const containerRef = useRef(null);
   const overworldRef = useRef(null); 
-  const { gameState, openInventory, isMenuOpen, isInventoryOpen } = useContext(Context);
+  const { gameState, openInventory, isMenuOpen, isInventoryOpen, inventoryItems } = useContext(Context);
   const [selectedItem, setSelectedItem] = useState(null);
   const [bubbleOverlay, setBubbleOverlay] = useState({ visible: false, xPercent: 50, yPercent: 50, text: '¿Soy yo?' });
 
@@ -96,14 +96,6 @@ const GameContainer = () => {
       });
       overworldRef.current.init(); 
     }
-
-    const collectedObjects = JSON.parse(localStorage.getItem('collectedObjects') || '[]');
-    collectedObjects.forEach((objectId) => {
-      if (overworldRef.current?.map?.gameObjects?.[objectId]) {
-        delete overworldRef.current.map.gameObjects[objectId];
-      }
-    });
- 
 
   const handleInteraction = (e) => {
         const itemId = e.detail;
@@ -164,6 +156,37 @@ const GameContainer = () => {
     };
 
  }, []);
+
+  useEffect(() => {
+    const map = overworldRef.current?.map;
+    if (!map?.gameObjects || !Array.isArray(inventoryItems)) return;
+
+    inventoryItems.forEach((item) => {
+      const objectId = normalizeObjectKey(item?.id || item?.name);
+      if (!objectId) return;
+
+      if (item?.isUsed) {
+        const existingObject = map.gameObjects[objectId];
+        if (existingObject) {
+          delete map.gameObjects[objectId];
+          delete map.walls[`${existingObject.x},${existingObject.y}`];
+        }
+
+        restoreObjectInWorld({
+          id: objectId,
+          src: item?.src || item?.usedSrc || OBJECT_LAYOUT[objectId]?.src,
+          isUsed: true,
+        });
+        return;
+      }
+
+      const object = map.gameObjects[objectId];
+      if (!object) return;
+
+      delete map.gameObjects[objectId];
+      delete map.walls[`${object.x},${object.y}`];
+    });
+  }, [inventoryItems]);
   
 
   useEffect(() => {

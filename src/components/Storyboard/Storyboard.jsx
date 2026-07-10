@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Context } from '../../context/Context.jsx'; 
 
 const introStoryData = {
@@ -26,7 +26,7 @@ const endingStoryData = {
     b: {
         1: { gif: "/Narrativa/final_B_01.png", text: "Nada funciona." },
         2: { gif: "/Narrativa/final_B_01.png", text: "No puedes evitar cómo esta retorcida metamorfosis poco a poco consume cada centímetro de tu cuerpo y mente hasta que ya no puedes moverte ni gritar." },
-        3: { gif: "/Narrativa/final_B_01.png", text: "Final B: Las hormigas trepan por tu corteza y la lluvia cae sobre tus hojas, pero tú ya no piensas ni sientes nada." }
+        3: { gif: "/Narrativa/final_B_01.png", text: "Las hormigas trepan por tu corteza y la lluvia cae sobre tus hojas, pero tú ya no piensas ni sientes nada." }
     },
     c: {
         1: { gif: "/Narrativa/final_C_01.png", text: "Lo has conseguido." },
@@ -38,6 +38,7 @@ const endingStoryData = {
 
 const Storyboard = () => {
     const { currentStoryScreen, advanceStory, storyMode, winningItinerary } = useContext(Context);
+    const [assetWarning, setAssetWarning] = useState('');
     const route = winningItinerary && endingStoryData[winningItinerary] ? winningItinerary : 'a';
     const activeStoryData = storyMode === 'ending' ? endingStoryData[route] : introStoryData;
     const maxStoryScreens = Object.keys(activeStoryData || {}).length || 4;
@@ -46,6 +47,7 @@ const Storyboard = () => {
         : introStoryData[currentStoryScreen];
 
     useEffect(() => {
+        setAssetWarning('');
         const handleKeyPress = (event) => {
             advanceStory(maxStoryScreens);
         };
@@ -57,10 +59,22 @@ const Storyboard = () => {
         };
     }, [advanceStory, maxStoryScreens]); 
 
+    const handleFrameError = (event) => {
+        event.currentTarget.onerror = null;
+        event.currentTarget.src = '/UI/fondo.png';
+        setAssetWarning('No se pudo cargar el marco visual.');
+    };
+
+    const handleStoryImageError = (event) => {
+        event.currentTarget.onerror = null;
+        event.currentTarget.src = "/Narrativa/inicio_09.png";
+        setAssetWarning('No se pudo cargar una imagen de la narrativa.');
+    };
+
     return (
         <div className="storyboard">
            
-            <img className="storyboard__bg" src="/UI/animaciones.png" alt="Marco" />
+            <img className="storyboard__bg" src="/UI/animaciones.png" alt="Marco" onError={handleFrameError} />
 
             <div className="storyboard__content">
                 
@@ -68,13 +82,15 @@ const Storyboard = () => {
                     <img 
                         className="storyboard__gif" 
                         src={currentData?.gif || "/Narrativa/inicio_01.png"} 
-                        alt={`Historia Pantalla ${currentStoryScreen}`} 
+                        alt={`Historia Pantalla ${currentStoryScreen}`}
+                        onError={handleStoryImageError}
                     />
                 </div>
 
                 <div className="storyboard__text-box">
                     <p>{currentData?.text ?? "Continuara..."}</p>
                 </div>
+                {assetWarning && <p className="asset-warning storyboard__asset-warning">{assetWarning}</p>}
 
             </div>
         </div>

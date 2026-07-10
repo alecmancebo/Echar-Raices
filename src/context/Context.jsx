@@ -8,7 +8,7 @@ const Items = [];
 const ITEM_DATABASE = {
     botas: { id: 'botas', name: 'BOTAS', src: '/Objetos/botas.png', usedSrc: '/Objetos/botas_usadas.png', description: 'Es cierto, estoy descalce. Debería ponérmelas, siento cómo la tierra me llama a través de los dedos de los pies.', itinerary: 'c' },
     pajaro: { id: 'pajaro', name: 'PÁJARO', src: '/Objetos/pajarito.png', usedSrc: '/Objetos/pajarito_usado.png', description: 'Se ha apoyado un gorrión en mi mano y me siento bendecide. Cuando escucho su canto me lleno de alegría.', itinerary: 'a' },
-    sal: { id: 'sal', name: 'SALERO', src: '/Objetos/salero.png', description: 'La sal es mala para las plantas, ¿verdad? Voy a tragarme un poco y lanzar un puñado por encima del hombro, por si acaso. Nunca viene mal protegerse de la mala suerte.', itinerary: 'c' },
+    sal: { id: 'sal', name: 'SALERO', src: '/Objetos/salero.png', usedSrc: '/Objetos/salero_usado.png', description: 'La sal es mala para las plantas, ¿verdad? Voy a tragarme un poco y lanzar un puñado por encima del hombro, por si acaso. Nunca viene mal protegerse de la mala suerte.', itinerary: 'c' },
     pociones: { id: 'pociones', name: 'POCIONES', src: '/Objetos/pociones.png', usedSrc: '/Objetos/pociones_usadas.png', description: '¡Las pociones curativas que me regaló Rosaura! Hay una llamada “recordar quien eras” que parece perfecta para esta situación.', itinerary: 'c' },
     regadera: { id: 'regadera', name: 'REGADERA', src: '/Objetos/regadera.png', usedSrc: '/Objetos/regadera_usada.png', description: 'Me muero de calor. Me apetece tanto echarme un poco de agua por encima para refrescarme, seguro que me siento mejor.', itinerary: 'a' },
     tijeras: { id: 'tijeras', name: 'TIJERAS', src: '/Objetos/tijeras.png', usedSrc: '/Objetos/tijeras_usadas.png', description: 'Perfecto, así puedo cortar todas estas raíces y hojas que no paran de salir a través de mi piel.', itinerary: 'b' },
@@ -93,43 +93,44 @@ const normalizeInventoryItems = (payload) => {
 
 export const GameProvider = ({ children }) => {
     const [gameState, setGameState] = useState('START_MENU');
+    const [loginNotice, setLoginNotice] = useState('');
     const [pendingAction, setPendingAction] = useState(null);
     const [currentStoryScreen, setCurrentStoryScreen] = useState(1);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isInventoryOpen, setIsInventoryOpen] = useState(false);
-    const [inventoryItems, setInventoryItems] = useState(() => {
-        const savedInventory = JSON.parse(localStorage.getItem('inventoryState') || '[]');
-        return normalizeInventoryItems(savedInventory.length ? savedInventory : Items);
-    });
-    const [itineraryUsage, setItineraryUsage] = useState(() => {
-        const savedUsage = JSON.parse(localStorage.getItem('itineraryUsage') || '{}');
-        return {
-            a: Number(savedUsage.a) || 0,
-            b: Number(savedUsage.b) || 0,
-            c: Number(savedUsage.c) || 0,
-        };
-    });
-    const [itineraryThresholds, setItineraryThresholds] = useState(() => {
-        const savedThresholds = JSON.parse(localStorage.getItem('itineraryThresholds') || '{}');
-        return {
-            a: savedThresholds.a ?? null,
-            b: savedThresholds.b ?? null,
-            c: savedThresholds.c ?? null,
-        };
-    });
-    const [winningItinerary, setWinningItinerary] = useState(() => localStorage.getItem('winningItinerary') || null);
+    const [inventoryItems, setInventoryItems] = useState(Items);
+    const [itineraryUsage, setItineraryUsage] = useState({ a: 0, b: 0, c: 0 });
+    const [itineraryThresholds, setItineraryThresholds] = useState({ a: null, b: null, c: null });
+    const [winningItinerary, setWinningItinerary] = useState(null);
     const [selectedItemId, setSelectedItemId] = useState(1);
     const [loading, setLoading] = useState(false);
-    const [storyMode, setStoryMode] = useState(() => localStorage.getItem('storyMode') || 'intro');
-    const [endingTriggered, setEndingTriggered] = useState(() => Boolean(localStorage.getItem('endingTriggered')));
-    const { token } = useContext(AuthContext);
+    const [storyMode, setStoryMode] = useState('intro');
+    const [endingTriggered, setEndingTriggered] = useState(false);
+    const { token, logout } = useContext(AuthContext);
+
+    const persistScreenToBackend = async (screen) => {
+        if (!token) return;
+
+        const screensToPersist = ['PLAYING', 'STORYBOARD', 'PAUSED', 'GAME_OVER'];
+        if (!screensToPersist.includes(screen)) return;
+
+        try {
+            await fetch('http://localhost:4000/api/juego/estado', {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({ ultimaPantalla: screen })
+            });
+        } catch (error) {
+            console.error('Error persistiendo pantalla actual:', error);
+        }
+    };
 
     const setPersistedGameState = (nextState) => {
         setGameState(nextState);
-
-        if (nextState === 'PLAYING' || nextState === 'STORYBOARD' || nextState === 'PAUSED' || nextState === 'GAME_OVER') {
-            localStorage.setItem('lastGameScreen', nextState);
-        }
+        persistScreenToBackend(nextState);
     };
 
     useEffect(() => {
@@ -148,7 +149,6 @@ export const GameProvider = ({ children }) => {
     const persistInventoryState = (items) => {
         const normalizedItems = normalizeInventoryItems(items);
         setInventoryItems(normalizedItems);
-        localStorage.setItem('inventoryState', JSON.stringify(normalizedItems));
         return normalizedItems;
     };
 
@@ -156,8 +156,6 @@ export const GameProvider = ({ children }) => {
         setStoryMode('intro');
         setEndingTriggered(false);
         setCurrentStoryScreen(1);
-        localStorage.setItem('storyMode', 'intro');
-        localStorage.removeItem('endingTriggered');
     };
 
     const resolveWinningItinerary = (usage, thresholds) => {
@@ -193,18 +191,22 @@ export const GameProvider = ({ children }) => {
             const response = await fetch("http://localhost:4000/api/juego/datos", {
                 headers: { "Authorization": `Bearer ${token}` }
             });
+
+            if (response.status === 401 || response.status === 403) {
+                setLoginNotice('Tu sesión expiró. Inicia sesión de nuevo.');
+                logout();
+                setPersistedGameState('LOGIN');
+                return null;
+            }
+
             if (!response.ok) throw new Error("Error en la carga");
 
             const data = await response.json();
-            const storedItems = JSON.parse(localStorage.getItem('collectedObjects') || '[]');
-            const savedInventory = JSON.parse(localStorage.getItem('inventoryState') || '[]');
             const backendItems = Array.isArray(data.items) ? data.items : [];
-            const restoredInventory = backendItems.length > 0
-                ? normalizeInventoryItems(backendItems)
-                : normalizeInventoryItems(savedInventory.length > 0 ? savedInventory : storedItems);
+            const restoredInventory = normalizeInventoryItems(backendItems);
             const restoredUsage = data.itineraryUsage || {};
             const restoredThresholds = data.itineraryThresholds || {};
-            const restoredWinner = data.winningItinerary || localStorage.getItem('winningItinerary') || null;
+            const restoredWinner = data.winningItinerary || null;
 
             persistInventoryState(restoredInventory);
             setItineraryUsage({
@@ -212,35 +214,15 @@ export const GameProvider = ({ children }) => {
                 b: Number(restoredUsage.b) || 0,
                 c: Number(restoredUsage.c) || 0,
             });
-            localStorage.setItem('itineraryUsage', JSON.stringify({
-                a: Number(restoredUsage.a) || 0,
-                b: Number(restoredUsage.b) || 0,
-                c: Number(restoredUsage.c) || 0,
-            }));
             setItineraryThresholds({
                 a: restoredThresholds.a ?? null,
                 b: restoredThresholds.b ?? null,
                 c: restoredThresholds.c ?? null,
             });
-            localStorage.setItem('itineraryThresholds', JSON.stringify({
-                a: restoredThresholds.a ?? null,
-                b: restoredThresholds.b ?? null,
-                c: restoredThresholds.c ?? null,
-            }));
             setWinningItinerary(restoredWinner);
-            if (restoredWinner) {
-                localStorage.setItem('winningItinerary', restoredWinner);
-            } else {
-                localStorage.removeItem('winningItinerary');
-            }
             setCurrentStoryScreen(data.progreso || 1);
             const restoredScreen = data.ultimaPantalla || data.lastScreen || (data.narrativaCompletada ? 'PLAYING' : 'STORYBOARD');
-            const savedScreen = localStorage.getItem('lastGameScreen');
-            const finalScreen = savedScreen && ['PLAYING', 'STORYBOARD', 'PAUSED', 'GAME_OVER'].includes(savedScreen)
-                ? savedScreen
-                : restoredScreen;
-
-            setPersistedGameState(finalScreen);
+            setPersistedGameState(restoredScreen);
             return data;
         } catch (error) {
             console.error("Fallo al inicializar el juego:", error);
@@ -255,12 +237,6 @@ export const GameProvider = ({ children }) => {
         setCurrentStoryScreen(1);
         setInventoryItems(Items);
         setItineraryUsage({ a: 0, b: 0, c: 0 });
-        localStorage.setItem('itineraryUsage', JSON.stringify({ a: 0, b: 0, c: 0 }));
-        localStorage.removeItem('lastGameScreen');
-        localStorage.removeItem('collectedObjects');
-        localStorage.removeItem('inventoryState');
-        localStorage.removeItem('itineraryThresholds');
-        localStorage.removeItem('winningItinerary');
         setItineraryThresholds({ a: null, b: null, c: null });
         setWinningItinerary(null);
         resetEndingFlow();
@@ -268,6 +244,44 @@ export const GameProvider = ({ children }) => {
     };
 
     const pauseGame = () => setPersistedGameState('PAUSED');
+
+    const saveAndExitToMenu = async () => {
+        if (!token) {
+            setPersistedGameState('START_MENU');
+            return { ok: true };
+        }
+
+        try {
+            const response = await fetch('http://localhost:4000/api/juego/estado', {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    ultimaPantalla: 'PLAYING',
+                    progreso: currentStoryScreen
+                })
+            });
+
+            if (response.status === 401 || response.status === 403) {
+                setLoginNotice('Tu sesión expiró. Inicia sesión de nuevo.');
+                logout();
+                setPersistedGameState('LOGIN');
+                return { ok: false, message: 'Tu sesión expiró. Inicia sesión de nuevo.' };
+            }
+
+            if (!response.ok) {
+                return { ok: false, message: 'No se pudo guardar la partida.' };
+            }
+
+            setPersistedGameState('START_MENU');
+            return { ok: true };
+        } catch (error) {
+            console.error('Error guardando antes de salir:', error);
+            return { ok: false, message: 'No se pudo conectar con el servidor para guardar.' };
+        }
+    };
 
     const resetProgress = async () => {
         setCurrentStoryScreen(1);
@@ -277,43 +291,49 @@ export const GameProvider = ({ children }) => {
         setIsInventoryOpen(false);
 
         setItineraryUsage({ a: 0, b: 0, c: 0 });
-        localStorage.setItem('itineraryUsage', JSON.stringify({ a: 0, b: 0, c: 0 }));
-        localStorage.removeItem('lastGameScreen');
-        localStorage.removeItem('collectedObjects');
-        localStorage.removeItem('inventoryState');
-        localStorage.removeItem('itineraryThresholds');
-        localStorage.removeItem('winningItinerary');
         setItineraryThresholds({ a: null, b: null, c: null });
         setWinningItinerary(null);
         resetEndingFlow();
         setGameState('STORYBOARD');
     };
 
-    const initializeNewRun = async () => {
-        if (!token) return;
+    const initializeNewRun = async (authToken = null) => {
+        const tokenToUse = authToken || token;
+        if (!tokenToUse) return { ok: false, message: 'No hay sesión activa.' };
 
         try {
-            await fetch('http://localhost:4000/api/juego/nueva-partida', {
+            const response = await fetch('http://localhost:4000/api/juego/nueva-partida', {
                 method: 'POST',
                 headers: {
-                    'Authorization': `Bearer ${token}`
+                    'Authorization': `Bearer ${tokenToUse}`
                 }
             });
+
+            if (response.status === 401 || response.status === 403) {
+                setLoginNotice('Tu sesión expiró. Inicia sesión de nuevo.');
+                logout();
+                setPersistedGameState('LOGIN');
+                return { ok: false, message: 'Tu sesión expiró. Inicia sesión de nuevo.' };
+            }
+
+            if (!response.ok) {
+                return { ok: false, message: 'No se pudo reiniciar la partida.' };
+            }
         } catch (error) {
             console.error('Error al reiniciar partida:', error);
+            return { ok: false, message: 'No se pudo conectar para reiniciar la partida.' };
         }
 
+        setInventoryItems(Items);
+        setSelectedItemId(1);
+        setIsMenuOpen(false);
+        setIsInventoryOpen(false);
         setItineraryUsage({ a: 0, b: 0, c: 0 });
-        localStorage.setItem('itineraryUsage', JSON.stringify({ a: 0, b: 0, c: 0 }));
-        localStorage.removeItem('lastGameScreen');
-        localStorage.removeItem('collectedObjects');
-        localStorage.removeItem('inventoryState');
-        localStorage.removeItem('itineraryThresholds');
-        localStorage.removeItem('winningItinerary');
         setItineraryThresholds({ a: null, b: null, c: null });
         setWinningItinerary(null);
         resetEndingFlow();
         setPersistedGameState('STORYBOARD');
+        return { ok: true };
     };
 
     const openMenu = () => {
@@ -351,11 +371,6 @@ export const GameProvider = ({ children }) => {
         const localInventory = persistInventoryState([...inventoryItems, itemReference]);
 
         if (normalizedItemId) {
-            const storedItems = JSON.parse(localStorage.getItem('collectedObjects') || '[]');
-            if (!storedItems.includes(normalizedItemId)) {
-                storedItems.push(normalizedItemId);
-                localStorage.setItem('collectedObjects', JSON.stringify(storedItems));
-            }
             window.dispatchEvent(new CustomEvent("GameObjectRemoved", { detail: normalizedItemId }));
         }
 
@@ -406,10 +421,6 @@ export const GameProvider = ({ children }) => {
 
         persistInventoryState(updatedItems);
 
-        const storedItems = JSON.parse(localStorage.getItem('collectedObjects') || '[]');
-        const filteredItems = storedItems.filter((storedId) => resolveObjectKey(storedId) !== itemKey);
-        localStorage.setItem('collectedObjects', JSON.stringify(filteredItems));
-
         if (itemKey) {
             window.dispatchEvent(new CustomEvent('GameObjectAdded', {
                 detail: {
@@ -431,17 +442,12 @@ export const GameProvider = ({ children }) => {
             };
             setItineraryUsage(nextUsage);
             setItineraryThresholds(nextThresholds);
-            localStorage.setItem('itineraryUsage', JSON.stringify(nextUsage));
-            localStorage.setItem('itineraryThresholds', JSON.stringify(nextThresholds));
 
             const winner = resolveWinningItinerary(nextUsage, nextThresholds);
             if (winner && !endingTriggered) {
                 setWinningItinerary(winner);
-                localStorage.setItem('winningItinerary', winner);
                 setEndingTriggered(true);
-                localStorage.setItem('endingTriggered', 'true');
                 setStoryMode('ending');
-                localStorage.setItem('storyMode', 'ending');
                 setPersistedGameState('ENDING_FADE');
                 setCurrentStoryScreen(1);
             }
@@ -472,7 +478,6 @@ export const GameProvider = ({ children }) => {
                     c: Number(data.itineraryUsage.c) || 0,
                 };
                 setItineraryUsage(nextUsage);
-                localStorage.setItem('itineraryUsage', JSON.stringify(nextUsage));
             }
 
             return true;
@@ -494,14 +499,6 @@ export const GameProvider = ({ children }) => {
         });
 
         persistInventoryState(updatedItems);
-
-        const storedItems = JSON.parse(localStorage.getItem('collectedObjects') || '[]');
-        const filteredItems = storedItems.filter((storedId) => {
-            const storedValue = resolveObjectKey(storedId);
-            const currentValue = itemKey;
-            return storedValue !== currentValue && storedValue !== item.name;
-        });
-        localStorage.setItem('collectedObjects', JSON.stringify(filteredItems));
 
         if (itemKey) {
             window.dispatchEvent(new CustomEvent('GameObjectAdded', { detail: itemKey }));
@@ -537,7 +534,6 @@ export const GameProvider = ({ children }) => {
         setPersistedGameState('STORYBOARD');
         setStoryMode('ending');
         setCurrentStoryScreen(1);
-        localStorage.setItem('storyMode', 'ending');
     };
 
     const completeIntroTransition = () => {
@@ -573,12 +569,13 @@ export const GameProvider = ({ children }) => {
     return (
         <Context.Provider value={{ 
             gameState, setGameState: setPersistedGameState, 
+            loginNotice, setLoginNotice,
             pendingAction, setPendingAction,
             advanceStory, completeEndingTransition, completeIntroTransition, currentStoryScreen, setCurrentStoryScreen,
             inventoryItems, setInventoryItems, itineraryUsage, itineraryThresholds, winningItinerary, storyMode, setStoryMode, endingTriggered,
             isMenuOpen, openMenu, closeMenu,
             isInventoryOpen, openInventory, closeInventory,
-            selectedItemId, setSelectedItemId, startGame, pauseGame, resetProgress, initializeNewRun, saveInventoryItem, useInventoryItem, dropInventoryItem, loading, setLoading, loadGameData
+            selectedItemId, setSelectedItemId, startGame, pauseGame, saveAndExitToMenu, resetProgress, initializeNewRun, saveInventoryItem, useInventoryItem, dropInventoryItem, loading, setLoading, loadGameData
         }}>
             {children}
         </Context.Provider>

@@ -1,8 +1,9 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { Context } from '../../context/Context.jsx'; 
 
 const ItemModal = ({ item, onClose, onUse, onDrop, onSave }) => {
     const { saveInventoryItem } = useContext(Context);
+    const [assetWarning, setAssetWarning] = useState('');
 
     if (!item) return null;
 
@@ -29,19 +30,31 @@ const ItemModal = ({ item, onClose, onUse, onDrop, onSave }) => {
         }
     };
 
+    const handleModalBgError = (event) => {
+        event.currentTarget.onerror = null;
+        event.currentTarget.src = '/UI/menu.png';
+        setAssetWarning('No se pudo cargar el fondo del objeto.');
+    };
+
+    const handleItemImageError = (event) => {
+        event.currentTarget.onerror = null;
+        event.currentTarget.src = '/UI/shadow.png';
+        setAssetWarning('No se pudo cargar la imagen del objeto.');
+    };
+
     return (
         <div className="item-modal">
             <div className="item-modal__container">
                 <button className="modal__close-btn" onClick={onClose}>
                     <img src="/UI/x.png" alt="Close" />
                 </button>
-                <img className="item-modal__bg" src="/UI/Overlay-Item.png" alt="" />
+                <img className="item-modal__bg" src="/UI/Overlay-Item.png" alt="" onError={handleModalBgError} />
                 
                 <div className="item-modal__content">
                     <h2 className="item-modal__title">{item.name}</h2>
                     
                     <div className="item-modal__image-wrapper">
-                        <img src={item.src} alt={item.name} className="item-modal__image" />
+                        <img src={item.src} alt={item.name} className="item-modal__image" onError={handleItemImageError} />
                     </div>
                     
                     <p className="item-modal__desc">{item.description}</p>
@@ -58,6 +71,7 @@ const ItemModal = ({ item, onClose, onUse, onDrop, onSave }) => {
                             <button className="pixel-btn__secondary item-modal__btn" onClick={onClose}>dejar</button>
                         )}
                     </div>
+                    {assetWarning && <p className="asset-warning">{assetWarning}</p>}
                 </div>
             </div>
         </div>

@@ -1,7 +1,7 @@
 export class Sprite {
     constructor(config){
 
-        // 1. Carga la imagen del personaje
+        // Carga la imagen del personaje
         this.image = new Image();
         this.image.src = config.src;
         this.image.onload = () => { 
@@ -9,14 +9,14 @@ export class Sprite {
         }
         this.image.src = config.src;
 
-        // 1. DIMENSIONES DINÁMICAS 
+        //DIMENSIONES
         this.cutX = config.cutX || 23; 
         this.cutY = config.cutY || 32; 
 
         this.offsetX = config.offsetX || 0;
         this.offsetY = config.offsetY || 0;
 
-        // 2. SOMBRAS OPCIONALES 
+        //SOMBRAS
         this.shadow = new Image();
         this.useShadow = config.useShadow !== undefined ? config.useShadow : true;
         
@@ -61,13 +61,12 @@ export class Sprite {
     }
 
     updateAnimationProgress(){
-        // decrece el contador de progreso de la animación
+  
         if(this.animationFrameProgress > 0){
             this.animationFrameProgress -= 1;
             return;
         }
 
-        // resetear el contador de progreso de la animación
         this.animationFrameProgress = this.animationFrameLimit;
         this.currentAnimationFrame += 1;
 
@@ -91,17 +90,15 @@ export class Sprite {
             "walk-right":{ x: +1},
         };
 
-        // Obtenemos el offset actual 
+
         const currentOffset = offsets[this.currentAnimation] || { x: -8, y: -16 };
 
-        // 1. Dibujar sombra del suelo (modo multiplicar)
         if (this.isShadowLoaded && this.useShadow) {
             ctx.globalCompositeOperation = "multiply"; 
             ctx.drawImage(this.shadow, x - 3, y - 23);
             ctx.globalCompositeOperation = "source-over";
         }
 
-        // 2. Comprobar si debemos aplicar el efecto visual (Hover genérico)
         const showGenericHover = this.gameObject.isHovered && !this.gameObject.disableOriginalHover;
 
         if (showGenericHover) {
@@ -113,7 +110,6 @@ export class Sprite {
 
         const [frameX, frameY] = this.frame;
 
-        // 3. Dibujar personaje u objeto
         this.isLoaded && ctx.drawImage(this.image, 
             frameX * this.cutX, frameY * this.cutY, 
             this.cutX, this.cutY,                   
@@ -121,7 +117,6 @@ export class Sprite {
             this.cutX, this.cutY                    
         );
 
-        // 4. Restaurar el canvas SOLO si aplicamos el efecto
         if (showGenericHover) {
             ctx.restore(); 
         }
