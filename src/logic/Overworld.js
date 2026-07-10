@@ -1,5 +1,5 @@
 import { GameObject } from "./GameObject.js";
-import { OverworldMap, OverworldMaps } from "./OverWorldMap.js";
+import { OverworldMap, OverworldMaps } from "./OverworldMap.js";
 import { DirectionInput } from "./DirectionInput.js";
 import { utils } from "./utils.js"; 
 import { InteractionBubble } from "./InteractionBubble.js";
