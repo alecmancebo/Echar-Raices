@@ -60,11 +60,15 @@ const GameContainer = () => {
   const { gameState, openInventory, isMenuOpen } = useContext(Context);
   const [selectedItem, setSelectedItem] = useState(null);
 
-  const restoreObjectInWorld = (objectId) => {
+  const restoreObjectInWorld = (objectPayload) => {
     const map = overworldRef.current?.map;
-    if (!map?.gameObjects || !objectId) return false;
+    if (!map?.gameObjects || !objectPayload) return false;
 
-    const normalizedId = normalizeObjectKey(objectId);
+    const payloadId = typeof objectPayload === 'string' ? objectPayload : objectPayload.id;
+    const overrideSrc = typeof objectPayload === 'object' ? objectPayload.src : null;
+    const isUsedVersion = typeof objectPayload === 'object' ? Boolean(objectPayload.isUsed) : false;
+
+    const normalizedId = normalizeObjectKey(payloadId);
     if (!normalizedId) return false;
 
     if (map.gameObjects[normalizedId]) return true;
@@ -74,6 +78,8 @@ const GameContainer = () => {
 
     const restoredObject = new GameObject({
       ...layout,
+      src: overrideSrc || layout.src,
+      isInteractive: isUsedVersion ? false : layout.isInteractive,
       id: normalizedId
     });
 
@@ -126,9 +132,9 @@ const GameContainer = () => {
     };
 
     const handleObjectAdded = (e) => {
-      const objectId = e.detail;
-      if (!objectId) return;
-      restoreObjectInWorld(objectId);
+      const payload = e.detail;
+      if (!payload) return;
+      restoreObjectInWorld(payload);
     };
 
     window.addEventListener("GameObjectRemoved", handleObjectRemoved);

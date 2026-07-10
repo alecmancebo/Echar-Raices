@@ -6,18 +6,18 @@ export const Context = createContext();
 const Items = [];
 
 const ITEM_DATABASE = {
-    botas: { id: 'botas', name: 'BOTAS', src: '/Objetos/botas.png', description: 'Es cierto, estoy descalce. Debería ponérmelas, siento cómo la tierra me llama a través de los dedos de los pies.', itinerary: 'c' },
-    pajaro: { id: 'pajaro', name: 'PÁJARO', src: '/Objetos/pajarito.png', description: 'Se ha apoyado un gorrión en mi mano y me siento bendecide. Cuando escucho su canto me lleno de alegría.', itinerary: 'a' },
+    botas: { id: 'botas', name: 'BOTAS', src: '/Objetos/botas.png', usedSrc: '/Objetos/botas_usadas.png', description: 'Es cierto, estoy descalce. Debería ponérmelas, siento cómo la tierra me llama a través de los dedos de los pies.', itinerary: 'c' },
+    pajaro: { id: 'pajaro', name: 'PÁJARO', src: '/Objetos/pajarito.png', usedSrc: '/Objetos/pajarito_usado.png', description: 'Se ha apoyado un gorrión en mi mano y me siento bendecide. Cuando escucho su canto me lleno de alegría.', itinerary: 'a' },
     sal: { id: 'sal', name: 'SALERO', src: '/Objetos/salero.png', description: 'La sal es mala para las plantas, ¿verdad? Voy a tragarme un poco y lanzar un puñado por encima del hombro, por si acaso. Nunca viene mal protegerse de la mala suerte.', itinerary: 'c' },
-    pociones: { id: 'pociones', name: 'POCIONES', src: '/Objetos/pociones.png', description: '¡Las pociones curativas que me regaló Rosaura! Hay una llamada “recordar quien eras” que parece perfecta para esta situación.', itinerary: 'c' },
-    regadera: { id: 'regadera', name: 'REGADERA', src: '/Objetos/regadera.png', description: 'Me muero de calor. Me apetece tanto echarme un poco de agua por encima para refrescarme, seguro que me siento mejor.', itinerary: 'a' },
-    tijeras: { id: 'tijeras', name: 'TIJERAS', src: '/Objetos/tijeras.png', description: 'Perfecto, así puedo cortar todas estas raíces y hojas que no paran de salir a través de mi piel.', itinerary: 'b' },
-    rana: { id: 'rana', name: 'RANA', src: '/Objetos/rana.png', description: '¿Intento darle un beso? No pierdo nada por probar y en las historias siempre funciona.', itinerary: 'b' },
-    rastrillo: { id: 'rastrillo', name: 'RASTRILLO', src: '/Objetos/rastrillo.png', description: 'Está todo el jardín lleno de hojas caídas. Si las recogiera, podría tumbarme un rato sobre ellas. Parecen tan acogedoras.', itinerary: 'a' },
-    fuego: { id: 'fuego', name: 'FUEGO', src: '/Objetos/fuego.png', description: 'Es una medida un poco drástica, pero quizá si provoco un pequeño incendio… Uno pequeñito, solo dentro de mí…', itinerary: 'b' },
-    herbicida: { id: 'herbicida', name: 'HERBICIDA', src: '/Objetos/herbicida.png', description: 'Justo lo que necesito para acabar con este extraño proceso. Tan solo tengo que rociarme un poco.', itinerary: 'c' },
-    maceta: { id: 'maceta', name: 'MACETA', src: '/Objetos/maceta.png', description: 'Estas pobres No-me-olvides necesitan tierra donde crecer. Debería pararme un momento a transplantarlas.', itinerary: 'a' },
-    sombrilla: { id: 'sombrilla', name: 'SOMBRILLA', src: '/Objetos/sombrilla.png', description: 'A las plantas les gusta el sol, podría ayudar ocultarme un poco de él.', itinerary: 'b' },
+    pociones: { id: 'pociones', name: 'POCIONES', src: '/Objetos/pociones.png', usedSrc: '/Objetos/pociones_usadas.png', description: '¡Las pociones curativas que me regaló Rosaura! Hay una llamada “recordar quien eras” que parece perfecta para esta situación.', itinerary: 'c' },
+    regadera: { id: 'regadera', name: 'REGADERA', src: '/Objetos/regadera.png', usedSrc: '/Objetos/regadera_usada.png', description: 'Me muero de calor. Me apetece tanto echarme un poco de agua por encima para refrescarme, seguro que me siento mejor.', itinerary: 'a' },
+    tijeras: { id: 'tijeras', name: 'TIJERAS', src: '/Objetos/tijeras.png', usedSrc: '/Objetos/tijeras_usadas.png', description: 'Perfecto, así puedo cortar todas estas raíces y hojas que no paran de salir a través de mi piel.', itinerary: 'b' },
+    rana: { id: 'rana', name: 'RANA', src: '/Objetos/rana.png', usedSrc: '/Objetos/rana_usada.png', description: '¿Intento darle un beso? No pierdo nada por probar y en las historias siempre funciona.', itinerary: 'b' },
+    rastrillo: { id: 'rastrillo', name: 'RASTRILLO', src: '/Objetos/rastrillo.png', usedSrc: '/Objetos/rastrillo_usado.png', description: 'Está todo el jardín lleno de hojas caídas. Si las recogiera, podría tumbarme un rato sobre ellas. Parecen tan acogedoras.', itinerary: 'a' },
+    fuego: { id: 'fuego', name: 'FUEGO', src: '/Objetos/fuego.png', usedSrc: '/Objetos/fuego_usado.png', description: 'Es una medida un poco drástica, pero quizá si provoco un pequeño incendio… Uno pequeñito, solo dentro de mí…', itinerary: 'b' },
+    herbicida: { id: 'herbicida', name: 'HERBICIDA', src: '/Objetos/herbicida.png', usedSrc: '/Objetos/herbicida_usado.png', description: 'Justo lo que necesito para acabar con este extraño proceso. Tan solo tengo que rociarme un poco.', itinerary: 'c' },
+    maceta: { id: 'maceta', name: 'MACETA', src: '/Objetos/maceta.png', usedSrc: '/Objetos/maceta_usada.png', description: 'Estas pobres No-me-olvides necesitan tierra donde crecer. Debería pararme un momento a transplantarlas.', itinerary: 'a' },
+    sombrilla: { id: 'sombrilla', name: 'SOMBRILLA', src: '/Objetos/sombrilla.png', usedSrc: '/Objetos/sombrilla_usada.png', description: 'A las plantas les gusta el sol, podría ayudar ocultarme un poco de él.', itinerary: 'b' },
 };
 
 const normalizeText = (value) => value?.toString().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
@@ -48,14 +48,16 @@ const normalizeInventoryItems = (payload) => {
                 const candidateId = entry.id || entry.itemId || entry.item || entry.name;
                 const candidateKey = normalizeText(candidateId);
                 const fromDatabase = ITEM_DATABASE[candidateKey];
+                const incomingIsUsed = entry.isUsed !== undefined ? Boolean(entry.isUsed) : false;
 
                 if (fromDatabase) {
+                    const mergedUsedSrc = entry.usedSrc || fromDatabase.usedSrc;
                     return {
                         ...fromDatabase,
                         ...(entry.src ? { src: entry.src } : {}),
                         ...(entry.icon ? { icon: entry.icon } : {}),
-                        ...(entry.usedSrc ? { usedSrc: entry.usedSrc } : {}),
-                        ...(entry.isUsed !== undefined ? { isUsed: Boolean(entry.isUsed) } : {}),
+                        ...(mergedUsedSrc ? { usedSrc: mergedUsedSrc } : {}),
+                        ...(entry.isUsed !== undefined ? { isUsed: incomingIsUsed } : {}),
                         ...(entry.itinerary ? { itinerary: entry.itinerary } : {})
                     };
                 }
@@ -63,12 +65,13 @@ const normalizeInventoryItems = (payload) => {
                 if (entry.name) {
                     const byName = Object.values(ITEM_DATABASE).find((item) => normalizeText(item.name) === normalizeText(entry.name));
                     if (byName) {
+                        const mergedUsedSrc = entry.usedSrc || byName.usedSrc;
                         return {
                             ...byName,
                             ...(entry.src ? { src: entry.src } : {}),
                             ...(entry.icon ? { icon: entry.icon } : {}),
-                            ...(entry.usedSrc ? { usedSrc: entry.usedSrc } : {}),
-                            ...(entry.isUsed !== undefined ? { isUsed: Boolean(entry.isUsed) } : {}),
+                            ...(mergedUsedSrc ? { usedSrc: mergedUsedSrc } : {}),
+                            ...(entry.isUsed !== undefined ? { isUsed: incomingIsUsed } : {}),
                             ...(entry.itinerary ? { itinerary: entry.itinerary } : {})
                         };
                     }
@@ -76,6 +79,14 @@ const normalizeInventoryItems = (payload) => {
             }
 
             return null;
+        })
+        .map((item) => {
+            if (!item) return item;
+            if (!item.isUsed) return item;
+            return {
+                ...item,
+                src: item.usedSrc || item.src || '/UI/shadow.png'
+            };
         })
         .filter(Boolean);
 };
@@ -388,8 +399,31 @@ export const GameProvider = ({ children }) => {
                 src: inventoryItem.usedSrc || inventoryItem.src || '/UI/shadow.png'
             };
         });
+        const usedItem = updatedItems.find((inventoryItem) => {
+            const currentKey = resolveObjectKey(inventoryItem?.id || inventoryItem?.name);
+            return currentKey === itemKey || inventoryItem?.id === item.id || inventoryItem?.name === item.name;
+        });
+        const remainingItems = updatedItems.filter((inventoryItem) => {
+            const currentKey = resolveObjectKey(inventoryItem?.id || inventoryItem?.name);
+            const sameItem = currentKey === itemKey || inventoryItem?.id === item.id || inventoryItem?.name === item.name;
+            return !sameItem;
+        });
 
-        persistInventoryState(updatedItems);
+        persistInventoryState(remainingItems);
+
+        const storedItems = JSON.parse(localStorage.getItem('collectedObjects') || '[]');
+        const filteredItems = storedItems.filter((storedId) => resolveObjectKey(storedId) !== itemKey);
+        localStorage.setItem('collectedObjects', JSON.stringify(filteredItems));
+
+        if (itemKey) {
+            window.dispatchEvent(new CustomEvent('GameObjectAdded', {
+                detail: {
+                    id: itemKey,
+                    src: usedItem?.src || usedItem?.usedSrc || item?.usedSrc || item?.src || '/UI/shadow.png',
+                    isUsed: true
+                }
+            }));
+        }
 
         if (itinerary) {
             const nextUsage = {
