@@ -454,6 +454,18 @@ canvas {
 
 }
 
+.login__error {
+    margin: 2px 0 0;
+    width: 95%;
+    text-align: left;
+    font-family: var(--font-main);
+    font-size: var(--font-size-texto-xl);
+    color: #d12c2c;
+    line-height: 1;
+    text-align: center;
+
+}
+
 
 /* MARK: MODAL OVERLAY */
 .modal-overlay {
@@ -1114,6 +1126,18 @@ canvas {
     font-size: var(--font-size-texto);
 }
 
+.login__error {
+    margin: 2px 0 0;
+    width: 95%;
+    text-align: left;
+    font-family: var(--font-main);
+    font-size: var(--font-size-texto-t);
+    color: #d12c2c;
+    line-height: 1;
+    text-align: center;
+}
+
+
 /*MARK: STORYBOARD*/
 .storyboard__text-box p {
     font-family: var(--font-main);
@@ -1306,6 +1330,16 @@ canvas {
 .login__btn {
     padding: 0px;
     font-size: var(--font-size-texto-t);
+}
+
+.login__error {
+    width: 98%;
+    text-align: left;
+    font-family: var(--font-main);
+    font-size: var(--font-size-texto);
+    color: #d12c2c;
+    text-align: center;
+
 }
 
 /*MARK: MODAL MENU*/

@@ -9,15 +9,26 @@ const Login = () => {
 
     const [usuario, setUsuario] = useState('');
     const [password, setPassword] = useState('');
-    const [error, setError] = useState(false);
+    const [error, setError] = useState('');
 
     const handleEnter = async (e) => {
         e.preventDefault();
+
+        const usuarioLimpio = usuario.trim();
+        const passwordLimpia = password.trim();
+
+        if (!usuarioLimpio || !passwordLimpia) {
+            setError('Debes completar usuario y contraseña.');
+            return;
+        }
+
+        setError('');
+
         try {
             const respuesta = await fetch("http://localhost:4000/api/login", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ usuario, password })
+                body: JSON.stringify({ usuario: usuarioLimpio, password: passwordLimpia })
             });
 
             if (!respuesta.ok) {
@@ -36,7 +47,7 @@ const Login = () => {
         } catch (err) {
 
             console.error("Error en login:", err);
-            setError(true);
+            setError('Usuario o contraseña incorrectos.');
         }
     };
 
@@ -54,14 +65,20 @@ const Login = () => {
                 <form className="login__form" onSubmit={handleEnter}>
                     <div className="login__field">
                         <label>Usuario</label>
-                        <input className="login__input" type="text" placeholder="Nombre..." required value={usuario} 
-                        onChange={(e) => setUsuario(e.target.value)}/>
+                        <input className="login__input" type="text" placeholder="Nombre..." value={usuario}
+                        onChange={(e) => {
+                            setUsuario(e.target.value);
+                            if (error) setError('');
+                        }}/>
                     </div>
 
                     <div className="login__field">
                         <label>Contraseña</label>
-                        <input className="login__input" type="password" placeholder="******" required value={password} 
-                        onChange={(e) => setPassword(e.target.value)}/>
+                        <input className="login__input" type="password" placeholder="******" value={password}
+                        onChange={(e) => {
+                            setPassword(e.target.value);
+                            if (error) setError('');
+                        }}/>
                     </div>
 
                     <div className="login__actions">
@@ -69,7 +86,7 @@ const Login = () => {
                             entrar
                         </button>
                     </div>
-                    {error && <p style={{color: 'red'}}>Usuario o contraseña incorrectos</p>}
+                    {error && <p className="login__error">{error}</p>}
                 </form>
             </div>
         </div>
