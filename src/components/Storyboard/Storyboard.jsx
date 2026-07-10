@@ -18,10 +18,10 @@ const introStoryData = {
 
 const endingStoryData = {
     a: {
-        1: { gif: "/final_A_01.png", text: "Una sensación de paz te inunda cuando abrazas la transformación." },
-        2: { gif: "/final_A_01.png", text: "En el fondo, nunca le has tenido miedo al cambio. Lo deseabas." },
-        3: { gif: "/final_A_01.png", text: "El sol te calienta, el viento mece tus hojas, los pájaros se apoyan en tus ramas y estás en paz." },
-        4: { gif: "/final_A_01.png", text: "Tu existencia por siempre conectada con todo aquello que amas. No necesitas nada más." }
+        1: { gif: "/Narrativa/final_A_01.png", text: "Una sensación de paz te inunda cuando abrazas la transformación." },
+        2: { gif: "/Narrativa/final_A_01.png", text: "En el fondo, nunca le has tenido miedo al cambio. Lo deseabas." },
+        3: { gif: "/Narrativa/final_A_01.png", text: "El sol te calienta, el viento mece tus hojas, los pájaros se apoyan en tus ramas y estás en paz." },
+        4: { gif: "/Narrativa/final_A_01.png", text: "Tu existencia por siempre conectada con todo aquello que amas. No necesitas nada más." }
     },
     b: {
         1: { gif: "/final_B_01.png", text: "Nada funciona." },

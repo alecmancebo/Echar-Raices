@@ -1,6 +1,5 @@
 import { useContext } from 'react';
 import { Context } from '../../context/Context.jsx';
-import { AuthContext } from '../../context/AuthContext.jsx';
 
 const routeLabels = {
   a: 'A',
@@ -9,16 +8,10 @@ const routeLabels = {
 };
 
 const GameOver = () => {
-  const { initializeNewRun, startGame, winningItinerary } = useContext(Context);
-  const { token } = useContext(AuthContext);
+  const { setGameState, winningItinerary } = useContext(Context);
 
-  const handleReplay = async () => {
-    if (token) {
-      await initializeNewRun();
-      return;
-    }
-
-    startGame();
+  const handleBackToStart = () => {
+    setGameState('START_MENU');
   };
 
   const routeLabel = routeLabels[winningItinerary] || '?';
@@ -29,8 +22,8 @@ const GameOver = () => {
         <p className="game-over__kicker">fin de ruta</p>
         <h1 className="game-over__title">Game Over</h1>
         <p className="game-over__summary">Has completado el final del itinerario {routeLabel}.</p>
-        <button type="button" className="pixel-btn game-over__action" onClick={handleReplay}>
-          volver a jugar
+        <button type="button" className="pixel-btn game-over__action" onClick={handleBackToStart}>
+          volver a Inicio
         </button>
       </div>
     </section>

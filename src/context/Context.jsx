@@ -127,7 +127,7 @@ export const GameProvider = ({ children }) => {
     const setPersistedGameState = (nextState) => {
         setGameState(nextState);
 
-        if (nextState === 'PLAYING' || nextState === 'STORYBOARD' || nextState === 'PAUSED') {
+        if (nextState === 'PLAYING' || nextState === 'STORYBOARD' || nextState === 'PAUSED' || nextState === 'GAME_OVER') {
             localStorage.setItem('lastGameScreen', nextState);
         }
     };
@@ -236,7 +236,7 @@ export const GameProvider = ({ children }) => {
             setCurrentStoryScreen(data.progreso || 1);
             const restoredScreen = data.ultimaPantalla || data.lastScreen || (data.narrativaCompletada ? 'PLAYING' : 'STORYBOARD');
             const savedScreen = localStorage.getItem('lastGameScreen');
-            const finalScreen = savedScreen && ['PLAYING', 'STORYBOARD', 'PAUSED'].includes(savedScreen)
+            const finalScreen = savedScreen && ['PLAYING', 'STORYBOARD', 'PAUSED', 'GAME_OVER'].includes(savedScreen)
                 ? savedScreen
                 : restoredScreen;
 
