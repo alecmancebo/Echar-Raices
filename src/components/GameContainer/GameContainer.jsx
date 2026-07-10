@@ -57,7 +57,7 @@ const resolveInteractiveItem = (value) => {
 const GameContainer = () => {
   const containerRef = useRef(null);
   const overworldRef = useRef(null); 
-  const { gameState, openInventory, isMenuOpen } = useContext(Context);
+  const { gameState, openInventory, isMenuOpen, isInventoryOpen } = useContext(Context);
   const [selectedItem, setSelectedItem] = useState(null);
   const [bubbleOverlay, setBubbleOverlay] = useState({ visible: false, xPercent: 50, yPercent: 50, text: '¿Soy yo?' });
 
@@ -168,9 +168,9 @@ const GameContainer = () => {
 
   useEffect(() => {
     if (overworldRef.current) {
-        overworldRef.current.isPaused = isMenuOpen || selectedItem !== null;
+        overworldRef.current.isPaused = isMenuOpen || isInventoryOpen || selectedItem !== null;
     }
-  }, [isMenuOpen, selectedItem]);
+  }, [isMenuOpen, isInventoryOpen, selectedItem]);
 
   return (
       <div className="game-container" ref={containerRef}>

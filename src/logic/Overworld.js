@@ -14,7 +14,7 @@ export class Overworld {
     this.isPaused = false; 
     this.bubbleVisible = false;
 
-    // Instanciamos el sistema de bocadillos
+    //sistema de bocadillos
     this.interactionBubble = new InteractionBubble({
       src: "/UI/bocadillo.png" 
     });
@@ -28,30 +28,29 @@ export class Overworld {
         const player = this.map.gameObjects["character"];
         let objectNearPlayer = null;
 
-        // 1. Actualizar posiciones de los objetos
+        // Actualizar posiciones de los objetos
         Object.values(this.map.gameObjects).forEach(object => {
           object.update({
             arrow: this.directionInput.direction,
             map: this.map,
           });
 
-          // Si el objeto sabe que estás cerca, nos guardamos ese objeto.
           if (object.isInteractive && object.isHovered && object.useBubble && object.id !== "character") {
             objectNearPlayer = object;
           }
         });
 
-        // 3. Dibujar TODO el mapa
+        //Dibujar el mapa
         this.map.drawMapImage(this.ctx);
 
-        // 4. Dibujar objetos ordenados por el eje Y
+        // Dibujar objetos ordenados por el eje Y
         Object.values(this.map.gameObjects).sort((a,b) => {
           return a.y - b.y;
         }).forEach(object => {
           object.sprite.draw(this.ctx, player);
         });
 
-        // 5. Dibujar bocadillo si hay un objeto interactivo cerca
+        // Dibujar bocadillo si hay objeto interactivo cerca
         if (objectNearPlayer && player) {
           this.bubbleVisible = true;
           this.interactionBubble.draw(
@@ -90,13 +89,16 @@ export class Overworld {
 
       const match = Object.values(this.map.gameObjects).find(object => {
         if (object.isInteractive && object.id !== "character") {
+          if (typeof object.isPlayerNear === "function") {
+            return object.isPlayerNear(player.x, player.y);
+          }
+
           const dist = Math.sqrt(Math.pow(object.x - player.x, 2) + Math.pow(object.y - player.y, 2));
           return dist < 24;
         }
         return false;
       });
 
-      // Si hay match, disparamos el evento a React.
       if (match) {
         document.dispatchEvent(new CustomEvent("ObjectInteraction", { detail: match.id }));
       }

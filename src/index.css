@@ -563,7 +563,7 @@ canvas {
     font-size: var(--font-size-encabezado-xl);
     color: var(--color-medio);
     padding: 0;
-    margin-bottom: 8%; 
+    margin-bottom: 6%; 
 }
 
 .controls__back-btn:hover {
@@ -578,34 +578,31 @@ canvas {
 .controls__list {
     display: flex;
     flex-direction: column;
+    list-style: disc;
+    list-style-position: inside;
     gap: var(--gap-sm);
     width: 100%;
     margin-top: 10px;
 }
 
 .controls__item {
-    display: flex;
-    justify-content: space-between; 
-    align-items: center;
+    display: list-item;
     width: 100%;
+    text-align: center;
+}
+
+.controls__item p {
+    display: inline;
+    margin: 0;
 }
 
 .controls p{
     font-family: var(--font-main);
     font-size: var(--font-size-texto-xl);
     color: var(--color-oscuro);
-    text-align: left;
-    max-width: 65%;
+    text-align: center;
+    max-width: 100%;
 }
-
-.controls__gif {
-    width: 30%;
-    height: 40px;
-    background-color: #d1d1d1; 
-    flex-shrink: 0; 
-    object-fit: contain;
-}
-
 
 /* MARK: CREDITS */
 .credits {
@@ -757,7 +754,7 @@ canvas {
     overflow: hidden;
     position: relative;
     aspect-ratio: 200 / 150;
-    width: min(96%, calc(96dvh * (384 / 208)));
+    width: min(96%, calc(96dvh * (200 / 150)));
     max-height: 96dvh;
     background-color: var(--color-fondo);
 }
@@ -787,18 +784,19 @@ canvas {
     position: relative;
     z-index: 0;
     width: 100%;
-    height: 100%; 
+    height: 100%;
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .storyboard__gif {
-    max-height: 100%;
-    max-width: 100%;
-    object-fit: contain;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     image-rendering: pixelated;
-    margin: 5px;
+    margin: 0;
     z-index: 0;
 }
 
@@ -896,16 +894,30 @@ canvas {
 }
 
 .inventory__reflection-box {
+    position: relative;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: var(--spacing-sm);
+    overflow: hidden;
 }
 
 .inventory__reflection-icon {
     max-width: 100%;
     object-fit: contain;
+    z-index: 2;
+}
+
+.inventory__reflection-underlay {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 85%;
+    height: auto;
+    z-index: 1;
+    pointer-events: none;
+    image-rendering: pixelated;
 }
 
 .inventory__text {
@@ -1298,6 +1310,9 @@ canvas {
 
 
 /* MARK: CONTROLS*/
+.controls__list{
+    gap: 0px;
+}
 
 .controls__back-btn {
     font-size: var(--font-size-encabezado-t);

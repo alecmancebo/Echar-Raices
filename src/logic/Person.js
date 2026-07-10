@@ -50,6 +50,8 @@ export class Person extends GameObject {
                 return;
             }
 
+            state.map.moveWall(this.x, this.y, this.direction);
+
             //Ready to walk
             this.movementProgressRemaining = 16;
             }

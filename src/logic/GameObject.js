@@ -1,4 +1,6 @@
-import { Sprite } from "./Sprite.js"; 
+import { Sprite } from "./Sprite.js";
+import { utils } from "./utils.js";
+
 export class GameObject {
     constructor(config){
         this.id = config?.id || null;
@@ -21,6 +23,32 @@ export class GameObject {
         this.activeSrc = config.activeSrc || null;
         this.disableOriginalHover = config.disableOriginalHover || false;
         this.useBubble = config.useBubble || false;
+        this.interactionTiles = Array.isArray(config.interactionTiles) ? config.interactionTiles : null;
+    }
+
+    getInteractionPoints() {
+        if (Array.isArray(this.interactionTiles) && this.interactionTiles.length > 0) {
+            return this.interactionTiles
+                .filter((tile) => Array.isArray(tile) && tile.length === 2)
+                .map(([gridX, gridY]) => ({
+                    x: utils.withGrid(gridX),
+                    y: utils.withGrid(gridY),
+                }));
+        }
+
+        return [{ x: this.x, y: this.y }];
+    }
+
+    getInteractionRangePx() {
+        const footprint = Math.max(this.sprite?.cutX || 16, this.sprite?.cutY || 16);
+        return Math.max(24, Math.round(footprint * 0.65));
+    }
+
+    isPlayerNear(heroX, heroY, rangePx = this.getInteractionRangePx()) {
+        return this.getInteractionPoints().some((point) => {
+            const distance = Math.hypot(point.x - heroX, point.y - heroY);
+            return distance <= rangePx;
+        });
     }
 
     mount(map) {
@@ -31,12 +59,8 @@ export class GameObject {
     update(state){
         if (this.isInteractive && state.map.gameObjects.character) {
             const hero = state.map.gameObjects.character;
-            const diffX = Math.abs(hero.x - this.x);
-            const diffY = Math.abs(hero.y - this.y);
-            
-            // Si el jugador está en la misma casilla o a 16 píxeles de distancia
             const wasHovered = this.isHovered;
-            this.isHovered = (diffX <= 16 && diffY <= 16);
+            this.isHovered = this.isPlayerNear(hero.x, hero.y);
 
             // Cambia la imagen si el estado ha cambiado
             if (this.isHovered !== wasHovered && this.normalSrc && this.activeSrc) {

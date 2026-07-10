@@ -61,6 +61,7 @@ const Inventory = () => {
                         
                         <div className="inventory__reflection-box">
                             <img src="/UI/pozo.png" alt="Reflejo" className="inventory__reflection-icon pixelated" />
+                            <img src="/UI/retrato_espejo.png" alt="" className="inventory__reflection-underlay" />
                         </div>
                         
                         <p className="inventory__text">

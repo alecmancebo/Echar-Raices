@@ -2,16 +2,16 @@ import { useContext, useEffect } from 'react';
 import { Context } from '../../context/Context.jsx'; 
 
 const introStoryData = {
-    1: { gif: "/Narrativa/inicio_01.png", text: "" },
-    2: { gif: "/Narrativa/inicio_02.png", text: "" },
-    3: { gif: "/Narrativa/inicio_03.png", text: "" },
-    4: { gif: "/Narrativa/inicio_04.png", text: "" },
-    5: { gif: "/Narrativa/inicio_05.png", text: "" },
-    6: { gif: "/Narrativa/inicio_06.png", text: "" },
-    7: { gif: "/Narrativa/inicio_07.png", text: "" },
-    8: { gif: "/Narrativa/inicio_08.png", text: "" },
-    9: { gif: "/Narrativa/inicio_09.png", text: "" },
-    10: { gif: "/Narrativa/texto_inicio_01.png", text: "Hmmm…\nQué raro.\nAlgo se mueve dentro de mí." },
+    1: { gif: "/Narrativa/inicio_01.png", text: "Hmmm…\nQué raro." },
+    2: { gif: "/Narrativa/inicio_02.png", text: "Hmmm…\nQué raro." },
+    3: { gif: "/Narrativa/inicio_03.png", text: "Hmmm…\nQué raro." },
+    4: { gif: "/Narrativa/inicio_04.png", text: "Hmmm…\nQué raro." },
+    5: { gif: "/Narrativa/inicio_05.png", text: "Hmmm…\nQué raro." },
+    6: { gif: "/Narrativa/inicio_06.png", text: "Hmmm…\nQué raro." },
+    7: { gif: "/Narrativa/inicio_07.png", text: "Hmmm…\nQué raro." },
+    8: { gif: "/Narrativa/inicio_08.png", text: "Hmmm…\nQué raro." },
+    9: { gif: "/Narrativa/inicio_09.png", text: "Hmmm…\nQué raro." },
+    10: { gif: "/Narrativa/texto_inicio_01.png", text: "Algo se mueve dentro de mí." },
     11: { gif: "/Narrativa/texto_inicio_02.png", text: "Esto no debería estar ahí." },
     12: { gif: "/Narrativa/texto_inicio_03.png", text: "Sigue creciendo.\nQuizá debería hacer algo al respecto." }
 };
@@ -24,15 +24,15 @@ const endingStoryData = {
         4: { gif: "/Narrativa/final_A_01.png", text: "Tu existencia por siempre conectada con todo aquello que amas. No necesitas nada más." }
     },
     b: {
-        1: { gif: "/final_B_01.png", text: "Nada funciona." },
-        2: { gif: "/final_B_01.png", text: "No puedes evitar cómo esta retorcida metamorfosis poco a poco consume cada centímetro de tu cuerpo y mente hasta que ya no puedes moverte ni gritar." },
-        3: { gif: "/final_B_01.png", text: "Final B: Las hormigas trepan por tu corteza y la lluvia cae sobre tus hojas, pero tú ya no piensas ni sientes nada." }
+        1: { gif: "/Narrativa/final_B_01.png", text: "Nada funciona." },
+        2: { gif: "/Narrativa/final_B_01.png", text: "No puedes evitar cómo esta retorcida metamorfosis poco a poco consume cada centímetro de tu cuerpo y mente hasta que ya no puedes moverte ni gritar." },
+        3: { gif: "/Narrativa/final_B_01.png", text: "Final B: Las hormigas trepan por tu corteza y la lluvia cae sobre tus hojas, pero tú ya no piensas ni sientes nada." }
     },
     c: {
-        1: { gif: "/final_C_01.png", text: "Lo has conseguido." },
-        2: { gif: "/final_C_01.png", text: "Notas la sangre fluir por tus venas y tu piel es más suave ahora que han dejado de crecer hojas en ella." },
-        3: { gif: "/final_C_01.png", text: "Todo ha vuelto a la normalidad." },
-        4: { gif: "/final_C_01.png", text: "El alivio por seguir conservando tu cuerpo es mayor que la curiosidad de saber qué habría pasado si hubieras dejado que la metamorfosis siguiera su curso." }
+        1: { gif: "/Narrativa/final_C_01.png", text: "Lo has conseguido." },
+        2: { gif: "/Narrativa/final_C_01.png", text: "Notas la sangre fluir por tus venas y tu piel es más suave ahora que han dejado de crecer hojas en ella." },
+        3: { gif: "/Narrativa/final_C_01.png", text: "Todo ha vuelto a la normalidad." },
+        4: { gif: "/Narrativa/final_C_01.png", text: "El alivio por seguir conservando tu cuerpo es mayor que la curiosidad de saber qué habría pasado si hubieras dejado que la metamorfosis siguiera su curso." }
     }
 };
 
@@ -67,7 +67,7 @@ const Storyboard = () => {
                 <div className="storyboard__animation">
                     <img 
                         className="storyboard__gif" 
-                        src={currentData?.gif || "/story1.gif"} 
+                        src={currentData?.gif || "/Narrativa/inicio_01.png"} 
                         alt={`Historia Pantalla ${currentStoryScreen}`} 
                     />
                 </div>

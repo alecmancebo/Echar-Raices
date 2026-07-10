@@ -13,8 +13,6 @@ export class OverworldMap {
 
         this.walls = config.walls || {};
 
-        console.log("Muros iniciales:", this.walls);  // ← Agrega esto aquí
-
 
         // Imagen de fondo del mapa
         this.image = new Image();
@@ -92,6 +90,10 @@ export const OverworldMaps = {
                 cutY: 47,
                 isInteractive: true,
                 disableOriginalHover: true,
+                                interactionTiles: [
+                                        [10, 5], [11, 5], [12, 5],
+                                        [10, 6], [11, 6], [12, 6],
+                                ],
                 useBubble: true
             }),
 
@@ -252,11 +254,9 @@ export const OverworldMaps = {
             [utils.asGridCoord(0,6)] : true,
             [utils.asGridCoord(0,7)] : true,
             [utils.asGridCoord(1,6)] : true,
-            [utils.asGridCoord(1,7)] : true,
             [utils.asGridCoord(2,6)] : true,
-            [utils.asGridCoord(2,7)] : true,
             [utils.asGridCoord(3,6)] : true,
-            [utils.asGridCoord(3,7)] : true,
+           
             
             //arbol
             [utils.asGridCoord(0,5)] : true,

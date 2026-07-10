@@ -4,20 +4,24 @@ const MenuControls = ({ onBack }) => (
             <img className="controls__back-icon" src="/UI/flecha-grande.png" alt="" />
             VOLVER A MENÚ
         </button>
-        <div className="controls__list">
-            <div className="controls__item">
+        <ul className="controls__list">
+            <li className="controls__item">
                 <p>Muévete con las flechas<br/>del teclado.</p>
-                <div className="controls__gif"></div>
-            </div>
-            <div className="controls__item">
-                <p>Para seleccionar un objeto,<br/>acércate y haz clic.</p>
-                <div className="controls__gif"></div>
-            </div>
-            <div className="controls__item">
-                <p>Para ir al inventario, clica<br/>en el pozo.</p>
-                <div className="controls__gif"></div>
-            </div>
-        </div>
+                
+            </li>
+            <li className="controls__item">
+                <p>Para seleccionar un objeto,<br/>acércate y dale a Enter.</p>
+                
+            </li>
+            <li className="controls__item">
+                <p>Para ir al inventario, dale a <br/> acercándote al pozo.</p>
+                
+            </li>
+            <li className="controls__item">
+                <p>Para usar un objeto, clica sobre él <br/>en el inventario.</p>
+                
+            </li>
+        </ul>
     </div>
 );
 export default MenuControls;
