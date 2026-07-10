@@ -2,17 +2,22 @@ import { useEffect, useContext } from 'react';
 import { Context } from '../../context/Context.jsx';
 
 const EndingFade = () => {
-  const { completeEndingTransition } = useContext(Context);
+  const { gameState, completeEndingTransition, completeIntroTransition } = useContext(Context);
 
   useEffect(() => {
     const timer = window.setTimeout(() => {
-      completeEndingTransition();
+      if (gameState === 'ENDING_FADE') {
+        completeEndingTransition();
+        return;
+      }
+
+      completeIntroTransition();
     }, 2600);
 
     return () => window.clearTimeout(timer);
-  }, [completeEndingTransition]);
+  }, [gameState, completeEndingTransition, completeIntroTransition]);
 
-  return <div className="ending-fade" aria-label="Transición final" />;
+  return <div className="ending-fade" aria-label="Transición" />;
 };
 
 export default EndingFade;

@@ -403,13 +403,8 @@ export const GameProvider = ({ children }) => {
             const currentKey = resolveObjectKey(inventoryItem?.id || inventoryItem?.name);
             return currentKey === itemKey || inventoryItem?.id === item.id || inventoryItem?.name === item.name;
         });
-        const remainingItems = updatedItems.filter((inventoryItem) => {
-            const currentKey = resolveObjectKey(inventoryItem?.id || inventoryItem?.name);
-            const sameItem = currentKey === itemKey || inventoryItem?.id === item.id || inventoryItem?.name === item.name;
-            return !sameItem;
-        });
 
-        persistInventoryState(remainingItems);
+        persistInventoryState(updatedItems);
 
         const storedItems = JSON.parse(localStorage.getItem('collectedObjects') || '[]');
         const filteredItems = storedItems.filter((storedId) => resolveObjectKey(storedId) !== itemKey);
@@ -545,9 +540,13 @@ export const GameProvider = ({ children }) => {
         localStorage.setItem('storyMode', 'ending');
     };
 
-    const advanceStory = async () => {
+    const completeIntroTransition = () => {
+        setPersistedGameState('PLAYING');
+    };
+
+    const advanceStory = async (maxScreens = 4) => {
         if (storyMode === 'ending') {
-            if (currentStoryScreen < 4) {
+            if (currentStoryScreen < maxScreens) {
                 setCurrentStoryScreen(prev => prev + 1);
             } else {
                 setPersistedGameState('GAME_OVER');
@@ -555,7 +554,7 @@ export const GameProvider = ({ children }) => {
             return;
         }
 
-        if (currentStoryScreen < 4) {
+        if (currentStoryScreen < maxScreens) {
             setCurrentStoryScreen(prev => prev + 1);
         } else {
             try {
@@ -563,9 +562,10 @@ export const GameProvider = ({ children }) => {
                     method: "PATCH",
                     headers: { "Authorization": `Bearer ${token}` }
                 });
-                setPersistedGameState('PLAYING');
+                setPersistedGameState('INTRO_FADE');
             } catch (e) {
                 console.error("Error guardando progreso");
+                setPersistedGameState('INTRO_FADE');
             }
         }
     };
@@ -574,7 +574,7 @@ export const GameProvider = ({ children }) => {
         <Context.Provider value={{ 
             gameState, setGameState: setPersistedGameState, 
             pendingAction, setPendingAction,
-            advanceStory, completeEndingTransition, currentStoryScreen, setCurrentStoryScreen,
+            advanceStory, completeEndingTransition, completeIntroTransition, currentStoryScreen, setCurrentStoryScreen,
             inventoryItems, setInventoryItems, itineraryUsage, itineraryThresholds, winningItinerary, storyMode, setStoryMode, endingTriggered,
             isMenuOpen, openMenu, closeMenu,
             isInventoryOpen, openInventory, closeInventory,

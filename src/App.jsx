@@ -32,6 +32,7 @@ function AppContent() {
   switch (gameState) {
       case 'LOGIN': return <Login />;
       case 'STORYBOARD': return <Storyboard />;
+      case 'INTRO_FADE': return <EndingFade />;
       case 'ENDING_FADE': return <EndingFade />;
       case 'GAME_OVER': return <GameOver />;
       case 'PLAYING': return token ? <GameContainer /> : <Login />;
