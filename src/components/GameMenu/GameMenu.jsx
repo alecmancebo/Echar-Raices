@@ -22,14 +22,12 @@ const GameMenu = () => {
 
     return (
         <>
-            {/* BOTÓN FLOTANTE: Se dibuja solo cuando el menú está cerrado */}
             {!isMenuOpen && (
                 <button className="game-ui__btn game-ui__btn--menu-closed" onClick={openMenu}>
                     <img className="game-ui__icon" src="/UI/ajustesicono.png" alt="Ajustes" />
                 </button>
             )}
 
-            {/* EL MODAL: Se dibuja solo cuando el menú está abierto */}
             {isMenuOpen && (
                 <div className="modal-overlay">
                     <div className="modal">

@@ -166,7 +166,7 @@ const GameContainer = () => {
     const map = overworldRef.current?.map;
     if (!map?.gameObjects || !Array.isArray(inventoryItems)) return;
 
-    // evitar arrastre entre partidas.
+    // evitar arrastre de objetos entre partidas
     Object.keys(OBJECT_LAYOUT).forEach((objectId) => {
       const existingObject = map.gameObjects[objectId];
       if (existingObject) {
